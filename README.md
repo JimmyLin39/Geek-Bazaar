@@ -23,7 +23,7 @@ _If you're a game collector, then this site will expand your knowledge of **all*
 ## **Team** <a id="team">
 - [Karanveer Singh](https://github.com/Karanveer-singh671)
 - [Jimmy Lin](https://github.com/JimmyLin39)
-- [Tomas Li](https://github.com/tomtkli)
+- [Thomas Li](https://github.com/tomtkli)
 - [Kang Wang](https://github.com/kdubss)
 
 [Back 2 Top](#toc)

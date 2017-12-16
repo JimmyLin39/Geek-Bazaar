@@ -5,6 +5,7 @@
     <div>
       <b-alert show>Default Alert</b-alert>
       <h2>Example heading <b-badge>New</b-badge></h2>
+      <b-button variant="success">Success</b-button>
     </div>
 
     <ul>
@@ -26,8 +27,7 @@
 </template>
 
 <script>
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
+
 
 export default {
   name: 'HelloWorld',

@@ -15,7 +15,7 @@ HTTP method | URI path | Description
 --- | --- | ---
 GET | `/inventories` | Link to My Inventory
 GET | `/search`  | search
-GET | `/profile` | user profile
+GET | `/users/:id/profile` | user profile
 GET | `/order` | user orders
 GET | `/cart` | user cart
 POST | `/logout` | logout
@@ -31,6 +31,8 @@ PUT | `/inventories/:id` | Update an inventory
 DELETE | `/inventories/:id` | Delete an inventory
 GET | `/orders` | Retrieve all orders
 GET | `/sales` | Retrieve all sales
+GET | `/users/:id/profile` | Retrieve all user profile
+PUT | `/users/:id/profile` | update user profile
 
 
 

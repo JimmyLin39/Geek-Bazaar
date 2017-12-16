@@ -2,6 +2,12 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
+    <div>
+      <b-alert show>Default Alert</b-alert>
+      <h2>Example heading <b-badge>New</b-badge></h2>
+      <b-button variant="success">Success</b-button>
+    </div>
+
     <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
       <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
@@ -21,6 +27,8 @@
 </template>
 
 <script>
+
+
 export default {
   name: 'HelloWorld',
   data() {

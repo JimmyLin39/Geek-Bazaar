@@ -31,12 +31,14 @@ export default {
     };
   },
   methods: {
+    // TODO: point the registration response to reference the '/register'
+    // end point in the Express backend
     async register() {
       const response = await AuthenticationService.register({
         email: this.email,
         password: this.password
       })
-      console.log(response)
+      console.log(response.data)
     }
   }
 };

@@ -1,17 +1,23 @@
-const express = require('express');
 const bodyParser = require('body-parser');
+const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 
 const app = express();
 
-app.use(cors);
-app.use(morgan('combine')); // see docs
+app.use(cors());
+app.use(morgan('combined'));
 app.use(bodyParser.json());
 
-app.post('/register', (req, res) => {
+app.get('/status', (req, res) => {
   res.send({
-    message: 'Hello!. You\'ve successfully registered!',
+    message: 'Current Status: working!',
+  });
+});
+
+app.post('/register', (req, res) => { // \n
+  res.send({
+    message: `Hello ${req.body.email}. You've successfully registered!`,
   });
 });
 

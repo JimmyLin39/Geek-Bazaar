@@ -9,13 +9,7 @@ app.use(cors());
 app.use(morgan('combined'));
 app.use(bodyParser.json());
 
-app.get('/status', (req, res) => {
-  res.send({
-    message: 'Current Status: working!',
-  });
-});
-
-app.post('/register', (req, res) => { // \n
+app.post('/register', (req, res) => {
   res.send({
     message: `Hello ${req.body.email}. You've successfully registered!`,
   });

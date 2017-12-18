@@ -20,7 +20,6 @@
 <script>
 
 import AuthenticationService from '@/services/AuthenticationService'
-
 export default {
   data() {
     return {
@@ -40,7 +39,7 @@ export default {
       })
       console.log(response.data)
     }
-  }
+  } 
 };
 
 </script>

@@ -17,9 +17,8 @@ app.use(morgan('dev')); // see docs
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
 app.use(bodyParser.json());
-app.use(cors());
 
-app.get('/register', (req, res) => {
+app.post('/register', (req, res) => {
   res.send({
     message: `Hello ${req.body.email}!  You've successfully registered!`,
   });

@@ -8,7 +8,6 @@ const knexConfig = require('./knexfile');
 const knex = require('knex')(knexConfig[ENV]);
 const knexLogger = require('knex-logger');
 const cors = require('cors');
-const morgan = require('morgan');
 
 const app = express();
 

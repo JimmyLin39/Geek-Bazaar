@@ -17,7 +17,8 @@
     "express": "^4.16.2",
     "morgan": "^1.9.0",
     "nodemon": "^1.13.3",
-    "sequelize": "^4.28.5"
+    "sequelize": "^4.28.5",
+    "sqlite3": "^3.1.13"
   },
   "devDependencies": {
     "eslint-config-airbnb-base": "^12.1.0",

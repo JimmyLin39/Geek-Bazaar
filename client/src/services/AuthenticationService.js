@@ -3,8 +3,10 @@ import Api from '@/services/Api'
 
 export default {
   register(credentials) {
-    console.log("registered info received!")
     return Api().post('register', credentials)
+  },
+  login(credentials) {
+    return Api().post('login', credentials)
   }
 }
 
@@ -13,3 +15,5 @@ export default {
 //   password: '123456'
 // });
 //
+
+

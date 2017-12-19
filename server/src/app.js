@@ -24,6 +24,18 @@ app.get('/register', (req, res) => {
   });
 });
 
+const bgg = require('bgg-axios');
+
+bgg.search('monopoly', 20)
+  .then((resultsId) => {
+    const id = resultsId.items[0].objectid;
+    // console.log(resultsId);
+    bgg.apiRequest('thing items', { id: `${id}` })
+      .then((results) => {
+        console.log(results);
+      });
+  });
+
 app.listen(process.env.PORT || 8081, () => {
   console.log('we are up at on port ', process.env.PORT || 8081);
 });

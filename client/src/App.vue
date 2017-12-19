@@ -17,32 +17,31 @@
     </head>
     <header class=“app-header”>
       <Navbar></Navbar>
-      <!-- <Titlebar></Titlebar> -->
+      <Titlebar></Titlebar>
       <!-- <Pagefooter></Pagefooter> -->
     </header>
     <main class=“container”>
       <!-- <router-view></router-view> -->
     </main>
+    
   </div>
 </template>
 
 <script>
 import Navbar from './components/Navbar';
-// import Titlebar from './components/Titlebar';
+import Titlebar from './components/Titlebar';
 // import Pagefooter from './components/Pagefooter';
 
 export default {
   components: {
     Navbar,
-    // Titlebar,
+    Titlebar,
     // Pagefooter
   },
-
-//  created () {
-//     this.$store.dispatch('fetchProducts')
-//   }
 }
+
 </script>
+
 
 <style>
 

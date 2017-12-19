@@ -36,7 +36,6 @@
 <script>
 export default {
   name: 'app', 
-  variant: 'success',
 };
 </script>
 

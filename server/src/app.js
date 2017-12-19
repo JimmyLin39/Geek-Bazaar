@@ -28,7 +28,7 @@ const bgg = require('bgg-axios');
 
 app.get('/search', (req, res) => {
   console.log('req query: ', req.query.NAME);
-  bgg.search(`${req.query.NAME}`, 2)
+  bgg.search(`${req.query.NAME}`, 20)
     .then((searchResults) => {
       return Promise.all(searchResults.items.map((item) => {
         return bgg.apiRequest('thing items', { id: `${item.objectid}` });

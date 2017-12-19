@@ -27,8 +27,8 @@ app.post('/register', (req, res) => {
 const bgg = require('bgg-axios');
 
 app.get('/search', (req, res) => {
-  console.log('req body: ', req.query.search);
-  bgg.search(`${req.query.search}`, 2)
+  console.log('req query: ', req.query.NAME);
+  bgg.search(`${req.query.NAME}`, 2)
     .then((searchResults) => {
       return Promise.all(searchResults.items.map((item) => {
         return bgg.apiRequest('thing items', { id: `${item.objectid}` });

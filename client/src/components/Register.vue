@@ -10,7 +10,7 @@
     <p><input type='email' name='email' placeholder='Email'
       v-model='email'></input></p>
     <p><input type='password' name='password' placeholder='Password'
-      v-model='password'>
+      v-model='password' @keyup.enter='register'>
     </input></p>
     <br>
     <button @click='register'>Register</button>
@@ -20,25 +20,26 @@
 <script>
 
 import AuthenticationService from '@/services/AuthenticationService'
-
 export default {
   data() {
     return {
       email: '',
-      password: '',
+      password: '', 
       firstName: '',
       lastName: ''
     };
   },
   methods: {
+    // TODO: point the registration response to reference the '/register'
+    // end point in the Express backend -->
     async register() {
       const response = await AuthenticationService.register({
         email: this.email,
         password: this.password
       })
-      console.log(response)
+      console.log(response.data)
     }
-  }
+  } 
 };
 
 </script>

@@ -18,9 +18,9 @@ app.use(morgan('dev')); // see docs
 app.use(knexLogger(knex));
 app.use(bodyParser.json());
 
-app.get('/register', (req, res) => {
+app.post('/register', (req, res) => {
   res.send({
-    message: 'Hello!. You\'ve successfully registered!',
+    message: `Hello ${req.body.email}!  You've successfully registered!`,
   });
 });
 

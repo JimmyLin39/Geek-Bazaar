@@ -1,17 +1,18 @@
 <template>
   <div class='register'>
     <h1>Register</h1>
-    <p><input type='firstName' name='firstName' placeholder='First Name'
-      v-model='firstName'>
+    <p><input type='name' name='name' placeholder='Full Name'
+      v-model='name'>
     </input></p>
-    <p><input type='lastName' name='lastName' placeholder='Last Name'
-      v-model='lastName'>
+    <p><input type='DisplayName' name='DisplayName' placeholder='Display Name'
+      v-model='DisplayName'>
     </input></p>
     <p><input type='email' name='email' placeholder='Email'
       v-model='email'></input></p>
     <p><input type='password' name='password' placeholder='Password'
-      v-model='password'>
-    </input></p>
+      v-model='password'></input></p>
+       <p><input type='address' name='address' placeholder='Address'
+      v-model='address'></input></p>
     <br>
     <button @click='register'>Register</button>
   </div>
@@ -26,17 +27,18 @@ export default {
     return {
       email: '',
       password: '',
-      firstName: '',
-      lastName: ''
+      name: '',
+      DisplayName: '',
+      address:''
     };
   },
   methods: {
     async register() {
       const response = await AuthenticationService.register({
         email: this.email,
-        password: this.password
+        password: this.password,
       })
-      console.log(response)
+      console.log(response.data)
     }
   }
 };

@@ -4,7 +4,7 @@
       <Navbar></Navbar>
     </header>
     <main class=“container”>
-      <!-- <router-view></router-view> -->
+      <router-view></router-view>
     </main>
   </div>
 </template>

@@ -16,26 +16,28 @@
       <link href="../bootstrap-4.0.0-alpha.6/docs/examples/jumbotron/jumbotron.css" rel="stylesheet">
     </head>
     <header class=“app-header”>
-      <Navbar></Navbar>
-      <Titlebar></Titlebar>
+      <Navbar></Navbar>     
       <!-- <Pagefooter></Pagefooter> -->
     </header>
-    <main class=“container”>
-      <!-- <router-view></router-view> -->
+    <main class=“container”>      
+      <router-view></router-view>
     </main>
     
   </div>
 </template>
 
 <script>
+
 import Navbar from './components/Navbar';
-import Titlebar from './components/Titlebar';
+// import Titlebar from './components/Titlebar';
+// import Register from './components/Register';
+
 // import Pagefooter from './components/Pagefooter';
 
 export default {
   components: {
     Navbar,
-    Titlebar,
+    // Register,
     // Pagefooter
   },
 }

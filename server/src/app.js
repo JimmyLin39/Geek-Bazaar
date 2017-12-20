@@ -18,6 +18,13 @@ app.use(morgan('dev')); // see docs
 app.use(knexLogger(knex));
 app.use(bodyParser.json());
 
+// TODO: Create a users profile
+app.get('/users', (req, res) => {
+  res.send({
+    message: 'Welcome to the Users-Profile page'
+  })
+})
+
 // TODO: Create new user instances with Knex: Done!
 app.post('/register', (req, res) => {
   const newUser = {

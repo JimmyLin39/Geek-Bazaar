@@ -8,10 +8,14 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="#">
+            <router-link to='/'>Home</router-link> 
+            <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
+          <a class="nav-link" href="#">
+            <router-link to='/login'>Login</router-link>
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#"></a>
@@ -35,7 +39,7 @@
 
 <script>
 export default {
-  name: 'app', 
+  name: 'app',
 };
 </script>
 

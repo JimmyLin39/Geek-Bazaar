@@ -13,7 +13,7 @@
         <br>
         <div class='register-button'>
           <p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Register Now &raquo;</a>
+            <router-link to="/register" class="btn btn-primary btn-lg" role="button">Register Now &raquo;</router-link>
           </p>
         </div>
       </div>

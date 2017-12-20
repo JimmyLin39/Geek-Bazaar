@@ -3,6 +3,6 @@ import Api from '@/services/Api';
 
 export default {
   retrieveInventory() {
-    return Api().get('inventory');
+    return Api().get('inventories');
   },
 };

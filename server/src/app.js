@@ -8,6 +8,7 @@ const knexConfig = require('./knexfile');
 const knex = require('knex')(knexConfig[ENV]);
 const knexLogger = require('knex-logger');
 const cors = require('cors');
+const bcrypt = require('bcrypt');
 
 const app = express();
 
@@ -17,13 +18,13 @@ app.use(morgan('dev')); // see docs
 app.use(knexLogger(knex));
 app.use(bodyParser.json());
 
-// TODO: Create new user instances with Knex:
+// TODO: Create new user instances with Knex: Done!
 app.post('/register', (req, res) => {
   const newUser = {
     full_name: req.body.full_name,
     display_name: req.body.display_name,
     email: req.body.email,
-    password: req.body.password,
+    password: bcrypt.hashSync(req.body.password, 10),
   }
   knex.insert(newUser)
     .into('users')

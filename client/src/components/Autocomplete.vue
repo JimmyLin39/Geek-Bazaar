@@ -28,18 +28,20 @@ export default {
       const response = await BggApi.searchResult(
         this.searchInput
       )
+     
       const responseData = response.data.allResults;
       console.log(responseData);
+      this.searchResult = [];
       responseData.forEach( (element) => {
         const boardgameItem = element.items.item
         if (boardgameItem.name.length > 0) {          
           console.log(boardgameItem.name[0].value, boardgameItem.yearpublished.value);
-          this.searchResult.push(boardgameItem.name[0].value);
+          this.searchResult.push(`${boardgameItem.name[0].value} ${boardgameItem.yearpublished.value}`);
         } else {
           console.log(boardgameItem.name.value); 
           this.searchResult.push(boardgameItem.name.value);       
         }
-      });
+      })
     }
   }
 }

@@ -8,7 +8,8 @@
         </figure>
         <div class="card-content">
           <aside class="card-overlay">
-            <button class="btn btn-outline-primary add-to-cart" type="button" name="button">Add to cart</button>
+            <button class="btn btn-info overlay-button" type="button" name="button">See Detail</button>            
+            <button class="btn btn-info overlay-button" type="button" name="button">Add to cart</button>
           </aside>
           <div class="card-body">
             <header class="product-info">
@@ -25,7 +26,7 @@
 </template>
 
 <style lang="scss" scoped>
-.add-to-cart {
+.overlay-button {
   margin: 0 auto;
 }
 

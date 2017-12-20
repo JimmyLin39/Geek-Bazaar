@@ -13,10 +13,10 @@
           </aside>
           <div class="card-body">
             <header class="product-info">
-              <h1 class="title">product.name</h1>
-              <span class="price">product.price</span>
+              <h1 class="title">inventory.name</h1>
+              <span class="price">inventory.price</span>
             </header>
-            <p class="description">product.description</p>
+            <p class="description">inventory.description</p>
           </div>
         </div>
       </section>
@@ -24,6 +24,31 @@
   </section>
 </div>
 </template>
+
+<script>
+import InventoryService from '@/services/InventoryService'
+export default {
+  data() {
+    return {
+      inventory: {
+        name: '',
+        description: '',
+        price: '',
+      }
+    }
+  },
+  methods: {
+      async retrieveInventory() {
+        const response = await InventoryService.retrieveInventory({
+          inventory: this.inventory
+        })
+        console.log(response.data);
+        
+      }
+  }
+}
+</script>
+
 
 <style lang="scss" scoped>
 .overlay-button {

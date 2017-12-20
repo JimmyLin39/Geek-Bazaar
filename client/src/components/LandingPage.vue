@@ -4,16 +4,19 @@
       <div class="container">
         <h1 class="display-3">Geek Bazaar</h1>
         <p class='description'>
-          Welcome to <b>Geek Bazaar</b>, a place where passionate gamers can come 
+          Welcome to <b>Geek Bazaar</b>, a place where passionate gamers can come
           to connect and bid-on/sell a variety of board games.
-          Whatever game it might be, we are 100% sure you'll be able to find it on 
+          Whatever game it might be, we are 100% sure you'll be able to find it on
           the Geek Bazaar!  Register below and discover all the games inside!
         </p>
-        <hr>              
+        <hr>
         <br>
         <div class='register-button'>
           <p>
-            <router-link to="/register" class="btn btn-primary btn-lg" role="button">Register Now &raquo;</router-link>
+            <router-link to="/register" class="btn btn-primary btn-lg"
+            role="button">
+              Register Now &raquo;
+            </router-link>
           </p>
         </div>
       </div>
@@ -35,7 +38,7 @@
         <div class="col-md-4">
           <h2>Feature 2</h2>
           <p class='col-md-4-p'>
-            Description of Feature 2. 
+            Description of Feature 2.
           </p>
           <p class='col-md-4-p-button'>
             <a class="btn btn-secondary" href="#" role="button">
@@ -101,7 +104,7 @@ export default {
 .btn.btn-secondary {
   background-color: #0275d8;
   border-color: #0275d8;
-  color: white;   
+  color: white;
 }
 .col-md-4-p {
   text-align: justify;
@@ -114,4 +117,3 @@ export default {
 }
 
 </style>
-

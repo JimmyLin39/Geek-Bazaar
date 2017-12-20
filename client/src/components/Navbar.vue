@@ -9,7 +9,7 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link" href="#">
-            <router-link to='/'>Home</router-link> 
+            <router-link to='/'>Home</router-link>
             <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">

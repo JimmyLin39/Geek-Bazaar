@@ -8,25 +8,23 @@ module.exports = (knex) => {
     // if (!req.session.user_id) {
     //   res.redirect('/users');
     // }
-    // knex('inventories')
-    //   .where('likes.user_id', req.session.user_id)
-    //   .then((resources) => {
-    //     return Promise.all([
-    //       resources,
-    //       knex('tags')
-    //         .where('resource_id', 'in', resources.map(r => r.resource_id))
-    //     ]);
-    //   }).then(([resources, tags]) => {
-    //     resources.forEach(resource => {
-    //       resource.tags = tags.filter(tag => {
-    //       return tag.resource_id === resource.resource_id;
-    //       })
-    //     })
-    //     res.render('index', { resources })
-    //   })
-    res.send({
-      message: 'success',
-    });
+    knex
+      .select('name', 'description', 'price')
+      .from('inventories')
+      // .select()
+      // .from('inventories')
+      .then((resources) => {
+        console.log('resources:', resources);
+        res.send({
+          message: 'success',
+          resources,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    // console.log(knex.select().from('inventories'));
+    // res.send({ message: 'success' });
   });
 
   return router;

@@ -37,15 +37,20 @@ export default {
       }
     }
   },
+  created: function() {
+    this.retrieveInventory();
+  },
   methods: {
-      // talk to back end server to retrieve all inventories
-      async retrieveInventory() {
-        const response = await InventoryService.retrieveInventory({
-          inventory: this.inventory
-        })
-        console.log(response.data);
-        
-      }
+    // talk to back end server to retrieve all inventories
+    retrieveInventory: async () => {
+      console.log('i am here');
+      
+      const response = await InventoryService.retrieveInventory({
+        inventory: this.inventory
+      })
+      console.log(response.data);
+      
+    }
   }
 }
 </script>

@@ -13,10 +13,10 @@
           </aside>
           <div class="card-body">
             <header class="product-info">
-              <h1 class="title">inventory.name</h1>
-              <span class="price">inventory.price</span>
+              <h1 class="title">{{inventory.name}}</h1>
+              <span class="price">{{inventory.price}}</span>
             </header>
-            <p class="description">inventory.description</p>
+            <p class="description">{{inventory.description}}</p>
           </div>
         </div>
       </section>
@@ -38,6 +38,7 @@ export default {
     }
   },
   methods: {
+      // talk to back end server to retrieve all inventories
       async retrieveInventory() {
         const response = await InventoryService.retrieveInventory({
           inventory: this.inventory

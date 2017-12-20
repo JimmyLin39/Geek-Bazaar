@@ -104,8 +104,6 @@
 <script>
 
 import AuthenticationService from '@/services/AuthenticationService'
-const knex = require('knex')
-// (require('../../../server/src/knexfile'));
 
 export default {
   data() {
@@ -127,13 +125,6 @@ export default {
         password: this.password,
       })
       console.log(response.data)
-
-      return knex('users').insert({
-        full_name,
-        display_name,
-        email,
-        password
-      })
     },
   }
 }

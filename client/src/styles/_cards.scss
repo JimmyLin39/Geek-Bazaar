@@ -64,7 +64,8 @@
   // Hover state
   &:hover {
     .card-product-image:before {
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: #ffffff;
+      opacity: .8;  
     }
 
     .card-overlay {

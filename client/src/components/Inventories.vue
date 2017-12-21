@@ -31,28 +31,8 @@
 </template>
 
 <script>
-import InventoryService from '@/services/InventoryService'
 export default {
-  data() {
-    return {
-      inventories: [],
-    }
-  },
-  created: function() {
-    this.retrieveInventory(this.inventories);
-  },
-  methods: {
-    // talk to back end server to retrieve all inventories
-    retrieveInventory: async (inventories) => {
-      const response = await InventoryService.retrieveInventory();
-      console.log('response:', response.data.resources);
-      
-      response.data.resources.forEach((element) => {
-        inventories.push(element);
-      })
-      // console.log(this.inventories);
-    }
-  }
+  props: ['inventories'],
 }
 </script>
 

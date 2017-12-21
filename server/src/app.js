@@ -1,3 +1,4 @@
+// Talk to DB, which is one file-level up.
 require('dotenv').config({path: '../.env'});
 
 const ENV = process.env.ENV || 'development';

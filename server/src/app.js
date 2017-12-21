@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 // Talk to DB, which is one file-level up.
 require('dotenv').config({path: '../.env'});
+=======
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+// console.log(process.env.SESSION_SECRET);
+>>>>>>> ee8c32723a0802eca0160046af389a709079374a
 
+const PORT = process.env.PORT || 8081;
 const ENV = process.env.ENV || 'development';
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -13,12 +20,16 @@ const bcrypt = require('bcrypt');
 
 const app = express();
 
+// Seperated Routes for each Resource
+const inventoriesRoutes = require('./routes/inventories');
+
 app.use(cors());
 app.use(morgan('dev')); // see docs
 
 app.use(knexLogger(knex));
 app.use(bodyParser.json());
 
+<<<<<<< HEAD
 // TODO: Create a users profile
 app.get('/users', (req, res) => {
   res.send({
@@ -27,5 +38,26 @@ app.get('/users', (req, res) => {
 })
 
 require('./routes')(app);
+=======
+// Mount all resource routes
+app.use('/inventories', inventoriesRoutes(knex));
 
-app.listen(process.env.PORT || 8081);
+app.post('/register', (req, res) => {
+  const newUser = {
+    full_name: req.body.full_name,
+    display_name: req.body.display_name,
+    email: req.body.email,
+    password: bcrypt.hashSync(req.body.password, 10),
+  }
+  knex.insert(newUser)
+    .into('users')
+    .then(res.send({
+        message: `Hello ${req.body.full_name}!  You've successfully registered with the display name ${req.body.display_name}, and email ${req.body.email}`,
+      })
+    );
+});
+>>>>>>> ee8c32723a0802eca0160046af389a709079374a
+
+app.listen(PORT, () => {
+  console.log('Geek-Bazzar Api listening on port ' + PORT);
+});

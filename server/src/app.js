@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-// Talk to DB, which is one file-level up.
-require('dotenv').config({path: '../.env'});
-=======
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 // console.log(process.env.SESSION_SECRET);
->>>>>>> ee8c32723a0802eca0160046af389a709079374a
 
 const PORT = process.env.PORT || 8081;
 const ENV = process.env.ENV || 'development';
@@ -29,16 +24,6 @@ app.use(morgan('dev')); // see docs
 app.use(knexLogger(knex));
 app.use(bodyParser.json());
 
-<<<<<<< HEAD
-// TODO: Create a users profile
-app.get('/users', (req, res) => {
-  res.send({
-    message: 'Welcome to the Users-Profile page'
-  })
-})
-
-require('./routes')(app);
-=======
 // Mount all resource routes
 app.use('/inventories', inventoriesRoutes(knex));
 
@@ -56,7 +41,6 @@ app.post('/register', (req, res) => {
       })
     );
 });
->>>>>>> ee8c32723a0802eca0160046af389a709079374a
 
 app.listen(PORT, () => {
   console.log('Geek-Bazzar Api listening on port ' + PORT);

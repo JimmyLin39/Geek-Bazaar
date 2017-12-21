@@ -1,29 +1,29 @@
 <template>
-  <table class="table table-hover product-table">
+  <table class="table table-responsive table-hover inventory-table">
     <thead>
       <tr>
-        <th class="product-image-col"></th>
-        <th class="product-name-col">Name</th>
-        <th class="product-desc-col">Description</th>
-        <th class="product-condition-col">Condition</th>
-        <th class="product-price-col">Price</th>
-        <th class="product-delete-col"></th>
+        <th class="inventory-image-col"></th>
+        <th class="inventory-name-col">Name</th>
+        <th class="inventory-desc-col">Description</th>
+        <th class="inventory-condition-col">Condition</th>
+        <th class="inventory-price-col">Price</th>
+        <th class="inventory-delete-col"></th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="product in products" track-by="id" v-on:click.prevent="onEdit(product)">
+      <tr v-for="inventory in inventories" track-by="id" v-on:click.prevent="onEdit(inventory)">
         <td>
-          <img v-if="product.imageUrl" v-bind:src="product.imageUrl" alt="Product image" class="product-image">
-          <img v-else src="../assets/product_placeholder.svg" alt="Product image" class="product-image">
+          <img v-bind:src="inventory.thumbnail" alt="inventory image" class="inventory-image">
         </td>
-        <td>{{product.name}}</td>
-        <td class="product-desc-col">{{product.description}}</td>
-        <td>{{product.price}}:-</td>
-        <td><a href="#" v-on:click.prevent.stop="onRemove(product.id)">remove</a></td>
+        <td>{{inventory.name}}</td>
+        <td class="inventory-desc-col">{{inventory.description}}</td>
+        <td>{{inventory.condition}}</td>
+        <td>${{inventory.price}}</td>
+        <td><a href="#" v-on:click.prevent.stop="onRemove(inventory.id)">remove</a></td>
       </tr>
-      <tr v-if="!products.length">
+      <tr v-if="!inventories.length">
         <td colspan="5" class="p-y-3 text-xs-center">
-          <strong>You should add some products!</strong>
+          <strong>You should add some games!</strong>
         </td>
       </tr>
     </tbody>
@@ -57,7 +57,5 @@ export default {
 </script>
 
 <style>
-.table {
-  margin-top: 32px;
-}
+
 </style>

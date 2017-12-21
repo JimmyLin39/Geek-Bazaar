@@ -25,20 +25,6 @@ app.get('/users', (req, res) => {
   })
 })
 
-// TODO: Create new user instances with Knex: Done!
-app.post('/register', (req, res) => {
-  const newUser = {
-    full_name: req.body.full_name,
-    display_name: req.body.display_name,
-    email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 10),
-  }
-  knex.insert(newUser)
-    .into('users')
-    .then(res.send({
-        message: `Hello ${req.body.full_name}!  You've successfully registered with the display name ${req.body.display_name}, and email ${req.body.email}`,
-      })
-    );
-});
+require('./routes')(app);
 
 app.listen(process.env.PORT || 8081);

@@ -1,5 +1,8 @@
-require('dotenv').config({path: '../.env'});
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+// console.log(process.env.SESSION_SECRET);
 
+const PORT = process.env.PORT || 8081;
 const ENV = process.env.ENV || 'development';
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -12,13 +15,18 @@ const bcrypt = require('bcrypt');
 
 const app = express();
 
+// Seperated Routes for each Resource
+const inventoriesRoutes = require('./routes/inventories');
+
 app.use(cors());
 app.use(morgan('dev')); // see docs
 
 app.use(knexLogger(knex));
 app.use(bodyParser.json());
 
-// TODO: Create new user instances with Knex: Done!
+// Mount all resource routes
+app.use('/inventories', inventoriesRoutes(knex));
+
 app.post('/register', (req, res) => {
   const newUser = {
     full_name: req.body.full_name,
@@ -34,4 +42,6 @@ app.post('/register', (req, res) => {
     );
 });
 
-app.listen(process.env.PORT || 8081);
+app.listen(PORT, () => {
+  console.log('Geek-Bazzar Api listening on port ' + PORT);
+});

@@ -4,7 +4,7 @@
     <div class="col-sm-6 col-md-4" v-for="inventory in inventories">
       <section class="card card-product">
         <figure class="card-img-top card-product-image">
-          <img v-bind:src="inventory.thumbnail" alt="Product image">
+          <img v-bind:src="inventory.image" alt="Product image">
         </figure>
         <div class="card-content">
           <aside class="card-overlay">

@@ -10,7 +10,7 @@ module.exports = (knex) => {
     // }
     knex('inventories')
       .join('products', 'inventories.product_id', '=', 'products.id')
-      .select('inventories.name', 'inventories.description', 'inventories.price', 'thumbnail')
+      .select('inventories.name', 'inventories.description', 'inventories.price', 'image')
       .then((resources) => {
         res.send({
           resources,

@@ -4,7 +4,7 @@ import Register from '@/components/Register';
 import LandingPage from '@/components/LandingPage';
 import Login from '@/components/Login';
 import Index from '@/components/Index';
-
+import Inventories from '@/components/Inventories'
 Vue.use(Router);
 
 export default new Router({
@@ -29,6 +29,11 @@ export default new Router({
       path: '/index',
       name: 'Index',
       component: Index,
+    },
+    {
+      path: '/inventories',
+      name: 'Inventories',
+      component: Inventories,
     },
   ],
 });

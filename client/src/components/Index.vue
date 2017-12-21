@@ -1,10 +1,10 @@
 <template>
 <div class="container">
-  <section class="row">
-    <div class="col-sm-6 col-md-4">
+  <div class="row">
+    <div class="col-sm-6 col-md-4" v-for="inventory in inventories">
       <section class="card card-product">
         <figure class="card-img-top card-product-image">
-          <img src="../assets/logo.png" alt="Product image">
+          <img v-bind:src="inventory.thumbnail" alt="Product image">
         </figure>
         <div class="card-content">
           <aside class="card-overlay">
@@ -14,14 +14,14 @@
           <div class="card-body">
             <header class="product-info">
               <h1 class="title">{{inventory.name}}</h1>
-              <span class="price">{{inventory.price}}</span>
+              <span class="price">${{inventory.price}}</span>
             </header>
             <p class="description">{{inventory.description}}</p>
           </div>
         </div>
       </section>
     </div>
-  </section>
+  </div>
 </div>
 </template>
 
@@ -30,26 +30,22 @@ import InventoryService from '@/services/InventoryService'
 export default {
   data() {
     return {
-      inventory: {
-        name: '',
-        description: '',
-        price: '',
-      }
+      inventories: [],
     }
   },
   created: function() {
-    this.retrieveInventory();
+    this.retrieveInventory(this.inventories);
   },
   methods: {
     // talk to back end server to retrieve all inventories
-    retrieveInventory: async () => {
-      console.log('i am here');
+    retrieveInventory: async (inventories) => {
+      const response = await InventoryService.retrieveInventory();
+      console.log('response:', response.data.resources);
       
-      const response = await InventoryService.retrieveInventory({
-        inventory: this.inventory
+      response.data.resources.forEach((element) => {
+        inventories.push(element);
       })
-      console.log(response.data);
-      
+      // console.log(this.inventories);
     }
   }
 }

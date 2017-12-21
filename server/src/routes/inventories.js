@@ -8,23 +8,17 @@ module.exports = (knex) => {
     // if (!req.session.user_id) {
     //   res.redirect('/users');
     // }
-    knex
-      .select('name', 'description', 'price')
-      .from('inventories')
-      // .select()
-      // .from('inventories')
+    knex('inventories')
+      .join('products', 'inventories.product_id', '=', 'products.id')
+      .select('inventories.name', 'inventories.description', 'inventories.price', 'thumbnail')
       .then((resources) => {
-        console.log('resources:', resources);
         res.send({
-          message: 'success',
           resources,
         });
       })
       .catch((error) => {
         console.error(error);
       });
-    // console.log(knex.select().from('inventories'));
-    // res.send({ message: 'success' });
   });
 
   return router;

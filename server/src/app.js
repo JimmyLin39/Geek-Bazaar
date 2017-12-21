@@ -1,4 +1,6 @@
-require('dotenv').config({ path: './.env' });
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+// console.log(process.env.SESSION_SECRET);
 
 const PORT = process.env.PORT || 8081;
 const ENV = process.env.ENV || 'development';

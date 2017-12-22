@@ -35,6 +35,18 @@ app.post('/login', (req, res) => {
     res.send({
       message: 'All fields must be filled in!'
     })
+  } else {
+    knex('users')
+      .where({
+        email: req.body.email,
+      })
+      .then((results) => {
+        if (!results.length) {
+          res.send({
+            message: 'Non-registered email! Please register, first!'
+          })
+        }
+      })
   }
 })
 

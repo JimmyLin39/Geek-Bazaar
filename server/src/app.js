@@ -30,37 +30,45 @@ app.use('/inventories', inventoriesRoutes(knex));
 
 app.post('/register', (req, res) => {
 
-  // if (!req.body.full_name || !req.body.display_name || ! req.body.email ||
-  //   req.body.password) {
-  //   res.json({
-  //     message: 'All the fields must be filled!'
-  //   })
-  // } else {
-  knex('users')
-    .where({email: req.body.email})
-    .then((results) => {
-      if (results.length) {
-        // console.log(results)
-        return res.json({
-          message: 'Email is already registered!'
-        })
-      } else {
-        const newUser = {
-          full_name: req.body.full_name,
-          display_name: req.body.display_name,
-          email: req.body.email,
-          password: bcrypt.hashSync(req.body.password, 10),
-        }
-        knex.insert(newUser)
-          .into('users')
-          .then(res.json({
-            message: `Hello ${req.body.full_name}!
-            You've successfully registered with the display name
-            ${req.body.display_name}, and email ${req.body.email}.`,
-          }))
-      }
+  if (
+    !req.body.full_name ||
+    !req.body.display_name ||
+    !req.body.email ||
+    !req.body.password
+  ) {
+    res.json({
+      message: 'All the fields must be filled!'
     })
-  })
+  } else {
+    knex('users')
+      .where({email: req.body.email})
+      .then((results) => {
+        if (results.length) {
+          return res.send({
+            message: 'Email is already registered!  Please use another one!'
+          })
+        } else {
+          const newUser = {
+            full_name: req.body.full_name,
+            display_name: req.body.display_name,
+            email: req.body.email,
+            password: bcrypt.hashSync(req.body.password, 10),
+          }
+          knex.insert(newUser)
+            .into('users')
+            .then(res.send({
+              message: `Hello ${req.body.full_name}!
+              You've successfully registered with the display name
+              ${req.body.display_name}, and email ${req.body.email}.`,
+            }))
+            .catch(err => {
+              console.log(err.message);
+            })
+          }
+        })
+      }
+})
+
 // require('./routes')(app)
 
 app.listen(PORT, () => {

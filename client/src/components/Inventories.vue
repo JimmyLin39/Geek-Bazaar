@@ -21,7 +21,7 @@
         <td>${{inventory.price}}</td>
         <td><a href="#" v-on:click.prevent.stop="onRemove(inventory.id)">remove</a></td>
       </tr>
-      <tr v-if="!inventories.length">
+      <tr v-if="!inventories">
         <td colspan="5" class="p-y-3 text-xs-center">
           <strong>You should add some games!</strong>
         </td>

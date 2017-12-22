@@ -1,29 +1,34 @@
 <template>
   <section>
-    <!-- <save-product-form
-      :product="productInForm"
-      v-on:submit="onFormSave"
-      v-on:cancel="resetProductInForm"
-    ></save-product-form> -->
     <inventories
       :inventories="inventories"
-      v-on:edit="onEditClicked"
-      v-on:remove="onRemoveClicked"
     ></inventories>
+    <save-inventory-form
+      :inventory="inventoryInForm"
+    ></save-inventory-form>
   </section>
 </template>
 
 <script>
 import Inventories from './Inventories';
+import SaveInventoryForm from './SaveInventoryForm'
 import InventoryService from '@/services/InventoryService'
 
 export default {
   components: {
     Inventories,
+    SaveInventoryForm,
   },
   data() {
     return {
       inventories: null,
+      inventoryInForm: {
+        id: null,
+        name: '',
+        description: '',
+        condition: '',
+        price: '',
+      }
     }
   },
   created: async function() {
@@ -37,7 +42,10 @@ export default {
       return response.data.resources;
 
       // console.log(this.inventories);
-    }
+    },
+    onEditClicked (inventories) {
+      this.inventoryInForm = { ...inventories }
+    },
   }
   
 }

@@ -21,6 +21,27 @@ module.exports = (knex) => {
       });
   });
 
+  router.post('/', (req, res) => {
+    const { userId, productId, name, description, condition, price } = req.body;
+    knex('inventories')
+      .insert({
+        user_id: userId,
+        product_id: productId,
+        name,
+        description,
+        condition,
+        price,
+      })
+      .then(() => {
+        res.send({
+          mseeage: `userId: ${userId}, productId: ${productId} name: ${name}, description: ${description}, condition: ${condition}, price: ${price}`,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+
   return router;
 };
 

@@ -11,6 +11,7 @@ const knex = require('knex')(knexConfig[ENV]);
 const knexLogger = require('knex-logger');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
+const sessdion = require('cookie-session');
 
 const app = express();
 
@@ -45,6 +46,22 @@ app.post('/login', (req, res) => {
           res.send({
             message: 'Non-registered email! Please register, first!'
           })
+        } else {
+          knex('users')
+            .where({
+              email: req.body.email
+            })
+            .then((results) => {
+              if (!bcrypt.compareSync(req.body.password, results[0].password)) {
+                return Promise.reject({
+                  message: 'The password is incorrect!'
+                })
+              }
+            }).catch((error) => {
+              res.send({
+                message: error.message
+              })
+            })
         }
       })
   }

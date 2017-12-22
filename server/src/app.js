@@ -24,9 +24,19 @@ app.use(morgan('dev')); // see docs
 app.use(knexLogger(knex));
 app.use(bodyParser.json());
 
-// Mount all resource routes
 app.use('/inventories', inventoriesRoutes(knex));
-// app.use('/users');
+
+app.post('/login', (req, res) => {
+
+  if (
+    !req.body.email ||
+    !req.body.password
+  ) {
+    res.send({
+      message: 'All fields must be filled in!'
+    })
+  }
+})
 
 app.post('/register', (req, res) => {
 
@@ -36,7 +46,7 @@ app.post('/register', (req, res) => {
     !req.body.email ||
     !req.body.password
   ) {
-    res.json({
+    res.send({
       message: 'All the fields must be filled!'
     })
   } else {

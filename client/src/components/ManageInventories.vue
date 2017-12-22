@@ -29,6 +29,7 @@ export default {
         description: '',
         condition: '',
         price: '',
+        // TODO userId to current userid and product id
         userId: 1,
         productId: 3,
       }
@@ -37,9 +38,12 @@ export default {
   created: async function() {
     this.inventories = await this.retrieveInventory();
   },
+  computed: {
+
+  },
   methods: {
     // talk to back end server to retrieve all inventories
-    retrieveInventory: async () => {
+    async retrieveInventory() {
       const response = await InventoryService.retrieveInventory();
       // console.log('response resources:', response.data.resources);
       return response.data.resources;
@@ -49,6 +53,8 @@ export default {
     onFormSave: async (inventory) => {
       const response = await InventoryService.createInventory(inventory);
       console.log(response.data);
+      // FIXME
+      const inventoryResponse = await InventoryService.retrieveInventory();
    },
     onEditClicked (inventories) {
       this.inventoryInForm = { ...inventories }

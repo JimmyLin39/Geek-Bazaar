@@ -139,5 +139,14 @@ export default {
 .register-container {
   text-align: center;
 }
+.errors {
+  text-align: center;
+  color: darkred;
+  font-style: italic;
+  font-size: 25px;
+  border: 2px solid darkred;
+  padding: 5px;
+  border-radius: 20px;
+}
 
 </style>

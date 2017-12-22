@@ -26,7 +26,10 @@
                 </div>
                 <div style="margin-top:10px" class="form-group">
                   <div class="col-sm-12 controls">
-                    <a id="btn-login" href="#" class="btn btn-success">Login  </a>
+                    <a id="btn-login" href="#/login" class="btn btn-success"
+                      @click='login'>Login </a>
+                    <hr>
+                    <div class='errors'>{{ errors }}</div>
                   </div>
                 </div>
                 <div class="form-group">
@@ -117,6 +120,7 @@ export default {
     return {
       email: '',
       password: '',
+      errors: '',
     };
   },
   methods: {
@@ -125,7 +129,7 @@ export default {
         email: this.email,
         password: this.password
       })
-      console.log(response.data)
+      this.errors = response.data.message;
     },
   }
 };
@@ -134,12 +138,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-.login-container,
-.mainbox,
-.form-horizontal,
-.panel .panel-info,
-.panel-body {
+.errors {
   text-align: center;
+  color: darkred;
+  font-style: italic;
+  font-size: 25px;
+  border: 2px solid darkred;
+  padding: 5px;
+  border-radius: 20px;
 }
+
 
 </style>

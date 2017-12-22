@@ -27,7 +27,6 @@ module.exports = (knex) => {
       .insert({
         user_id: userId,
         product_id: productId,
-        name,
         description,
         condition,
         price,

@@ -41,11 +41,13 @@ app.post('/register', (req, res) => {
     })
   } else {
     knex('users')
-      .where({email: req.body.email})
+      .where({
+        email: req.body.email,
+      })
       .then((results) => {
         if (results.length) {
           return res.send({
-            message: 'Email is already registered!  Please use another one!'
+            message: 'Email is already registered! Register with another one!'
           })
         } else {
           const newUser = {

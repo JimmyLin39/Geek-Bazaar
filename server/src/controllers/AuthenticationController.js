@@ -20,5 +20,15 @@ module.exports = {
           ${req.body.display_name}, and email ${req.body.email}`,
         })
       );
+    // TODO: If email is already in DB --> email MUST be unique
+    if (req.body.email === 'test@test.com') {
+      console.log('Testing!'); // backend hitting this!
+    }
+    },
+  login (req, res) {
+      const user = {
+        email: req.body.email,
+        password: req.body.password
+      }
   }
 }

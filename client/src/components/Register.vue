@@ -32,6 +32,8 @@
             <div style="margin-top:10px" class="form-group">
               <div class="col-sm-12 controls">
                 <a id="btn-login" href="#/register" class="btn btn-success" @click='register'>Register</a>
+                <hr>
+                <div class='errors'>{{ errors }}</div>
               </div>
             </div>
             <div class="form-group">
@@ -112,6 +114,7 @@ export default {
       display_name: '',
       email: '',
       password: '',
+      errors: '',
     };
   },
   methods: {
@@ -124,7 +127,7 @@ export default {
         email: this.email,
         password: this.password,
       })
-      console.log(response.data)
+      this.errors = response.data.message
     },
   }
 }

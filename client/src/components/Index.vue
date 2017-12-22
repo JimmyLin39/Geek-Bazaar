@@ -14,6 +14,7 @@
           <div class="card-body">
             <header class="product-info">
               <h1 class="title">{{inventory.name}}</h1>
+              <span class="title">{{inventory.condition}}</span>
               <span class="price">${{inventory.price}}</span>
             </header>
             <p class="description">{{inventory.description}}</p>

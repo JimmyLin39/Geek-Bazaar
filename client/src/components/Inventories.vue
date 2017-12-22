@@ -4,7 +4,7 @@
       <tr>
         <th class="inventory-image-col"></th>
         <th class="inventory-name-col">Name</th>
-        <th class="inventory-desc-col">Description</th>
+        <th class="inventory-desc-col">Notes</th>
         <th class="inventory-condition-col">Condition</th>
         <th class="inventory-price-col">Price</th>
         <th class="inventory-delete-col"></th>

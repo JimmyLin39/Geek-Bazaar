@@ -1,26 +1,33 @@
 <template>
   <form>
+    <h4>Sell your game here!</h4>
     <div class="form-group" v-bind:class="[{ 'has-danger': formErrors.name }]">
-      <label for="inventoryName">inventory name</label>
-      <input type="text" v-model="inventory.name" class="form-control" id="inventoryName" maxlength="32" placeholder="Enter inventory name">
+      <label for="inventoryName"></label>
+      <input type="text" v-model="inventory.name" class="form-control" id="inventoryName" maxlength="32" placeholder="Enter your game name">
       <div v-if="formErrors.name" class="form-control-feedback">{{formErrors.name}}</div>
     </div>
 
     <div class="form-group">
-      <label for="inventoryDescription">inventory description <small class="text-muted">(optional)</small></label>
-      <textarea class="form-control" v-model="inventory.description" id="inventoryDescription" rows="3" maxlength="128" placeholder="Enter description"></textarea>
+      <label for="inventoryDescription"></label>
+      <textarea class="form-control" v-model="inventory.description" id="inventoryDescription" rows="3" maxlength="128" placeholder="Enter your notes (optional)"></textarea>
     </div>
 
     <div class="form-group" v-bind:class="[{ 'has-danger': formErrors.price }]">
-      <label for="price">Price</label>
-      <input type="number" v-model="inventory.price" class="form-control" id="price" placeholder="Enter Price" number>
+      <label for="price"></label>
+      <input type="number" v-model="inventory.price" class="form-control" id="price" placeholder="Enter Price">
       <div v-if="formErrors.price" class="form-control-feedback">{{formErrors.price}}</div>
+    </div>
+
+    <div class="form-group" v-bind:class="[{ 'has-danger': formErrors.condition }]">
+      <label for="condition"></label>
+      <input type="text" v-model="inventory.condition" class="form-control" id="condition" placeholder="Enter condition">
+      <div v-if="formErrors.condition" class="form-control-feedback">{{formErrors.condition}}</div>
     </div>
 
     <div class="form-group">
       <label for="file" class="d-block">inventory image <small class="text-muted">(optional)</small></label>
       <label class="custom-file">
-        <input type="file" name="inventory_image" @change="onImageChanged" accept=".png, .jpg" id="file" class="custom-file-input">
+        <input type="file" name="inventory_image" @change="onImageChanged" accept=".png, .jpg" id="file" class="custom-file-input" placeholder="Image(optional)">
         <span class="custom-file-control"></span>
       </label>
       <small class="form-text text-muted">{{selectedFileName}}</small>
@@ -62,6 +69,10 @@ export default {
         errors.price = 'Price is required'
       }
 
+      if (!this.inventory.condition) {
+        errors.condition = 'Condition is required'
+      }
+
       this.formErrors = errors
 
       return Object.keys(errors).length === 0
@@ -84,11 +95,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .form-group {
     margin: auto 15% !important;
   }
-  .btn {
+  .btn, h4 {
     margin-left: 15%; 
   }
 </style>

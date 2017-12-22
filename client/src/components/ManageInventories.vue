@@ -29,7 +29,7 @@ export default {
         description: '',
         condition: '',
         price: '',
-        // TODO userId to current userid and product id
+        // TODO: userId to current userid and product id
         userId: 1,
         productId: 3,
       }
@@ -53,7 +53,7 @@ export default {
     onFormSave: async (inventory) => {
       const response = await InventoryService.createInventory(inventory);
       console.log(response.data);
-      // FIXME
+      // FIXME:
       const inventoryResponse = await InventoryService.retrieveInventory();
    },
     onEditClicked (inventories) {

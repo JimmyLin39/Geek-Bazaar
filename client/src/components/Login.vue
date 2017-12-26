@@ -16,20 +16,24 @@
                     class="glyphicon glyphicon-user"></i></span>
                   <input id="login-email" type="text" class="form-control"
                     name="email" value="" placeholder="Email"
-                    v-model='email'>
+                    v-model='email' @click='reset'>
                 </div>
                 <div style="margin-bottom: 25px" class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                   <input id="login-password" type="password" class="form-control"
                     name="password" placeholder="Password"
-                    v-model='password'>
+                    v-model='password' @click='reset'>
                 </div>
                 <div style="margin-top:10px" class="form-group">
                   <div class="col-sm-12 controls">
                     <a id="btn-login" href="#/login" class="btn btn-success"
                       @click='login'>Login </a>
                     <hr>
-                    <div class='errors'>{{ errors }}</div>
+                    <div class='errors'>
+                      {{ errors }}
+                    </div>
+                    <hr>
+                    <div>{{ password }}</div>
                   </div>
                 </div>
                 <div class="form-group">
@@ -80,7 +84,7 @@
                 <div class="form-group">
                   <label for="password" class="col-md-3 control-label">Password</label>
                   <div class="col-md-9">
-                    <input type="password" class="form-control" name="passwd" placeholder="Password">
+                    <input type="password" class="form-control" name="password" placeholder="Password">
                   </div>
                 </div>
                 <div class="form-group">
@@ -131,6 +135,9 @@ export default {
       })
       this.errors = response.data.message;
     },
+    reset() {
+      this.errors = ''
+    },
   }
 };
 
@@ -141,11 +148,9 @@ export default {
 .errors {
   text-align: center;
   color: darkred;
-  font-style: italic;
   font-size: 25px;
-  border: 2px solid darkred;
   padding: 5px;
-  border-radius: 20px;
+  overflow: auto;
 }
 
 

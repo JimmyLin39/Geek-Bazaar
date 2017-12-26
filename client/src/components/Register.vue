@@ -12,22 +12,22 @@
             <div style="margin-bottom: 25px" class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
               <input id="register-fullname" type="text" class="form-control" name="full_name" value="" placeholder="Full Name"
-                v-model='full_name'>
+                v-model='full_name' @click='reset'>
             </div>
             <div style="margin-bottom: 25px" class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
               <input id="register-displayname" type="text" class="form-control" name="display_name" value="" placeholder="Display Name"
-                v-model='display_name'>
+                v-model='display_name' @click='reset'>
             </div>
             <div style="margin-bottom: 25px" class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
               <input id="register-email" type="text" class="form-control" name="email" value="" placeholder="Email"
-                v-model='email'>
+                v-model='email' @click='reset'>
             </div>
             <div style="margin-bottom: 25px" class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                 <input id="login-password" type="password" class="form-control" name="password" placeholder="Password"
-                  v-model='password'>
+                  v-model='password' @click='reset'>
             </div>
             <div style="margin-top:10px" class="form-group">
               <div class="col-sm-12 controls">
@@ -129,6 +129,9 @@ export default {
       })
       this.errors = response.data.message
     },
+    reset() {
+      this.errors = ''
+    }
   }
 }
 
@@ -144,9 +147,7 @@ export default {
   color: darkred;
   font-style: italic;
   font-size: 25px;
-  border: 2px solid darkred;
   padding: 5px;
-  border-radius: 20px;
 }
 
 </style>

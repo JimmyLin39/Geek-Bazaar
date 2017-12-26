@@ -16,13 +16,13 @@
       <link href="../bootstrap-4.0.0-alpha.6/docs/examples/jumbotron/jumbotron.css" rel="stylesheet">
     </head>
     <header class=“app-header”>
-      <Navbar></Navbar>     
+      <Navbar></Navbar>
       <!-- <Pagefooter></Pagefooter> -->
     </header>
-    <main class=“container”>      
+    <main class=“container”>
       <router-view></router-view>
     </main>
-    
+
   </div>
 </template>
 

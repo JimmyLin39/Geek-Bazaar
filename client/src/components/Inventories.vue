@@ -33,5 +33,13 @@
 <script>
 export default {
   props: ['inventories'],
+  methods: {
+    onEdit (inventory) {
+      this.$emit('edit', inventory)
+    },
+    onRemove (inventoryId) {
+      this.$emit('remove', inventoryId)
+    }
+  }
 }
 </script>

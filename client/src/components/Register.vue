@@ -145,7 +145,6 @@ export default {
 .errors {
   text-align: center;
   color: darkred;
-  font-style: italic;
   font-size: 25px;
   padding: 5px;
 }

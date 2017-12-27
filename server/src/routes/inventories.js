@@ -9,8 +9,7 @@ module.exports = (knex) => {
     //   res.redirect('/users');
     // }
     knex('inventories')
-      .join('products', 'inventories.product_id', '=', 'products.id')
-      .select('inventories.id', 'user_id', 'inventories.name', 'inventories.description', 'inventories.price', 'condition', 'image', 'thumbnail')
+      .select()
       .then((resources) => {
         res.send({
           resources,
@@ -22,11 +21,10 @@ module.exports = (knex) => {
   });
 
   router.post('/', (req, res) => {
-    const { userId, productId, name, description, condition, price } = req.body;
+    const { userId, name, description, condition, price } = req.body;
     knex('inventories')
       .insert({
         user_id: userId,
-        product_id: productId,
         name,
         description,
         condition,
@@ -34,8 +32,7 @@ module.exports = (knex) => {
       })
       .then(() => {
         knex('inventories')
-          .join('products', 'inventories.product_id', '=', 'products.id')
-          .select('inventories.id', 'user_id', 'inventories.name', 'inventories.description', 'inventories.price', 'condition', 'image', 'thumbnail')
+          .select()
           .orderBy('inventories.created_at', 'desc')
           .limit(1)
           .then((resources) => {
@@ -54,12 +51,11 @@ module.exports = (knex) => {
 
   router.put('/:id', (req, res) => {
     const id = Number(req.params.id);
-    const { userId, productId, name, description, condition, price } = req.body;
+    const { userId, name, description, condition, price } = req.body;
     knex('inventories')
       .where('inventories.id', id)
       .update({
         user_id: userId,
-        product_id: productId,
         name,
         description,
         condition,
@@ -67,9 +63,8 @@ module.exports = (knex) => {
       })
       .then(() => {
         knex('inventories')
-          .join('products', 'inventories.product_id', '=', 'products.id')
           .where('inventories.id', id)
-          .select('inventories.id', 'user_id', 'inventories.name', 'inventories.description', 'inventories.price', 'condition', 'image', 'thumbnail')
+          .select()
           .then((resources) => {
             res.send({
               resources,

@@ -1,1 +1,1 @@
-export const getProducts = state => state.all;
+export const getInventories = state => state.all;

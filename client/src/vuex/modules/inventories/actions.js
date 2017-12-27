@@ -1,12 +1,12 @@
 // import Vue from 'vue';
-import InventoryService from '@/services/InventoryService'
+import InventoryService from '@/services/InventoryService';
 
 import {
-  // FETCH_PRODUCT,
-  FETCH_PRODUCTS,
-  // CREATE_PRODUCT,
-  // UPDATE_PRODUCT,
-  // DELETE_PRODUCT,
+  // FETCH_INVENTORY,
+  FETCH_INVENTORIES,
+  // CREATE_INVENTORY,
+  // UPDATE_INVENTORY,
+  // DELETE_INVENTORY,
 } from './mutation-types';
 
 // export function fetchProduct ({ commit }, productId) {
@@ -14,9 +14,9 @@ import {
 //     .then((response) => commit(FETCH_PRODUCT, response.body.data))
 // }
 
-export function fetchProducts ({ commit }) {
+export function fetchInventories({ commit }) {
   return InventoryService.retrieveInventory()
-    .then((response) => commit(FETCH_PRODUCTS, response.data.resources))
+    .then((response) => commit(FETCH_INVENTORIES, response.data.resources))
 }
 
 // export function createProduct ({ commit }, { product, image }) {

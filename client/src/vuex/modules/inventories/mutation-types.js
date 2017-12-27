@@ -1,5 +1,5 @@
-export const FETCH_PRODUCT = 'products/FETCH_PRODUCT'
-export const FETCH_PRODUCTS = 'products/FETCH_PRODUCTS'
-export const CREATE_PRODUCT = 'products/CREATE_PRODUCT'
-export const UPDATE_PRODUCT = 'products/UPDATE_PRODUCT'
-export const DELETE_PRODUCT = 'products/DELETE_PRODUCT'
+export const FETCH_INVENTORY = 'inventories/FETCH_INVENTORY';
+export const FETCH_INVENTORIES = 'inventories/FETCH_INVENTORIES';
+export const CREATE_INVENTORY = 'inventories/CREATE_INVENTORY';
+export const UPDATE_INVENTORY = 'inventories/UPDATE_INVENTORY';
+export const DELETE_INVENTORY = 'inventories/DELETE_INVENTORY';

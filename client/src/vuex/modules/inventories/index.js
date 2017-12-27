@@ -2,11 +2,11 @@ import * as actions from './actions';
 import * as getters from './getters';
 
 import {
-  FETCH_PRODUCT,
-  FETCH_PRODUCTS,
-  CREATE_PRODUCT,
-  UPDATE_PRODUCT,
-  DELETE_PRODUCT,
+  FETCH_INVENTORY,
+  FETCH_INVENTORIES,
+  CREATE_INVENTORY,
+  UPDATE_INVENTORY,
+  DELETE_INVENTORY,
 } from './mutation-types';
 
 // initial state
@@ -16,40 +16,40 @@ const initialState = {
 
 // mutations
 const mutations = {
-  [FETCH_PRODUCT] (state, product) {
-    const index = state.all.findIndex(p => p.id === product.id)
+  [FETCH_INVENTORY](state, inventory) {
+    const index = state.all.findIndex(p => p.id === inventory.id)
 
     if (index === -1) {
-      state.all.push(product)
+      state.all.push(inventory);
     } else {
-      state.all.splice(index, 1, product)
+      state.all.splice(index, 1, inventory);
     }
   },
 
-  [FETCH_PRODUCTS] (state, products) {
-    // assign the products that we got from our FETCH_PRODUCTS event to state.all
-    state.all = products
+  [FETCH_INVENTORIES](state, inventories) {
+    // assign the inventories that we got from our FETCH_INVENTORIES event to state.all
+    state.all = inventories;
   },
 
-  [CREATE_PRODUCT] (state, product) {
-    state.all.push(product)
+  [CREATE_INVENTORY](state, inventory) {
+    state.all.push(inventory);
   },
 
-  [UPDATE_PRODUCT] (state, product) {
-    const index = state.all.findIndex((p) => p.id === product.id)
+  [UPDATE_INVENTORY](state, inventory) {
+    const index = state.all.findIndex(p => p.id === inventory.id);
 
     if (index !== -1) {
       // We need to replace the array entirely so that vue can recognize
       // the change and re-render entirely.
       // See http://vuejs.org/guide/list.html#Caveats
-      state.all.splice(index, 1, product)
+      state.all.splice(index, 1, inventory);
     }
   },
 
-  [DELETE_PRODUCT] (state, productId) {
-    state.all = state.all.filter(p => p.id !== productId)
-  }
-}
+  [DELETE_INVENTORY](state, inventoryId) {
+    state.all = state.all.filter(p => p.id !== inventoryId);
+  },
+};
 
 export default {
   state: { ...initialState },

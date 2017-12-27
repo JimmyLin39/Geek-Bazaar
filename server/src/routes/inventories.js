@@ -84,6 +84,21 @@ module.exports = (knex) => {
       });
   });
 
+  router.delete('/:id', (req, res) => {
+    const id = Number(req.params.id);
+    knex('inventories')
+      .where('inventories.id', id)
+      .del()
+      .then(() => {
+        res.send({
+          message: 'deleted!',
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+
   return router;
 };
 

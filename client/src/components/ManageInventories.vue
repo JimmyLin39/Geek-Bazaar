@@ -3,6 +3,7 @@
     <inventories
       :inventories="inventories"
       v-on:edit="onEditClicked"
+      v-on:remove="onRemoveClicked"
     ></inventories>
     <save-inventory-form
       :inventory="inventoryInForm"
@@ -47,7 +48,7 @@ export default {
   methods: {
     ...mapActions([
       'saveInventory',
-      // 'deleteProduct'
+      'deleteInventory'
     ]),
     onFormSave (inventory, image) {
       this.saveInventory({ inventory, image }).then(() => this.resetInventoryInForm())
@@ -58,6 +59,13 @@ export default {
     onEditClicked (inventory) {
       this.inventoryInForm = { ...inventory }
     },
+    onRemoveClicked (inventoryId) {
+      this.deleteInventory(inventoryId).then(() => {
+        if (inventoryId === this.inventoryInForm.id) {
+          this.resetInventoryInForm()
+        }
+      })
+    }
   }
   
 }

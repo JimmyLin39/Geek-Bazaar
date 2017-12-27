@@ -99,7 +99,7 @@ export default {
   .form-group {
     margin: auto 15% !important;
   }
-  .btn, h4 {
+  .btn-primary, h4 {
     margin-left: 15%; 
   }
 </style>

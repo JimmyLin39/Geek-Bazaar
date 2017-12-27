@@ -7,6 +7,7 @@
     <save-inventory-form
       :inventory="inventoryInForm"
       v-on:submit="onFormSave"
+      v-on:cancel="resetInventoryInForm"
     ></save-inventory-form>
   </section>
 </template>
@@ -49,9 +50,9 @@ export default {
       // 'deleteProduct'
     ]),
     onFormSave (inventory, image) {
-      this.saveInventory({ inventory, image }).then(() => this.resetinventoryInForm())
+      this.saveInventory({ inventory, image }).then(() => this.resetInventoryInForm())
     },
-    resetinventoryInForm () {
+    resetInventoryInForm () {
       this.inventoryInForm = initialData().inventoryInForm
     },
     onEditClicked (inventory) {

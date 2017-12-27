@@ -22,9 +22,9 @@ export function fetchInventories({ commit }) {
 export function createInventory({ commit }, { inventory, image }) {
   return InventoryService.createInventory(inventory)
     .then((response) => {
-      console.log(response.data.resources);
-      commit(CREATE_INVENTORY, response.data.resources);
-      return response.data.resources.id;
+      console.log('resources', response.data.resources);
+      commit(CREATE_INVENTORY, response.data.resources[0]);
+      return response.data.resources[0].id;
     });
     // Only upload image if an image has been defined
     // .then((productId) => image && uploadProductImage({ commit }, image, productId))
@@ -44,7 +44,7 @@ export function createInventory({ commit }, { inventory, image }) {
 
 export function saveInventory({ commit, state }, { inventory, image }) {
   const index = state.all.findIndex(p => p.id === inventory.id);
-
+  console.log('saveInventory index:', index);
   // update product if it exists or create it if it doesn't
   if (index !== -1) {
     return updateInventory({ commit }, { inventory, image });

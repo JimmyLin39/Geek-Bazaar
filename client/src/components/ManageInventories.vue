@@ -2,6 +2,7 @@
   <section>
     <inventories
       :inventories="inventories"
+      v-on:edit="onEditClicked"
     ></inventories>
     <save-inventory-form
       :inventory="inventoryInForm"
@@ -53,8 +54,8 @@ export default {
     resetinventoryInForm () {
       this.inventoryInForm = initialData().inventoryInForm
     },
-    onEditClicked (inventories) {
-      this.inventoryInForm = { ...inventories }
+    onEditClicked (inventory) {
+      this.inventoryInForm = { ...inventory }
     },
   }
   

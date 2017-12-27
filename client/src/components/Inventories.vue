@@ -35,7 +35,3 @@ export default {
   props: ['inventories'],
 }
 </script>
-
-<style>
-
-</style>

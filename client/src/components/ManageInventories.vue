@@ -15,25 +15,27 @@ import { mapGetters, mapActions } from 'vuex'
 import Inventories from './Inventories';
 import SaveInventoryForm from './SaveInventoryForm'
 
+const initialData = () => {
+  return {
+    inventoryInForm: {
+      // id: null,
+      name: '',
+      description: '',
+      condition: '',
+      price: '',
+      // TODO: userId to current userid and product id
+      userId: 1,
+      productId: 3,
+    }
+  }
+}
+
 export default {
   components: {
     Inventories,
     SaveInventoryForm,
   },
-  data() {
-    return {
-      inventoryInForm: {
-        // id: null,
-        name: '',
-        description: '',
-        condition: '',
-        price: '',
-        // TODO: userId to current userid and product id
-        userId: 1,
-        productId: 3,
-      }
-    }
-  },
+  data: initialData,
   created () {
     this.$store.dispatch('fetchInventories');
   },
@@ -46,7 +48,10 @@ export default {
       // 'deleteProduct'
     ]),
     onFormSave (inventory, image) {
-      this.saveInventory({ inventory, image })//.then(() => this.resetProductInForm())
+      this.saveInventory({ inventory, image }).then(() => this.resetinventoryInForm())
+    },
+    resetinventoryInForm () {
+      this.inventoryInForm = initialData().inventoryInForm
     },
     onEditClicked (inventories) {
       this.inventoryInForm = { ...inventories }

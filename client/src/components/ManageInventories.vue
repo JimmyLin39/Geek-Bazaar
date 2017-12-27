@@ -28,7 +28,6 @@ const initialData = () => {
       price: '',
       // TODO: userId to current userid and product id
       userId: 1,
-      productId: 3,
     }
   }
 }

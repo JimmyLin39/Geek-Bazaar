@@ -11,4 +11,7 @@ export default {
   updateInventory(inventory) {
     return Api().put(`inventories/${inventory.id}`, inventory);
   },
+  deleteInventory(inventoryId) {
+    return Api().delete(`inventories/${inventoryId}`);
+  },
 };

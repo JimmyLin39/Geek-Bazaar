@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import Inventories from './Inventories';
 import SaveInventoryForm from './SaveInventoryForm'
 
@@ -22,7 +22,6 @@ export default {
   },
   data() {
     return {
-      // inventories: null,
       inventoryInForm: {
         // id: null,
         name: '',
@@ -37,18 +36,18 @@ export default {
   },
   created () {
     this.$store.dispatch('fetchInventories');
-    // return this.$store.getters.getInventories;
   },
   computed: mapGetters({
     inventories: 'getInventories'
   }),
   methods: {
-    onFormSave: async (inventory) => {
-      const response = await InventoryService.createInventory(inventory);
-      // console.log(response.data);
-      // FIXME:
-      // const inventoryResponse = await InventoryService.retrieveInventory();
-   },
+    ...mapActions([
+      'saveInventory',
+      // 'deleteProduct'
+    ]),
+    onFormSave (inventory, image) {
+      this.saveInventory({ inventory, image })//.then(() => this.resetProductInForm())
+    },
     onEditClicked (inventories) {
       this.inventoryInForm = { ...inventories }
     },

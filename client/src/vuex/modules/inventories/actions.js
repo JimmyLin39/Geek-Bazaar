@@ -3,9 +3,9 @@ import InventoryService from '@/services/InventoryService';
 
 import {
   // FETCH_INVENTORY,
-  FETCH_INVENTORIES, CREATE_INVENTORY,
-  // CREATE_INVENTORY,
-  // UPDATE_INVENTORY,
+  FETCH_INVENTORIES,
+  CREATE_INVENTORY,
+  UPDATE_INVENTORY,
   // DELETE_INVENTORY,
 } from './mutation-types';
 
@@ -30,12 +30,15 @@ export function createInventory({ commit }, { inventory, image }) {
     // .then((productId) => image && uploadProductImage({ commit }, image, productId))
 }
 
-// export function updateProduct ({ commit }, { product, image }) {
-//   return Vue.http.put(`products/${product.id}`, product)
-//     .then((response) => commit(UPDATE_PRODUCT, response.body.data))
-//     // Only upload image if an image has been defined
-//     .then((productId) => image && uploadProductImage({ commit }, image, product.id))
-// }
+export function updateInventory({ commit }, { inventory, image }) {
+  return InventoryService.updateInventory(inventory)
+    .then((response) => {
+      console.log('updated inventory', response.data.resources[0]);
+      commit(UPDATE_INVENTORY, response.data.resources[0]);
+    });
+    // Only upload image if an image has been defined
+    // .then((inventoryId) => image && uploadProductImage({ commit }, image, product.id))
+}
 
 // export function deleteProduct ({ commit }, productId) {
 //   return Vue.http.delete(`products/${productId}`)

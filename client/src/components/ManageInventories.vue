@@ -36,11 +36,11 @@ export default {
     }
   },
   created () {
-    this.$store.dispatch('fetchProducts');
+    this.$store.dispatch('fetchInventories');
     // return this.$store.getters.getInventories;
   },
   computed: mapGetters({
-    inventories: 'getProducts'
+    inventories: 'getInventories'
   }),
   methods: {
     onFormSave: async (inventory) => {

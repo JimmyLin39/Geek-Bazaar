@@ -38,7 +38,9 @@ export default {
       this.$emit('edit', inventory)
     },
     onRemove (inventoryId) {
-      this.$emit('remove', inventoryId)
+      if (confirm('are you sure you want to delete?') == true) {
+        this.$emit('remove', inventoryId)
+      }
     }
   }
 }

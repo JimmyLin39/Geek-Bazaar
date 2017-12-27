@@ -17,7 +17,7 @@ const initialState = {
 // mutations
 const mutations = {
   [FETCH_INVENTORY](state, inventory) {
-    const index = state.all.findIndex(p => p.id === inventory.id)
+    const index = state.all.findIndex(p => p.id === inventory.id);
 
     if (index === -1) {
       state.all.push(inventory);

@@ -16,7 +16,7 @@ import {
 
 export function fetchInventories({ commit }) {
   return InventoryService.retrieveInventory()
-    .then((response) => commit(FETCH_INVENTORIES, response.data.resources))
+    .then(response => commit(FETCH_INVENTORIES, response.data.resources));
 }
 
 export function createInventory({ commit }, { inventory, image }) {
@@ -42,15 +42,14 @@ export function createInventory({ commit }, { inventory, image }) {
 //     .then((response) => commit(DELETE_PRODUCT, productId))
 // }
 
-export function saveInventory ({ commit, state }, { inventory, image }) {
+export function saveInventory({ commit, state }, { inventory, image }) {
   const index = state.all.findIndex(p => p.id === inventory.id);
 
   // update product if it exists or create it if it doesn't
   if (index !== -1) {
     return updateInventory({ commit }, { inventory, image });
-  } else {
-    return createInventory({ commit }, { inventory, image });
   }
+  return createInventory({ commit }, { inventory, image });
 }
 
 // function uploadProductImage ({ commit }, image, productId) {

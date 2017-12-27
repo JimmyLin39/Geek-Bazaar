@@ -33,9 +33,19 @@ module.exports = (knex) => {
         price,
       })
       .then(() => {
-        res.send({
-          mseeage: `userId: ${userId}, productId: ${productId} name: ${name}, description: ${description}, condition: ${condition}, price: ${price}`,
-        });
+        knex('inventories')
+          .join('products', 'inventories.product_id', '=', 'products.id')
+          .select('inventories.id', 'user_id', 'inventories.name', 'inventories.description', 'inventories.price', 'condition', 'image', 'thumbnail')
+          .orderBy('inventories.created_at', 'desc')
+          .limit(1)
+          .then((resources) => {
+            res.send({
+              resources,
+            });
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       })
       .catch((error) => {
         console.error(error);

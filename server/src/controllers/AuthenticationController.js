@@ -11,14 +11,14 @@ module.exports = {
       display_name: req.body.display_name,
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 10),
-    }
+    };
     knex.insert(newUser)
       .into('users')
       .then(res.send({
           message: `Hello ${req.body.full_name}!
           You've successfully registered with the display name
           ${req.body.display_name}, and email ${req.body.email}`,
-        })
+        }),
       );
     // TODO: If email is already in DB --> email MUST be unique
     if (req.body.email === 'test@test.com') {
@@ -26,9 +26,9 @@ module.exports = {
     }
     },
   login (req, res) {
-      const user = {
-        email: req.body.email,
-        password: req.body.password
-      }
-  }
-}
+    const user = {
+      email: req.body.email,
+      password: req.body.password,
+    };
+  },
+};

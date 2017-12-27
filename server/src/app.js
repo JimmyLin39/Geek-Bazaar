@@ -11,7 +11,7 @@ const knex = require('knex')(knexConfig[ENV]);
 const knexLogger = require('knex-logger');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
-const session = require('cookie-session');
+const session = require('express-session');
 
 const app = express();
 const inventoriesRoutes = require('./routes/inventories');
@@ -19,64 +19,53 @@ const inventoriesRoutes = require('./routes/inventories');
 
 app.use(cors());
 app.use(morgan('dev'));
-app.use(session({
-  name: 'session',
-  keys: ['secret'],
-}));
 app.use(knexLogger(knex));
 app.use(bodyParser.json());
 app.use('/inventories', inventoriesRoutes(knex));
 
+app.set('trust proxy', 1); // trust first proxys
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true },
+}));
+
 app.post('/login', (req, res) => {
-  if (
-    !req.body.email ||
-    !req.body.password
-  ) {
+  if (!req.body.email || !req.body.password) {
     res.send({
-      message: 'All fields must be filled in!',
+      message: 'Email and password fields must be filled in!',
     });
   } else {
-    knex('users')
-      .where({
-        email: req.body.email,
-      })
-      .then((results) => {
-        if (!results.length) {
-          res.send({
-            message: 'Non-registered email! Please register, first!',
-          });
-        } else {
-          knex('users')
-            .where({
-              email: req.body.email,
-            })
-            .then((results) => {
-              if (!bcrypt.compareSync(req.body.password, results[0].password)) {
-                Promise.reject({
-                  message: 'The password is incorrect!',
-                });
-              } else {
-                res.send({
-                  message: 'Correct Password!',
-                });
-              }
-            }).catch((error) => {
-              res.send({
-                message: error.message,
-              });
-            });
-        }
+    knex('users').where({
+      email: req.body.email,
+    }).then((results) => {
+      // 'results' pulls out the user from the database based on the above
+      // query.
+      if (!results.length) {
+        res.send({
+          message: 'Don\'t have an account?  Have you registered?',
+        });
+      } else if (!bcrypt.compareSync(req.body.password, results[0].password)) {
+        res.send({
+          message: 'Incorrect password!',
+        });
+      } else {
+        res.send({
+          message: 'Correct password',
+        });
+      }
+    }).catch((error) => {
+      res.send({
+        message: error.message,
       });
+    });
   }
 });
 
 app.post('/register', (req, res) => {
-  if (
-    !req.body.full_name ||
-    !req.body.display_name ||
-    !req.body.email ||
-    !req.body.password
-  ) {
+  if (!req.body.full_name || !req.body.display_name || !req.body.email ||
+    !req.body.password) {
     res.send({
       message: 'All the fields must be filled!',
     });
@@ -105,7 +94,9 @@ app.post('/register', (req, res) => {
               ${req.body.display_name}, and email ${req.body.email}.`,
             }))
             .catch((err) => {
-              console.log(err.message);
+              res.send({
+                message: err.message,
+              });
             });
         }
       });

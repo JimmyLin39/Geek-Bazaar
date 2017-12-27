@@ -8,4 +8,7 @@ export default {
   createInventory(inventory) {
     return Api().post('inventories', inventory);
   },
+  updateInventory(inventory) {
+    return Api().put(`inventories/${inventory.id}`, inventory);
+  },
 };

@@ -6,7 +6,7 @@ import {
   FETCH_INVENTORIES,
   CREATE_INVENTORY,
   UPDATE_INVENTORY,
-  // DELETE_INVENTORY,
+  DELETE_INVENTORY,
 } from './mutation-types';
 
 // export function fetchProduct ({ commit }, productId) {
@@ -40,10 +40,13 @@ export function updateInventory({ commit }, { inventory, image }) {
     // .then((inventoryId) => image && uploadProductImage({ commit }, image, product.id))
 }
 
-// export function deleteProduct ({ commit }, productId) {
-//   return Vue.http.delete(`products/${productId}`)
-//     .then((response) => commit(DELETE_PRODUCT, productId))
-// }
+export function deleteInventory({ commit }, inventoryId) {
+  return InventoryService.deleteInventory(inventoryId)
+    .then((response) => {
+      console.log('delete message:', response.data.message);
+      commit(DELETE_INVENTORY, inventoryId);
+    });
+}
 
 export function saveInventory({ commit, state }, { inventory, image }) {
   const index = state.all.findIndex(p => p.id === inventory.id);

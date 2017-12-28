@@ -26,6 +26,7 @@ app.use(bodyParser.json());
 
 // Mount all resource routes
 app.use('/inventories', inventoriesRoutes(knex));
+app.use(express.static('public'));
 
 app.post('/register', (req, res) => {
   const newUser = {

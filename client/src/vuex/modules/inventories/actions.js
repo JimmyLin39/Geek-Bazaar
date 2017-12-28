@@ -2,32 +2,36 @@
 import InventoryService from '@/services/InventoryService';
 
 import {
-  // FETCH_INVENTORY,
+  FETCH_INVENTORY,
   FETCH_INVENTORIES,
   CREATE_INVENTORY,
   UPDATE_INVENTORY,
   DELETE_INVENTORY,
 } from './mutation-types';
 
-// export function fetchProduct ({ commit }, productId) {
-//   return Vue.http.get(`products/${productId}`)
-//     .then((response) => commit(FETCH_PRODUCT, response.body.data))
-// }
+export function fetchInventory ({ commit }, inventoryId) {
+  return InventoryService.retrieveInventory(inventoryId)
+    .then((response) => {
+      console.log(response.data.resources[0]);
+      
+      commit(FETCH_INVENTORY, response.data.resources[0])
+    })
+}
 
 export function fetchInventories({ commit }) {
-  return InventoryService.retrieveInventory()
+  return InventoryService.retrieveInventories()
     .then(response => commit(FETCH_INVENTORIES, response.data.resources));
 }
 
 export function createInventory({ commit }, { inventory, image }) {
   return InventoryService.createInventory(inventory)
     .then((response) => {
-      console.log('resources', response.data.resources);
+      // console.log('resources', response.data.resources);
       commit(CREATE_INVENTORY, response.data.resources[0]);
       return response.data.resources[0].id;
-    });
+    })
     // Only upload image if an image has been defined
-    // .then((productId) => image && uploadProductImage({ commit }, image, productId))
+    .then((inventoryId) => image && uploadInventoryImage({ commit }, image, inventoryId))
 }
 
 export function updateInventory({ commit }, { inventory, image }) {
@@ -35,9 +39,9 @@ export function updateInventory({ commit }, { inventory, image }) {
     .then((response) => {
       console.log('updated inventory', response.data.resources[0]);
       commit(UPDATE_INVENTORY, response.data.resources[0]);
-    });
+    })
     // Only upload image if an image has been defined
-    // .then((inventoryId) => image && uploadProductImage({ commit }, image, product.id))
+    .then((inventoryId) => image && uploadInventoryImage({ commit }, image, inventory.id))
 }
 
 export function deleteInventory({ commit }, inventoryId) {
@@ -58,16 +62,16 @@ export function saveInventory({ commit, state }, { inventory, image }) {
   return createInventory({ commit }, { inventory, image });
 }
 
-// function uploadProductImage ({ commit }, image, productId) {
-//   var formData = new global.FormData()
+function uploadInventoryImage ({ commit }, image, inventoryId) {
+  var formData = new global.FormData()
 
-//   formData.append('product_id', productId)
-//   formData.append('product_image', image)
+  formData.append('inventory_id', inventoryId)
+  formData.append('inventory_image', image)
 
-//   // Upload (PUT) the product image before resolving the response
-//   return Vue.http.put('products/upload', formData)
-//     .then((response) => response.body.data)
-//     // Since the server has associated the product with the image
-//     // we now need to refresh (GET) the product data to get this information
-//     .then(() => fetchProduct({ commit }, productId))
-// }
+  // Upload (PUT) the product image before resolving the response
+  return InventoryService.uploadImage(formData)
+    .then((response) => response.data.message)
+    // Since the server has associated the product with the image
+    // refresh (GET) the product data to get this information
+    .then(() => fetchInventory({ commit }, inventoryId))
+}

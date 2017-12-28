@@ -26,9 +26,8 @@
 
     <div class="form-group">
       <label for="file" class="d-block">inventory image <small class="text-muted">(optional)</small></label>
-      <label class="custom-file">
-        <input type="file" name="inventory_image" @change="onImageChanged" accept=".png, .jpg" id="file" class="custom-file-input" placeholder="Image(optional)">
-        <span class="custom-file-control"></span>
+      <label class="btn btn-info">
+        Choose file...<input type="file" name="inventory_image" @change="onImageChanged" accept=".png, .jpg" id="file" class="custom-file-input" hidden>
       </label>
       <small class="form-text text-muted">{{selectedFileName}}</small>
     </div>

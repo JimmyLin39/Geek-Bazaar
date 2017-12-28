@@ -4,7 +4,7 @@
     <div class="col-sm-6 col-md-4" v-for="inventory in inventories">
       <section class="card card-product">
         <figure class="card-img-top card-product-image">
-          <img v-bind:src="inventory.image" alt="Product image">
+          <img v-bind:src="inventory.image_url" alt="Product image">
         </figure>
         <div class="card-content">
           <aside class="card-overlay">
@@ -14,6 +14,7 @@
           <div class="card-body">
             <header class="product-info">
               <h1 class="title">{{inventory.name}}</h1>
+              <span class="title">{{inventory.condition}}</span>
               <span class="price">${{inventory.price}}</span>
             </header>
             <p class="description">{{inventory.description}}</p>
@@ -39,7 +40,7 @@ export default {
   methods: {
     // talk to back end server to retrieve all inventories
     retrieveInventory: async (inventories) => {
-      const response = await InventoryService.retrieveInventory();
+      const response = await InventoryService.retrieveInventories();
       console.log('response:', response.data.resources);
       
       response.data.resources.forEach((element) => {

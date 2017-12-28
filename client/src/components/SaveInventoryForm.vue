@@ -36,6 +36,10 @@
       {{inventory.id ? 'Update' : 'Add'}} inventory
     </button>
     <button type="submit" v-if="inventory.id" v-on:click.prevent="onCancel" class="btn btn-secondary">Cancel</button>
+
+    <div class="progress" style="height: 2px;">
+        <div class="progress-bar" v-bind:style="width"></div>
+    </div>
   </form>
 </template>
 
@@ -46,7 +50,8 @@ export default {
     return {
       formErrors: {},
       selectedFile: undefined,
-      selectedFileName: ''
+      selectedFileName: '',
+      width: '',
     }
   },
   watch: {
@@ -88,6 +93,16 @@ export default {
     onSubmit () {
       if (this.validateForm()) {
         this.$emit('submit', this.inventory, this.selectedFile)
+        // set the progress bar
+        let timer = 1;
+        const id = setInterval(() => {
+          if (timer >= 100) {
+              clearInterval(id);
+          } else {
+            timer++;
+            this.width = `width:${timer}%`
+          }
+        }, 10)
       }
     }
   }
@@ -101,4 +116,11 @@ export default {
   .btn-primary, h4 {
     margin-left: 15%; 
   }
+  .progress {
+    margin-top: 1%;
+  }
+  // .progress.active .progress-bar {
+  //   -webkit-transition: none !important;
+  //   transition: none !important;
+  // }
 </style>

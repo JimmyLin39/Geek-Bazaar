@@ -40,7 +40,7 @@ export default {
   methods: {
     // talk to back end server to retrieve all inventories
     retrieveInventory: async (inventories) => {
-      const response = await InventoryService.retrieveInventory();
+      const response = await InventoryService.retrieveInventories();
       console.log('response:', response.data.resources);
       
       response.data.resources.forEach((element) => {

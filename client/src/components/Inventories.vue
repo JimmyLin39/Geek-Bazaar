@@ -13,7 +13,7 @@
     <tbody>
       <tr v-for="inventory in inventories" v-if="inventory.user_id === 1 " track-by="id" v-on:click.prevent="onEdit(inventory)">
         <td>
-          <img v-bind:src="inventory.thumbnail" alt="inventory image" class="inventory-image">
+          <img v-bind:src="inventory.image_url" v-bind:alt="inventory.image_name" class="inventory-image">
         </td>
         <td>{{inventory.name}}</td>
         <td class="inventory-desc-col">{{inventory.description}}</td>

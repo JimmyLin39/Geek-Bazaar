@@ -16,14 +16,15 @@ module.exports = (knex) => {
     const filename = inventoryId + Date.now();
 
     sharp(req.file.buffer)
-      .resize(200, 200)
+      .resize(400, 400)
       .crop(sharp.strategy.entropy)
       .toFile(`${__dirname}/../../public/uploads/${filename}`, (err) => {
         if (err) {
           console.error('woops', err);
         }
       });
-    knex('inventories')
+    setTimeout(() => {
+      knex('inventories')
       .where('inventories.id', inventoryId)
       .update({
         image_url: `http://localhost:8081/uploads/${filename}`,
@@ -38,6 +39,7 @@ module.exports = (knex) => {
       .catch((error) => {
         console.error(error);
       });
+    }, 2000);
   });
 
 

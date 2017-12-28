@@ -41,6 +41,7 @@ export default new Router({
       path: '/inventories/:id',
       name: 'Detail',
       component: Detail,
+      props: true
     }
   ],
 });

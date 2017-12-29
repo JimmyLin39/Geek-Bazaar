@@ -106,6 +106,15 @@
 <script>
 
 import AuthenticationService from '@/services/AuthenticationService'
+import Vue from 'vue'
+import VueCookie from 'vue-cookie'
+
+Vue.use(VueCookie);
+
+function generateRandomId() {
+  const randomId = Math.random().toString(36).replace(/^[A-Za-z0-9_.]+$/).substring(2, 30);
+  return randomId;
+}
 
 export default {
   data() {
@@ -115,6 +124,7 @@ export default {
       email: '',
       password: '',
       errors: '',
+      cookies: '',
     };
   },
   methods: {
@@ -128,6 +138,13 @@ export default {
         password: this.password,
       })
       this.errors = response.data.message
+      this.cookies = response.data.cookies
+      if (this.cookies === true) {
+        this.$cookie.set(generateRandomId(), generateRandomId(), 1);
+        this.errors = 'User cookies successfully set!'
+      } else {
+        this.errors = 'User cookies NOT set!'
+      }
     },
     reset() {
       this.errors = ''

@@ -27,10 +27,10 @@
                 <div style="margin-top:10px" class="form-group">
                   <div class="col-sm-12 controls">
                     <a id="btn-login" href="#/login" class="btn btn-success"
-                      @click='login'>Login </a>
+                      @click='login' @keyup.enter='login'>Login </a>
                     <hr>
                     <div class='errors'>
-                      {{ errors }}
+                      {{ cookies }}
                     </div>
                     <hr>
                     <div>{{ password }}</div>
@@ -119,21 +119,27 @@
 <script>
 
 import AuthenticationService from '@/services/AuthenticationService'
+
 export default {
   data() {
     return {
       email: '',
       password: '',
       errors: '',
+      cookies: false
     };
   },
   methods: {
     async login() {
       const response = await AuthenticationService.login({
-        email: this.email,
-        password: this.password
-      })
-      this.errors = response.data.message;
+      email: this.email,
+      password: this.password
+    })
+    this.errors = response.data.message
+    this.cookies = response.data.cookies
+    if (this.cookies === true) {
+      this.$cookie.set('test', 'Hello world!', 1);
+    }
     },
     reset() {
       this.errors = ''

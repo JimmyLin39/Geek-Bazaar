@@ -30,10 +30,9 @@
                       @click='login' @keyup.enter='login'>Login </a>
                     <hr>
                     <div class='errors'>
-                      {{ cookies }}
+                      {{ errors }}
                     </div>
-                    <hr>
-                    <div>{{ password }}</div>
+                    <div></div>
                   </div>
                 </div>
                 <div class="form-group">
@@ -119,6 +118,10 @@
 <script>
 
 import AuthenticationService from '@/services/AuthenticationService'
+import Vue from 'vue'
+import VueCookie from 'vue-cookie'
+
+Vue.use(VueCookie);
 
 export default {
   data() {
@@ -132,14 +135,12 @@ export default {
   methods: {
     async login() {
       const response = await AuthenticationService.login({
-      email: this.email,
-      password: this.password
-    })
-    this.errors = response.data.message
-    this.cookies = response.data.cookies
-    if (this.cookies === true) {
-      this.$cookie.set('test', 'Hello world!', 1);
-    }
+        email: this.email,
+        password: this.password
+      })
+      this.errors = response.data.message
+      this.cookies = response.data.cookies
+      this.$cookie.set('test', 'tesring', 1)
     },
     reset() {
       this.errors = ''

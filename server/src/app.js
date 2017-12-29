@@ -44,9 +44,8 @@ app.post('/login', (req, res) => {
         });
       } else {
         res.send({
-          cookies: 'Correct!',
+          cookies: true,
         });
-        req.session.user_id = req.body.email;
       }
     }).catch((error) => {
       res.send({
@@ -82,9 +81,8 @@ app.post('/register', (req, res) => {
           knex.insert(newUser)
             .into('users')
             .then(res.send({
-              message: `Hello ${req.body.full_name}!
-              You've successfully registered with the display name
-              ${req.body.display_name}, and email ${req.body.email}.`,
+              message: 'You\'ve successfully registered!',
+              cookies: true,
             }))
             .catch((err) => {
               res.send({

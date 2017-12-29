@@ -1,11 +1,13 @@
-.product-table {
+.inventory-table {
   table-layout: fixed;
+  margin: 2.5% 15%;
+  width: 90% !important;
 
-  .product-row {
+  .inventory-row {
     cursor: pointer;
   }
 
-  .product-image {
+  .inventory-image {
     background-color: #fff;
     height: 48px;
   }
@@ -18,27 +20,27 @@
     vertical-align: middle;
   }
 
-  .product-image-col {
-    text-align: center;
-    width: 72px;
-  }
+  // .inventory-image-col {
+  //   text-align: center;
+  //   width: 72px;
+  // }
 
-  .product-name-col {
-    min-width: 200px;
-  }
+  // .inventory-name-col {
+  //   min-width: 100px;
+  // }
 
-  .product-price-col {
-    width: 110px;
-  }
+  // .inventory-price-col {
+  //   width: 110px;
+  // }
 
-  .product-delete-col {
-    width: 84px;
-    text-align: right;
-  }
+  // .inventory-delete-col {
+  //   width: 84px;
+  //   text-align: right;
+  // }
 }
 
 @include media-breakpoint-down(sm) {
-  .product-desc-col {
+  .inventory-desc-col {
     display: none;
   }
 }

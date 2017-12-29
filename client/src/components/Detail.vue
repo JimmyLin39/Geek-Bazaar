@@ -19,7 +19,6 @@
       <strong>Min Play Age:</strong> {{ bgg.minage.value }}
     </div>
   </div>
-
   <div class="progress" style="height: 2px;">
       <div class="progress-bar bg-info" v-bind:style="width"></div>
   </div>
@@ -64,6 +63,7 @@ export default {
           this.width = `width:${timer}%`
         }
       }, 10)
+      // get response from bggapi at backend
       const response = await BggApiService.searchResult(name);
       console.log('response:', response.data.allResults[0].items.item);
       this.bgg = response.data.allResults[0].items.item;
@@ -75,7 +75,7 @@ export default {
 
 <style lang="scss">
 .row {
-  margin-top: 2.5%; //!important;
+  margin-top: 2.5%;
 }
 </style>
 

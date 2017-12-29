@@ -22,10 +22,7 @@ app.use(morgan('dev'));
 app.use(knexLogger(knex));
 app.use(bodyParser.json());
 app.use('/inventories', inventoriesRoutes(knex));
-<<<<<<< HEAD
-=======
 app.use(express.static('public'));
->>>>>>> master
 
 app.set('trust proxy', 1); // trust first proxys
 app.use(session({
@@ -56,7 +53,7 @@ app.post('/login', (req, res) => {
         });
       } else {
         res.send({
-          message: 'Correct password',
+          message: true,
         });
       }
     }).catch((error) => {

@@ -31,7 +31,9 @@
             </div>
             <div style="margin-top:10px" class="form-group">
               <div class="col-sm-12 controls">
-                <a id="btn-login" href="#/register" class="btn btn-success" @click='register'>Register</a>
+                <a id="btn-login" href="#/register" class="btn btn-success" @click='register'>
+                  <router-link to='/inventories'>Register</router-link>
+                </a>
                 <hr>
                 <div class='errors'>{{ errors }}</div>
               </div>
@@ -140,7 +142,7 @@ export default {
       this.errors = response.data.message
       this.cookies = response.data.cookies
       if (this.cookies === true) {
-        this.$cookie.set(generateRandomId(), generateRandomId(), 1);
+        this.$cookie.set('newUser', generateRandomId(), 1);
         this.errors = 'User cookies successfully set!'
       } else {
         this.errors = 'User cookies NOT set!'

@@ -96,8 +96,11 @@ app.post('/register', (req, res) => {
 
 // TODO: /logout endpoint route
 // - cookies for that user is deleted
-
-// require('./routes')(app)
+app.post('/logout', (req, res) => {
+  res.send({
+    logout: true,
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`Geek-Bazzar Api listening on port ${PORT}`);

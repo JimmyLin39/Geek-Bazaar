@@ -67,7 +67,8 @@ module.exports = (knex) => {
     // }
     const id = Number(req.params.id);
     knex('inventories')
-      .select()
+      .join('users', 'users.id', 'inventories.user_id')
+      .select('users.full_name', 'inventories.id', 'name', 'description', 'price', 'condition', 'image_url', 'image_name')
       .where('inventories.id', id)
       .then((resources) => {
         res.send({

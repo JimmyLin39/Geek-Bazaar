@@ -30,6 +30,11 @@
             <a class="dropdown-item" href="#"></a>
           </div>
         </li>
+        <li class='nav-item'>
+          <a class="nav-link" href="#">
+            <router-link to='/logout'>Logout</router-link>
+          </a>
+        </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="text" placeholder="Search">

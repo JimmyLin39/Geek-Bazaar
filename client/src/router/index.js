@@ -4,6 +4,7 @@ import Register from '@/components/Register';
 import LandingPage from '@/components/LandingPage';
 import Login from '@/components/Login';
 import Index from '@/components/Index';
+import ManageInventories from '@/components/ManageInventories';
 
 Vue.use(Router);
 
@@ -29,6 +30,11 @@ export default new Router({
       path: '/index',
       name: 'Index',
       component: Index,
+    },
+    {
+      path: '/inventories',
+      name: 'Inventories',
+      component: ManageInventories,
     },
   ],
 });

@@ -26,6 +26,7 @@ app.use(morgan('dev'));
 app.use(knexLogger(knex));
 app.use(bodyParser.json());
 app.use('/inventories', inventoriesRoutes(knex));
+app.use(express.static('public'));
 
 app.post('/login', (req, res) => {
   if (!req.body.email || !req.body.password) {

@@ -94,6 +94,9 @@ app.post('/register', (req, res) => {
   }
 });
 
+// TODO: /logout endpoint route
+// - cookies for that user is deleted
+
 // require('./routes')(app)
 
 app.listen(PORT, () => {

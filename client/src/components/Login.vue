@@ -123,6 +123,11 @@ import VueCookie from 'vue-cookie'
 
 Vue.use(VueCookie);
 
+function generateRandomId() {
+  const randomId = Math.random().toString(36).replace(/^[A-Za-z0-9_.]+$/).substring(2, 30);
+  return randomId;
+}
+
 export default {
   data() {
     return {
@@ -140,7 +145,12 @@ export default {
       })
       this.errors = response.data.message
       this.cookies = response.data.cookies
-      this.$cookie.set('test', 'tesring', 1)
+      if (response.data.cookies === true) {
+        this.$cookie.set(generateRandomId(), generateRandomId(), 1)
+        this.errors = 'Cookies succesfully set!'
+      } else {
+        this.errors = 'Cookies not set!'
+      }
     },
     reset() {
       this.errors = ''

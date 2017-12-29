@@ -84,18 +84,31 @@ app.post('/register', (req, res) => {
               message: 'You\'ve successfully registered!',
               cookies: true,
             }))
-            .catch((err) => {
-              res.send({
-                message: err.message,
-              });
-            });
-        }
-      });
-  }
-});
+            .catch(err => {
+              console.log(err.message);
+            })
+          }
+        })
+      }
+})
+// request bgg api
+const bgg = require('bgg-axios');
 
-// TODO: /logout endpoint route
-// - cookies for that user is deleted
+app.get('/search', (req, res) => {
+  console.log('req query: ', req.query.NAME);
+  bgg.search(`${req.query.NAME}`, 5)
+    .then((searchResults) => {
+      return Promise.all(searchResults.items.map((item) => {
+        return bgg.apiRequest('thing items', { id: `${item.objectid}` });
+      }));
+    })
+    .then((allResults) => {
+      res.send({
+        message: 'success',
+        allResults,
+      });
+    });
+});
 
 // require('./routes')(app)
 

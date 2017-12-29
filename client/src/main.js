@@ -11,6 +11,13 @@ import './styles/style.scss';
 
 Vue.config.productionTip = false;
 
+//Popper.js for dropdowns
+try {
+  window.$ = window.jQuery = require('jquery');
+  window.Popper = require('popper.js').default;
+  require('bootstrap');
+} catch (e) {}
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

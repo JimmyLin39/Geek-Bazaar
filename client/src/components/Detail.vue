@@ -8,11 +8,20 @@
       <strong>Notes:</strong> {{ inventory[0].description }}<br>
       <strong>Condition:</strong> {{ inventory[0].condition }}<br>
       <strong>Seller:</strong> {{ inventory[0].full_name }}<br>
-      <button v-on:click.prevent="bggApi(inventory[0].name)">more on bgg</button>
+      <br>
+      <button type="button" class="btn btn-info" v-on:click.prevent="bggApi(inventory[0].name)">See More Details from boardgamegeek.com</button>
     </div>
-    <div class="col-md-8">
-      <h1></h1>
+    <div class="col-md-8" v-if="bgg.description">
+      <img v-bind:src="bgg.image" alt="Product image" width="300" height="300">
+      <p><span v-html="bgg.description"></span></p>
+      <strong>Max Players:</strong> {{ bgg.maxplayers.value }} people <br>
+      <strong>Min Players:</strong> {{ bgg.minplayers.value }} people<br>
+      <strong>Min Play Age:</strong> {{ bgg.minage.value }}
     </div>
+  </div>
+
+  <div class="progress" style="height: 2px;">
+      <div class="progress-bar bg-info" v-bind:style="width"></div>
   </div>
 </div>
 </template>
@@ -25,21 +34,18 @@ export default {
   data() {
     return {
       inventory: [],
-      bgg: {}
+      bgg: {},
+      width: '',
     }
   },
   created: function() {
     this.retrieveInventory(this.inventory, this.id);
-  },
-  beforeDestroy: function() {
-    this.bggApi(inventory.name);
   },
   methods: {
     // talk to back end server to retrieve all inventories
     retrieveInventory: async (inventory, id) => {
       const response = await InventoryService.retrieveInventory(id);
       console.log('response:', response.data.resources);
-      // return response.data.resources
       inventory.push(response.data.resources[0]);
       // response.data.resources.forEach((element) => {
       //   inventory.push(element);
@@ -48,7 +54,16 @@ export default {
       
     },
     async bggApi(name) {
-      console.log(name);
+      // set the progress bar
+      let timer = 1;
+      const id = setInterval(() => {
+        if (timer >= 100) {
+            clearInterval(id);
+        } else {
+          timer++;
+          this.width = `width:${timer}%`
+        }
+      }, 10)
       const response = await BggApiService.searchResult(name);
       console.log('response:', response.data.allResults[0].items.item);
       this.bgg = response.data.allResults[0].items.item;

@@ -11,7 +11,11 @@ const knex = require('knex')(knexConfig[ENV]);
 const knexLogger = require('knex-logger');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
-const session = require('express-session');
+const Vue = require('vue');
+
+const VueCookie = require('vue-cookie');
+
+Vue.use(VueCookie);
 
 const app = express();
 const inventoriesRoutes = require('./routes/inventories');
@@ -22,14 +26,6 @@ app.use(morgan('dev'));
 app.use(knexLogger(knex));
 app.use(bodyParser.json());
 app.use('/inventories', inventoriesRoutes(knex));
-
-app.set('trust proxy', 1); // trust first proxys
-app.use(session({
-  secret: process.env.SECRET,
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true },
-}));
 
 app.post('/login', (req, res) => {
   if (!req.body.email || !req.body.password) {
@@ -52,8 +48,9 @@ app.post('/login', (req, res) => {
         });
       } else {
         res.send({
-          message: 'Correct password',
+          cookies: true,
         });
+        req.session.user_id = req.body.email;
       }
     }).catch((error) => {
       res.send({

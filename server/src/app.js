@@ -11,11 +11,6 @@ const knex = require('knex')(knexConfig[ENV]);
 const knexLogger = require('knex-logger');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
-const Vue = require('vue');
-
-const VueCookie = require('vue-cookie');
-
-Vue.use(VueCookie);
 
 const app = express();
 const inventoriesRoutes = require('./routes/inventories');
@@ -45,11 +40,11 @@ app.post('/login', (req, res) => {
         });
       } else if (!bcrypt.compareSync(req.body.password, results[0].password)) {
         res.send({
-          message: 'Incorrect password!',
+          message: 'Incorrect email and/or password!',
         });
       } else {
         res.send({
-          cookies: true,
+          cookies: 'Correct!',
         });
         req.session.user_id = req.body.email;
       }

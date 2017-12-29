@@ -31,8 +31,8 @@
           </div>
         </li>
         <li class='nav-item'>
-          <a class="nav-link" href="#">
-            <router-link to='/logout'>Logout</router-link>
+          <a class="nav-link" href="#" @click='logOut'>
+            <router-link to='/'>Logout</router-link>
           </a>
         </li>
       </ul>
@@ -47,6 +47,12 @@
 <script>
 export default {
   name: 'app',
+  methods: {
+    logOut() {
+      const userCookies = this.$cookies.get('newUser');
+      this.$cookies.remove(userCookies);
+    }
+  }
 };
 </script>
 

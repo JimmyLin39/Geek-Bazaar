@@ -39,9 +39,9 @@
 
       <div class="nav navbar-nav pull-sm-right">
         <div class="nav-item dropdown dropdown-cart">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-            <span v-if="totalItems" class="badge badge-pill badge-primary">{{totalItems}}</span> Shopping cart
-          </a>
+          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span v-if="totalItems" class="badge badge-light">{{totalItems}}</span> Shopping cart
+          </button>
           <div class="dropdown-menu dropdown-menu-right">
             <shopping-cart></shopping-cart>
           </div>
@@ -70,5 +70,7 @@ export default {
 </script>
 
 <style>
-
+.dropdown-cart{
+  margin-left: 10px;
+}
 </style>

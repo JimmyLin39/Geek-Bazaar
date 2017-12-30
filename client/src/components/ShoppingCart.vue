@@ -1,7 +1,6 @@
 <template lang="html">
   <section class="shopping-cart">
-    <!-- v-if="inventories" -->
-    <div class="list"  v-for="inventory in inventories">
+    <div class="list" v-if="inventories" v-for="inventory in inventories">
         <div class="row inventory">
           <div class="col-xs-12 col-sm-6 name">{{inventory.name}}</div>
           <div class="col-xs-12 col-sm-6 metadata">
@@ -16,7 +15,7 @@
               </span>
             </div>
             <!-- quantity end -->
-            <div class="price">{{inventory.price}}:-</div>
+            <div class="price">${{inventory.price}}</div>
             <button type="button" class="close btn-remove" @click.prevent.stop="removeFromCart(inventory.id)">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -26,7 +25,7 @@
     <div v-if="!inventories.length" class="cart-empty">
       No inventories :(
     </div>
-    <div class="total"><span>Total</span> {{total}}:-</div>
+    <div class="total"><span>Total</span> ${{total}}</div>
     <button type="button" :disabled="!inventories.length" class="btn btn-primary btn-block">Checkout</button>
   </section>
 </template>

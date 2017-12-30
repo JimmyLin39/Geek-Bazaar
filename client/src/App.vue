@@ -33,5 +33,8 @@ export default {
 
 
 <style>
-
+.container {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
 </style>

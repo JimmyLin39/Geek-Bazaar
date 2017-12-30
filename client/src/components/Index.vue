@@ -11,7 +11,7 @@
             <button class="btn btn-info overlay-button" type="button" name="button">
               <router-link :to="{ name: 'Detail', params: { id: inventory.id }}">See Detail</router-link>
             </button>            
-            <button class="btn btn-info overlay-button" type="button" name="button">Add to cart</button>
+            <button class="btn btn-info overlay-button" @click.stop.prevent="addToCart(inventory)" type="button" name="button">Add to cart</button>
           </aside>
           <div class="card-body">
             <header class="product-info">
@@ -29,28 +29,19 @@
 </template>
 
 <script>
-import InventoryService from '@/services/InventoryService'
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
-  data() {
-    return {
-      inventories: [],
-    }
+  created () {
+    this.$store.dispatch('fetchInventories')
   },
-  created: function() {
-    this.retrieveInventory(this.inventories);
-  },
-  methods: {
-    // talk to back end server to retrieve all inventories
-    retrieveInventory: async (inventories) => {
-      const response = await InventoryService.retrieveInventories();
-      console.log('response:', response.data.resources);
-      
-      response.data.resources.forEach((element) => {
-        inventories.push(element);
-      })
-      // console.log(this.inventories);
-    }
-  }
+  computed: mapGetters({
+    inventories: 'getInventories'
+  }),
+  methods: mapActions([
+    'fetchInventories',
+    'addToCart'
+  ])
 }
 </script>
 

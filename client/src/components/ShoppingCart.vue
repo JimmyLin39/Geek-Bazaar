@@ -4,16 +4,6 @@
         <div class="row inventory">
           <div class="col-xs-12 col-sm-6 name">{{inventory.name}}</div>
           <div class="col-xs-12 col-sm-6 metadata">
-            <!-- quantity -->
-            <div class="input-group input-group-sm quantity">
-              <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button" @click.prevent.stop="subtractFromCart(inventory.id)">-</button>
-              </span>
-              <input type="text" class="form-control" name="quantity" :value="inventory.quantity" readonly>
-              <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button" @click.prevent.stop="addToCart(inventory)">+</button>
-              </span>
-            </div>
             <!-- quantity end -->
             <div class="price">${{inventory.price}}</div>
             <button type="button" class="close btn-remove" @click.prevent.stop="removeFromCart(inventory.id)">
@@ -26,7 +16,7 @@
       No inventories :(
     </div>
     <div class="total"><span>Total</span> ${{total}}</div>
-    <button type="button" :disabled="!inventories.length" class="btn btn-primary btn-block">Checkout</button>
+    <button type="button" :disabled="!inventories.length" class="btn btn-info btn-block">Checkout</button>
   </section>
 </template>
 
@@ -79,9 +69,9 @@ export default {
   width: auto;
   flex-shrink: 0;
 
-  .btn {
-    width: 1.5rem;
-  }
+  // .btn {
+  //   width: 1.5rem;
+  // }
 
   input.form-control {
     width: 2rem;

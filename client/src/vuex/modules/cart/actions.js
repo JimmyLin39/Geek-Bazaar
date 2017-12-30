@@ -7,7 +7,7 @@ import {
 export function addToCart ({ commit, state }, inventory) {
   const record = state.inventories.find((p) => p.id === inventory.id)
 
-  if (!record || record.quantity < 10) {
+  if (!record || record.quantity < 1) {
     commit(ADD_TO_CART, inventory)
   }
 }

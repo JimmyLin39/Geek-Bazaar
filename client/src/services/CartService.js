@@ -5,8 +5,11 @@ export default {
   retrieveCart() {
     return Api().get('cart');
   },
-  addToCart(inventory) {
-    return Api().post('cart', inventory);
+  addToCart(inventory, userId) {
+    return Api().post('cart', { 
+      inventory,
+      userId
+    });
   },
   removeFromCart(inventoryId) {
     return Api().delete(`cart/${inventoryId}`);

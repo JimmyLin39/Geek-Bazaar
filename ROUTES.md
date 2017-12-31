@@ -29,6 +29,9 @@ POST | `/inventories` | Create a new inventory
 GET | `/inventories` | Retrieve all inventory 
 PUT | `/inventories/:id` | Update an inventory
 DELETE | `/inventories/:id` | Delete an inventory
+GET | `/cart` | Retrieve all cart items
+POST | `/cart` | Add a new item into cart
+DELETE | `/cart/:id` | Delete an item from cart
 GET | `/orders` | Retrieve all orders
 GET | `/sales` | Retrieve all sales
 GET | `/users/:id/profile` | Retrieve all user profile

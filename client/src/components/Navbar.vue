@@ -45,12 +45,22 @@
 </template>
 
 <script>
+
+import AuthenticationService from '@/services/AuthenticationService'
+import Vue from 'vue'
+import VueCookie from 'vue-cookie'
+Vue.use(VueCookie)
+
 export default {
   name: 'app',
   methods: {
-    logOut() {
-      const userCookies = this.$cookies.get('newUser');
-      this.$cookies.remove(userCookies);
+    async logOut() {
+      const response = await AuthenticationService.logout({
+        userCookies: this.$cookies.get('newUser')
+      })
+      if (response.data.logout === true) {
+        this.$cookies.remove(userCookies)
+      }
     }
   }
 };

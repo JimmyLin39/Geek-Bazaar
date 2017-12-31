@@ -24,6 +24,9 @@
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
+  created () {
+    this.$store.dispatch('fetchCart');
+  },
   computed: {
     total () {
       return this.inventories.reduce((sum, p) => sum + (p.quantity * p.price), 0)

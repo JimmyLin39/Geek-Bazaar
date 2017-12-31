@@ -2,6 +2,7 @@ import * as getters from './getters'
 import * as actions from './actions'
 
 import {
+  FETCH_CART,
   ADD_TO_CART,
   REMOVE_FROM_CART,
   SUBTRACT_FROM_CART
@@ -13,6 +14,10 @@ const initialState = {
 
 // mutations
 const mutations = {
+  [FETCH_CART](state, inventories) {
+    // assign the inventories that we got from our FETCH_CART event to state.inventories
+    state.inventories = inventories;
+  },
   [ADD_TO_CART] (state, inventory) {
     const record = state.inventories.find(p => p.id === inventory.id)
     if (!record) {

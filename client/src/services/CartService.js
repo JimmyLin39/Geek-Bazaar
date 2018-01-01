@@ -14,4 +14,7 @@ export default {
   removeFromCart(inventoryId) {
     return Api().delete(`cart/${inventoryId}`);
   },
+  checkoutCart(orders) {
+    return Api().post('cart/checkout', orders );
+  }
 };

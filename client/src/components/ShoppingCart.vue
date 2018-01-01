@@ -16,7 +16,7 @@
       No inventories :(
     </div>
     <div class="total"><span>Total</span> ${{total}}</div>
-    <button type="button" :disabled="!inventories.length" class="btn btn-info btn-block">Checkout</button>
+    <button type="button" :disabled="!inventories.length" class="btn btn-info btn-block" @click.prevent.stop="checkoutCart()">Checkout</button>
   </section>
 </template>
 
@@ -29,17 +29,18 @@ export default {
   },
   computed: {
     total () {
-      return this.inventories.reduce((sum, p) => sum + (p.quantity * p.price), 0)
+     return this.inventories.reduce((sum, p) => sum + (p.quantity * p.price), 0)
     },
     ...mapGetters({
       inventories: 'getCartItems'
     })
   },
   methods: mapActions([
-    'addToCart',
-    'removeFromCart',
-    'subtractFromCart'
-  ])
+      'addToCart',
+      'removeFromCart',
+      'subtractFromCart',
+      'checkoutCart'
+    ]) 
 }
 </script>
 

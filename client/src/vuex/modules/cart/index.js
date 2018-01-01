@@ -7,6 +7,7 @@ import {
   REMOVE_FROM_CART,
   SUBTRACT_FROM_CART
 } from './mutation-types'
+import { RESET_CART } from './mutation-types';
 
 const initialState = {
   inventories: []
@@ -25,6 +26,7 @@ const mutations = {
         id: inventory.id,
         name: inventory.name,
         price: inventory.price,
+        user_id: inventory.user_id,
         quantity: 1
       })
     } else {
@@ -41,6 +43,9 @@ const mutations = {
     } else if (record) {
       record.quantity--
     }
+  },
+  [RESET_CART] (state) {
+    state.inventories = initialState.inventories
   }
 }
 

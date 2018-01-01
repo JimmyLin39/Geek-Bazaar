@@ -4,7 +4,8 @@ import {
   FETCH_CART,
   ADD_TO_CART,
   REMOVE_FROM_CART,
-  SUBTRACT_FROM_CART
+  SUBTRACT_FROM_CART,
+  RESET_CART
 } from './mutation-types'
 
 export function fetchCart({ commit }) {
@@ -40,4 +41,27 @@ export function removeFromCart ({ commit }, inventoryId) {
 
 export function subtractFromCart ({ commit }, inventoryId) {
   commit(SUBTRACT_FROM_CART, inventoryId)
+}
+
+export function checkoutCart ({ commit, state }) {
+  // calculate total price for all cart items
+  let orders = [];
+  state.inventories.forEach((element) => {
+    orders.push({
+      // FIXME: update to current userID
+      buyer_id: 1,
+      seller_id: element.user_id,
+      total_cents: element.price,
+      status: 'waiting',
+      type: 'sale',
+    })
+  })
+  // add orders to orders table
+  return CartService.checkoutCart(orders)
+    .then((response) => {
+      console.log('return data:', response.data.resources);
+      // reset cart
+      commit(RESET_CART)
+    })
+  
 }

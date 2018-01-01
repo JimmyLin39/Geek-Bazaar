@@ -9,7 +9,7 @@ module.exports = (knex) => {
     // }
     knex('line_items')
       .join('inventories', 'inventory_id', 'inventories.id')
-      .select('inventories.id', 'inventories.name', 'inventories.price')
+      .select('inventories.id', 'inventories.name', 'inventories.price', 'inventories.user_id')
        // FIXME: update to the current userID
       .where('line_items.user_id', 1)
       .then((resources) => {
@@ -62,6 +62,21 @@ module.exports = (knex) => {
         console.error(error);
       });
   });
+
+  // create a new order to orders table
+  router.post('/checkout', (req, res) => {
+    req.body.forEach((element) => {
+      const { buyer_id, seller_id, total_cents, status, type } = element;
+      knex('orders')
+        .insert({ buyer_id, seller_id, total_cents, status, type })
+        .catch((error) => {
+          console.error(error);
+        });
+    })
+    res.send({
+      resources: req.body,
+    })
+  })
 
   return router;
 };

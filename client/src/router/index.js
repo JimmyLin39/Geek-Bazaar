@@ -5,7 +5,8 @@ import LandingPage from '@/components/LandingPage';
 import Login from '@/components/Login';
 import Index from '@/components/Index';
 import ManageInventories from '@/components/ManageInventories';
-import Detail from "@/components/Detail";
+import Detail from '@/components/Detail';
+import Orders from '@/components/Orders';
 
 Vue.use(Router);
 
@@ -41,7 +42,12 @@ export default new Router({
       path: '/inventories/:id',
       name: 'Detail',
       component: Detail,
-      props: true
-    }
+      props: true,
+    },
+    {
+      path: '/orders',
+      name: 'Orders',
+      component: Orders,
+    },
   ],
 });

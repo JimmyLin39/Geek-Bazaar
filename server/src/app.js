@@ -15,6 +15,7 @@ const bcrypt = require('bcrypt');
 const app = express();
 const inventoriesRoutes = require('./routes/inventories');
 const cartRoutes = require('./routes/cart');
+const ordersRoutes = require('./routes/orders');
 // const usersRoutes = require('./routes/users');
 
 app.use(cors());
@@ -23,6 +24,7 @@ app.use(knexLogger(knex));
 app.use(bodyParser.json());
 app.use('/inventories', inventoriesRoutes(knex));
 app.use('/cart', cartRoutes(knex));
+app.use('/orders', ordersRoutes(knex));
 app.use(express.static('public'));
 
 app.post('/login', (req, res) => {

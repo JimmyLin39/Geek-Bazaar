@@ -21,6 +21,9 @@
           </div>
         </li>
         <li class='nav-item'>
+          <router-link class="nav-link" to='/orders'>Order</router-link>
+        </li>
+        <li class='nav-item'>
           <router-link class="nav-link" to='/logout'>Logout</router-link>
         </li>
       </ul>

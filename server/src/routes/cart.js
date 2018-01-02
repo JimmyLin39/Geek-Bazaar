@@ -78,14 +78,12 @@ module.exports = (knex) => {
               console.error(error);
             });
         })
-        .then(() => {
-          res.send({
-            message: 'successfully checkout!',
-          });
-        })
         .catch((error) => {
           console.error(error);
         });
+    });
+    res.send({
+      message: 'successfully checkout!',
     });
   });
 

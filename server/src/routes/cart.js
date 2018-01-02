@@ -1,4 +1,5 @@
 const express = require('express');
+
 const router = express.Router();
 
 module.exports = (knex) => {
@@ -10,12 +11,12 @@ module.exports = (knex) => {
     knex('line_items')
       .join('inventories', 'inventory_id', 'inventories.id')
       .select('inventories.id', 'inventories.name', 'inventories.price', 'inventories.user_id')
-       // FIXME: update to the current userID
+    // FIXME: update to the current userID
       .where('line_items.user_id', 1)
       .then((resources) => {
         resources.forEach((element) => {
           element.quantity = 1;
-        })
+        });
         res.send({
           resources,
         });
@@ -44,7 +45,6 @@ module.exports = (knex) => {
       .catch((error) => {
         console.error(error);
       });
-
   });
 
   // delete an item from cart
@@ -69,14 +69,25 @@ module.exports = (knex) => {
       const { buyer_id, seller_id, total_cents, status, type } = element;
       knex('orders')
         .insert({ buyer_id, seller_id, total_cents, status, type })
+        // delete cart item in line_items table
+        .then(() => {
+          knex('line_items')
+            .where('user_id', buyer_id)
+            .del()
+            .catch((error) => {
+              console.error(error);
+            });
+        })
+        .then(() => {
+          res.send({
+            message: 'successfully checkout!',
+          });
+        })
         .catch((error) => {
           console.error(error);
         });
-    })
-    res.send({
-      resources: req.body,
-    })
-  })
+    });
+  });
 
   return router;
 };

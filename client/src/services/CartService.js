@@ -6,15 +6,15 @@ export default {
     return Api().get('cart');
   },
   addToCart(inventory, userId) {
-    return Api().post('cart', { 
+    return Api().post('cart', {
       inventory,
-      userId
+      userId,
     });
   },
   removeFromCart(inventoryId) {
     return Api().delete(`cart/${inventoryId}`);
   },
   checkoutCart(orders) {
-    return Api().post('cart/checkout', orders );
-  }
+    return Api().post('cart/checkout', orders);
+  },
 };

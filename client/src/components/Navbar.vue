@@ -40,7 +40,8 @@
       <div class="nav navbar-nav pull-sm-right">
         <div class="nav-item dropdown dropdown-cart">
           <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span v-if="totalItems" class="badge badge-light">{{totalItems}}</span> Shopping cart
+            <span v-if="totalItems" class="badge badge-pill badge-danger">{{totalItems}}</span>
+            <font-awesome-icon icon="shopping-cart" />
           </button>
           <div class="dropdown-menu dropdown-menu-right">
             <shopping-cart></shopping-cart>
@@ -53,10 +54,12 @@
 
 <script>
 import ShoppingCart from './ShoppingCart'
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import { mapGetters } from 'vuex'
 export default {
   components: {
-    ShoppingCart
+    ShoppingCart,
+    FontAwesomeIcon
   },
   computed: {
     totalItems () {

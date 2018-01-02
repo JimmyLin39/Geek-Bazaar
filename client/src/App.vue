@@ -34,6 +34,7 @@ export default {
 
 <style>
 .container {
+  margin-top: 5% !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }

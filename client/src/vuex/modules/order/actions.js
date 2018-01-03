@@ -9,3 +9,7 @@ export function fetchOrders({ commit }) {
     .then(response => commit(FETCH_ORDERS, response.data.resources));
 }
 
+export function fetchSales({ commit }) {
+  return OrderService.retrieveSales()
+    .then(response => commit(FETCH_ORDERS, response.data.resources));
+}

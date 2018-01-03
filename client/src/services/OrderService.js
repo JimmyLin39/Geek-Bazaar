@@ -5,6 +5,9 @@ export default {
   retrieveOrders() {
     return Api().get('orders');
   },
+  cancelOrder(id) {
+    return Api().delete(`orders/${id}`);
+  },
   retrieveSales() {
     return Api().get('sales');
   },

@@ -16,7 +16,10 @@
       No inventories :(
     </div>
     <div class="total"><span>Total</span> ${{total}}</div>
-    <button type="button" :disabled="!inventories.length" class="btn btn-info btn-block" @click.prevent.stop="checkoutCart()">Checkout</button>
+    <router-link :to="'/orders'" tag="button" :disabled="!inventories.length" class="btn btn-info btn-block" @click.native="checkoutCart()">
+      <!-- <input value="Checkout" type="submit" > -->
+      Checkout
+    </router-link>
   </section>
 </template>
 

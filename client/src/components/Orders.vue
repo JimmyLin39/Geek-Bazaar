@@ -38,33 +38,17 @@
 </template>
 
 <script>
-import OrderService from '@/services/OrderService';
-var moment = require('moment');
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  data() {
-    return {
-      orders: []
-    }
+  created () {
+    this.$store.dispatch('fetchOrders');
   },
-  created: function() {
-    this.retrieveOrders(this.orders);
-    console.log(this.orders);
-    
-  },
-  methods: {
-    retrieveOrders: async (orders) => {
-      const response = await OrderService.retrieveOrders();
-      // console.log('orders', response.data.resources);
-      response.data.resources.forEach((element) => {
-        console.log(moment(element.created_at).format('MMMM Do YYYY'));
-        element.created_at = moment(element.created_at).format('YYYY-MM-DD, h:mm a')
-        orders.push(element);
-      })
-    } 
+  computed: {
+    ...mapGetters({
+      orders: 'getOrders'
+    })
   }
-  
-
 }
 </script>
 

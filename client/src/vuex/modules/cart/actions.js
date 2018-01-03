@@ -11,7 +11,6 @@ import {
 export function fetchCart({ commit }) {
   return CartService.retrieveCart()
     .then((response) => {
-      console.log('cart', response.data.resources);
       commit(FETCH_CART, response.data.resources);
     });
 }
@@ -21,7 +20,6 @@ export function addToCart({ commit, state }, inventory) {
   const userId = 1;
   return CartService.addToCart(inventory, userId)
     .then((response) => {
-      console.log(response.data.message);
       const record = state.inventories.find(p => p.id === inventory.id);
       if (!record || record.quantity < 1) {
         commit(ADD_TO_CART, inventory);
@@ -57,8 +55,7 @@ export function checkoutCart({ commit, state }) {
   // add orders to orders table
   return CartService.checkoutCart(orders)
     .then((response) => {
-      console.log('response:', response.data.message);
       // reset cart
-      commit(RESET_CART);
+      return commit(RESET_CART);
     });
 }

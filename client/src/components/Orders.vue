@@ -52,3 +52,9 @@ export default {
 }
 </script>
 
+<style>
+.table {
+  margin-left: 10% !important;
+}
+</style>
+

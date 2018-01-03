@@ -9,8 +9,9 @@ module.exports = (knex) => {
     //   res.redirect('/users');
     // }
     knex('orders')
-      .join('inventories', 'seller_id', 'inventories.id')
-      .select('orders.id', 'inventories.name', 'inventories.price', 'buyer_id', 'seller_id', 'total_cents', 'status', 'date_of_agreement')
+      .join('inventories', 'inventory_id', 'inventories.id')
+      .join('users', 'orders.seller_id', 'users.id')
+      .select('orders.id', 'inventories.name', { seller: 'users.full_name' }, 'total_cents', 'status', 'date_of_agreement', 'image_url', 'image_name')
     // FIXME: update to the current userID
       .where('buyer_id', 1)
       .then((resources) => {

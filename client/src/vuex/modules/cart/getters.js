@@ -1,1 +1,1 @@
-export const getCartItems = state => state.inventories
+export const getCartItems = state => state.inventories;

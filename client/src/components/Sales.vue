@@ -11,7 +11,6 @@
           <th>Buyer</th>
           <th>Price</th>
           <th>Status</th>
-          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -24,8 +23,14 @@
           <td>{{order.name}}</td>
           <td>{{order.buyer}}</td>
           <td>${{order.total_cents}}</td>
-          <td>{{order.status}}</td>
-          <td><a href="#" v-on:click.prevent.stop="onRemove(inventory.id)">Submit</a></td>
+          <td>
+            <select :value="order.status" @input="updateStatus(order.id, $event)">
+              <option disabled value="">Please select one</option>
+              <option>sending</option>
+              <option>waiting</option>
+              <option>complete</option>
+            </select>
+          </td>
         </tr>
         <tr v-if="!orders">
           <td colspan="5" class="p-y-3 text-xs-center">
@@ -48,6 +53,17 @@ export default {
     ...mapGetters({
       orders: 'getOrders'
     })
-  }
+  },
+  methods: {
+    updateStatus(id, e){
+      this.$store.dispatch('updateStatus', { id, e })
+    }
+  },
 }
 </script>
+
+<style>
+.table {
+  margin-left: 10% !important;
+}
+</style>

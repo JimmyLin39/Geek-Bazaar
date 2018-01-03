@@ -21,7 +21,7 @@ export function addToCart({ commit, state }, inventory) {
   const userId = 1;
   return CartService.addToCart(inventory, userId)
     .then((response) => {
-      console.log(response.data.resources);
+      console.log(response.data.message);
       const record = state.inventories.find(p => p.id === inventory.id);
       if (!record || record.quantity < 1) {
         commit(ADD_TO_CART, inventory);
@@ -48,6 +48,7 @@ export function checkoutCart({ commit, state }) {
       // FIXME: update to current userID
       buyer_id: 1,
       seller_id: element.user_id,
+      inventory_id: element.id,
       total_cents: element.price,
       status: 'waiting',
       type: 'sale',

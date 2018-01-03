@@ -13,3 +13,12 @@ export function fetchSales({ commit }) {
   return OrderService.retrieveSales()
     .then(response => commit(FETCH_ORDERS, response.data.resources));
 }
+
+export function updateStatus({ commit }, payload) {
+  const orderId = payload.id;
+  const status = { status: payload.e.target.value };
+  return OrderService.updateStatus(orderId, status)
+    .then((response) => {
+      console.log(response.data.message);
+    });
+}

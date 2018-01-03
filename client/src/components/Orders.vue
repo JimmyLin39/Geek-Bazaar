@@ -6,6 +6,7 @@
         <tr>
           <th></th>
           <th>Order Id</th>
+          <th>Order Date</th>
           <th>Name</th>
           <th>Seller</th>
           <th>Price</th>
@@ -19,6 +20,7 @@
             <img v-bind:src="order.image_url" v-bind:alt="order.image_name" class="inventory-image">
           </td>
           <td>{{order.id}}</td>
+          <td>{{order.created_at}}</td>
           <td>{{order.name}}</td>
           <td>{{order.seller}}</td>
           <td>${{order.total_cents}}</td>
@@ -37,6 +39,7 @@
 
 <script>
 import OrderService from '@/services/OrderService';
+var moment = require('moment');
 
 export default {
   data() {
@@ -54,6 +57,8 @@ export default {
       const response = await OrderService.retrieveOrders();
       // console.log('orders', response.data.resources);
       response.data.resources.forEach((element) => {
+        console.log(moment(element.created_at).format('MMMM Do YYYY'));
+        element.created_at = moment(element.created_at).format('YYYY-MM-DD, h:mm a')
         orders.push(element);
       })
     } 

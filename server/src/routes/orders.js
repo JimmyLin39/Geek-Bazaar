@@ -45,5 +45,22 @@ module.exports = (knex) => {
       });
   });
 
+  router.delete('/:id', (req, res) => {
+    const id = Number(req.params.id);
+
+    knex('orders')
+      .where('orders.id', id)
+      .del()
+      .then(() => {
+        res.send({
+          message: `successfully delete order ${id}`,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+  });
+
   return router;
 };

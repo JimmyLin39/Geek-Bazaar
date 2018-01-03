@@ -5,4 +5,7 @@ export default {
   retrieveOrders() {
     return Api().get('orders');
   },
+  retrieveSales() {
+    return Api().get('sales');
+  },
 };

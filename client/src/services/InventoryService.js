@@ -19,5 +19,5 @@ export default {
   },
   uploadImage(formData) {
     return Api().put('inventories/upload', formData);
-  }
+  },
 };

@@ -25,7 +25,7 @@
           <td>{{order.seller}}</td>
           <td>${{order.total_cents}}</td>
           <td>{{order.status}}</td>
-          <td><a href="#" v-on:click.prevent.stop="onRemove(inventory.id)">Cancel</a></td>
+          <td><a href="#" v-on:click.prevent.stop="cancelOrder(order.id)">Cancel</a></td>
         </tr>
         <tr v-if="!orders">
           <td colspan="5" class="p-y-3 text-xs-center">
@@ -48,7 +48,12 @@ export default {
     ...mapGetters({
       orders: 'getOrders'
     })
-  }
+  },
+  methods: {
+    cancelOrder(orderId) {
+      this.$store.dispatch('cancelOrder', orderId)
+    }
+  },
 }
 </script>
 

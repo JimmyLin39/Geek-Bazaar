@@ -25,5 +25,25 @@ module.exports = (knex) => {
       });
   });
 
+  // update order status
+  router.put('/:id/status', (req, res) => {
+    const id = Number(req.params.id);
+    const { status } = req.body;
+
+    knex('orders')
+      .where('orders.id', id)
+      .update({
+        status,
+      })
+      .then(() => {
+        res.send({
+          message: 'successfuly update order status',
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+
   return router;
 };

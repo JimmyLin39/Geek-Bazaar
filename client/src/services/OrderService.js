@@ -8,4 +8,7 @@ export default {
   retrieveSales() {
     return Api().get('sales');
   },
+  updateStatus(id, status) {
+    return Api().put(`orders/${id}/status`, status);
+  },
 };

@@ -39,7 +39,7 @@ module.exports = (knex) => {
       })
       .then(() => {
         res.send({
-          resources: req.body,
+          message: 'successfully add an item to cart',
         });
       })
       .catch((error) => {
@@ -66,9 +66,9 @@ module.exports = (knex) => {
   // create a new order to orders table
   router.post('/checkout', (req, res) => {
     req.body.forEach((element) => {
-      const { buyer_id, seller_id, total_cents, status, type } = element;
+      const { buyer_id, seller_id, inventory_id, total_cents, status, type } = element;
       knex('orders')
-        .insert({ buyer_id, seller_id, total_cents, status, type })
+        .insert({ buyer_id, seller_id, inventory_id, total_cents, status, type })
         // delete cart item in line_items table
         .then(() => {
           knex('line_items')

@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import inventories from './modules/inventories';
-import cart from './modules/cart'
+import cart from './modules/cart';
+import order from './modules/order';
 
 Vue.use(Vuex);
 
@@ -11,6 +12,7 @@ export default new Vuex.Store({
   modules: {
     inventories,
     cart,
+    order,
   },
   strict: debug,
 });

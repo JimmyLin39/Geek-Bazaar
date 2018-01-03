@@ -17,7 +17,6 @@
     </div>
     <div class="total"><span>Total</span> ${{total}}</div>
     <router-link :to="'/orders'" tag="button" :disabled="!inventories.length" class="btn btn-info btn-block" @click.native="checkoutCart()">
-      <!-- <input value="Checkout" type="submit" > -->
       Checkout
     </router-link>
   </section>

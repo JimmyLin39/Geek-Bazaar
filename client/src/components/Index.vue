@@ -8,7 +8,9 @@
         </figure>
         <div class="card-content">
           <aside class="card-overlay">
-            <button class="btn btn-info overlay-button" type="button" name="button">See Detail</button>            
+            <button class="btn btn-info overlay-button" type="button" name="button">
+              <router-link :to="{ name: 'Detail', params: { id: inventory.id }}">See Detail</router-link>
+            </button>            
             <button class="btn btn-info overlay-button" type="button" name="button">Add to cart</button>
           </aside>
           <div class="card-body">
@@ -86,6 +88,10 @@ export default {
 
 .card-product:hover .description {
   display: block;
+}
+
+a {
+  color: white;
 }
 
 </style>

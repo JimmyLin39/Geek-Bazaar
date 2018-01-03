@@ -24,7 +24,7 @@
           <td>{{order.buyer}}</td>
           <td>${{order.total_cents}}</td>
           <td>
-            <select :value="order.status" @input="updateStatus(order.id, $event)">
+            <select :value="order.status" @input="updateStatus(order.id, $event)" class="custom-select">
               <option disabled value="">Please select one</option>
               <option>sending</option>
               <option>waiting</option>

@@ -31,8 +31,8 @@
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search">
-        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" v-model="search">
+        <button class="btn btn-outline-info my-2 my-sm-0" @click.prevent.stop="searchInventory(search)">Search</button>
       </form>
     </div>
     <div class="nav navbar-nav pull-sm-right">
@@ -54,6 +54,11 @@ import ShoppingCart from './ShoppingCart'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import { mapGetters } from 'vuex'
 export default {
+  data(){
+    return {
+      search: null,
+    }
+  },
   components: {
     ShoppingCart,
     FontAwesomeIcon
@@ -65,6 +70,12 @@ export default {
     ...mapGetters({
       inCart: 'getCartItems'
     })
+  },
+  methods: {
+    searchInventory(search) {
+      console.log('search', search);
+      this.$store.dispatch('searchInventory', search)
+    }
   }
 }
 </script>

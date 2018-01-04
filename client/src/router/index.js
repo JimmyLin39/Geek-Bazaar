@@ -8,6 +8,7 @@ import ManageInventories from '@/components/ManageInventories';
 import Detail from '@/components/Detail';
 import Orders from '@/components/Orders';
 import Sales from '@/components/Sales';
+import Search from '@/components/Search';
 
 Vue.use(Router);
 
@@ -54,6 +55,11 @@ export default new Router({
       path: '/sales',
       name: 'Sales',
       component: Sales,
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: Search,
     },
   ],
 });

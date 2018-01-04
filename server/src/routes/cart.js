@@ -65,27 +65,32 @@ module.exports = (knex) => {
 
   // create a new order to orders table
   router.post('/checkout', (req, res) => {
-    req.body.forEach((element) => {
-      const { buyer_id, seller_id, inventory_id, total_cents, status, type } = element;
-      knex('orders')
-        .insert({ buyer_id, seller_id, inventory_id, total_cents, status, type })
-        // delete cart item in line_items table
-        .then(() => {
-          knex('line_items')
-            .where('user_id', buyer_id)
-            .del()
-            .catch((error) => {
-              console.error(error);
-            });
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+    const orders = req.body;
+    const createOrdersPromise = new Promise((resolve, reject) => {
+      orders.forEach((element) => {
+        const { buyer_id, seller_id, inventory_id, total_cents, status, type } = element;
+        knex('orders')
+          .insert({ buyer_id, seller_id, inventory_id, total_cents, status, type })
+          // delete cart item in line_items table
+          .then(() => {
+            knex('line_items')
+              .where('user_id', buyer_id)
+              .del()
+              .catch((error) => {
+                reject(error);
+              });
+            resolve('Success');
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
     });
-    res.send({
-      message: 'successfully checkout!',
+    createOrdersPromise.then(() => {
+      res.send({
+        message: 'successfully create orders',
+      });
     });
   });
-
   return router;
 };

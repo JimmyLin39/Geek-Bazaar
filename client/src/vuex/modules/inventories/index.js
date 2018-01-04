@@ -7,11 +7,13 @@ import {
   CREATE_INVENTORY,
   UPDATE_INVENTORY,
   DELETE_INVENTORY,
+  FETCH_SEARCH,
 } from './mutation-types';
 
 // initial state
 const initialState = {
   all: [],
+  searchResult: [],
 };
 
 // mutations
@@ -48,6 +50,10 @@ const mutations = {
 
   [DELETE_INVENTORY](state, inventoryId) {
     state.all = state.all.filter(p => p.id !== inventoryId);
+  },
+
+  [FETCH_SEARCH](state, searchResult) {
+    state.searchResult = searchResult;
   },
 };
 

@@ -1,6 +1,7 @@
 <template>
 <div class="container">
   <div class="row">
+    <h1 v-if="!inventories[0]">No Search Result</h1>
     <div class="col-sm-6 col-md-4" v-for="inventory in inventories">
       <section class="card card-product">
         <figure class="card-img-top card-product-image">

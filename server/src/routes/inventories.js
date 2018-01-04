@@ -1,13 +1,13 @@
 const express = require('express');
 const sharp = require('sharp');
 const multer = require('multer');
+
 const router = express.Router();
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 module.exports = (knex) => {
-
   // dest: `${__dirname}/../public/uploads`
   // Upload product image and assign it to product, declare before product update
   // so it gets dibs on the route matching
@@ -25,20 +25,20 @@ module.exports = (knex) => {
       });
     setTimeout(() => {
       knex('inventories')
-      .where('inventories.id', inventoryId)
-      .update({
-        image_url: `http://localhost:8081/uploads/${filename}`,
-        image_name: req.file.originalname
-      })
-      .then(() => {
-        res.status(201);
-        res.send({
-          message: req.file.originalname,
+        .where('inventories.id', inventoryId)
+        .update({
+          image_url: `http://localhost:8081/uploads/${filename}`,
+          image_name: req.file.originalname,
+        })
+        .then(() => {
+          res.status(201);
+          res.send({
+            message: req.file.originalname,
+          });
+        })
+        .catch((error) => {
+          console.error(error);
         });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
     }, 2000);
   });
 
@@ -67,7 +67,8 @@ module.exports = (knex) => {
     // }
     const id = Number(req.params.id);
     knex('inventories')
-      .select()
+      .join('users', 'users.id', 'inventories.user_id')
+      .select('users.full_name', 'inventories.id', 'name', 'description', 'price', 'condition', 'image_url', 'image_name')
       .where('inventories.id', id)
       .then((resources) => {
         res.send({
@@ -79,7 +80,7 @@ module.exports = (knex) => {
       });
   });
 
-  // Create a new inventory 
+  // Create a new inventory
   router.post('/', (req, res) => {
     const { userId, name, description, condition, price } = req.body;
     knex('inventories')

@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^1.0.3",
+    "bgg-axios": "^2.0.3",
     "body-parser": "^1.18.2",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.3",
@@ -30,7 +31,9 @@
     "nodemon": "^1.13.3",
     "passport": "^0.4.0",
     "pg": "^7.4.0",
-    "vue-cookie": "^1.1.4"
+    "vue-cookie": "^1.1.4",
+    "pg": "^7.4.0",
+    "sharp": "^0.18.4"
   },
   "devDependencies": {
     "eslint-config-airbnb-base": "^12.1.0",

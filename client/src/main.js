@@ -8,8 +8,19 @@ import store from './vuex/store';
 
 // import global styles
 import './styles/style.scss';
+import fontawesome from '@fortawesome/fontawesome';
+import faSolid from '@fortawesome/fontawesome-free-solid';
+
+fontawesome.library.add(faSolid);
 
 Vue.config.productionTip = false;
+
+// Popper.js for dropdowns
+try {
+  window.$ = window.jQuery = require('jquery');
+  window.Popper = require('popper.js').default;
+  require('bootstrap');
+} catch (e) {}
 
 /* eslint-disable no-new */
 new Vue({

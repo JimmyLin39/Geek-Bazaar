@@ -1,6 +1,7 @@
 <template>
 <div class="container">
   <div class="row">
+    <h1 v-if="!inventories[0]">No Search Result</h1>
     <div class="col-sm-6 col-md-4" v-for="inventory in inventories">
       <section class="card card-product">
         <figure class="card-img-top card-product-image">
@@ -8,7 +9,9 @@
         </figure>
         <div class="card-content">
           <aside class="card-overlay">
-            <router-link :to="{ name: 'Detail', params: { id: inventory.id }}" class="btn btn-info overlay-button" tag="button" name="button">See Detail</router-link>
+            <button class="btn btn-info overlay-button" type="button" name="button">
+              <router-link :to="{ name: 'Detail', params: { id: inventory.id }}">See Detail</router-link>
+            </button>            
             <button class="btn btn-info overlay-button" @click.stop.prevent="addToCart(inventory)" type="button" name="button">Add to cart</button>
           </aside>
           <div class="card-body">
@@ -30,11 +33,8 @@
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  created () {
-    this.$store.dispatch('fetchInventories')
-  },
   computed: mapGetters({
-    inventories: 'getInventories'
+    inventories: 'getSearchResult'
   }),
   methods: mapActions([
     'fetchInventories',

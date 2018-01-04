@@ -27,13 +27,12 @@
                 <div style="margin-top:10px" class="form-group">
                   <div class="col-sm-12 controls">
                     <a id="btn-login" href="#/login" class="btn btn-success"
-                      @click='login'>Login </a>
+                      @click='login' @keyup.enter='login'>Login </a>
                     <hr>
                     <div class='errors'>
                       {{ errors }}
                     </div>
-                    <hr>
-                    <div>{{ password }}</div>
+                    <div></div>
                   </div>
                 </div>
                 <div class="form-group">
@@ -119,12 +118,23 @@
 <script>
 
 import AuthenticationService from '@/services/AuthenticationService'
+import Vue from 'vue'
+import VueCookie from 'vue-cookie'
+
+Vue.use(VueCookie);
+
+function generateRandomId() {
+  const randomId = Math.random().toString(36).replace(/^[A-Za-z0-9_.]+$/).substring(2, 30);
+  return randomId;
+}
+
 export default {
   data() {
     return {
       email: '',
       password: '',
       errors: '',
+      cookies: false
     };
   },
   methods: {
@@ -133,7 +143,14 @@ export default {
         email: this.email,
         password: this.password
       })
-      this.errors = response.data.message;
+      this.errors = response.data.message
+      this.cookies = response.data.cookies
+      if (response.data.cookies === true) {
+        this.$cookie.set(generateRandomId(), generateRandomId(), 1)
+        this.errors = 'Cookies succesfully set!'
+      } else {
+        this.errors = 'Cookies not set!'
+      }
     },
     reset() {
       this.errors = ''

@@ -7,6 +7,7 @@ import {
   CREATE_INVENTORY,
   UPDATE_INVENTORY,
   DELETE_INVENTORY,
+  FETCH_SEARCH,
 } from './mutation-types';
 
 export function fetchInventory ({ commit }, inventoryId) {
@@ -62,16 +63,25 @@ export function saveInventory({ commit, state }, { inventory, image }) {
   return createInventory({ commit }, { inventory, image });
 }
 
-function uploadInventoryImage ({ commit }, image, inventoryId) {
-  var formData = new global.FormData()
+export function uploadInventoryImage({ commit }, image, inventoryId) {
+  const formData = new global.FormData();
 
-  formData.append('inventory_id', inventoryId)
-  formData.append('inventory_image', image)
+  formData.append('inventory_id', inventoryId);
+  formData.append('inventory_image', image);
 
   // Upload (PUT) the product image before resolving the response
   return InventoryService.uploadImage(formData)
-    .then((response) => response.data.message)
+    .then(response => response.data.message)
     // Since the server has associated the product with the image
     // refresh (GET) the product data to get this information
-    .then(() => fetchInventory({ commit }, inventoryId))
+    .then(() => fetchInventory({ commit }, inventoryId));
+}
+
+export function searchInventory({ commit }, name) {
+  console.log(name);
+  return InventoryService.searchInventory(name)
+    .then((response) => {
+      console.log(response.data.resources);
+      commit(FETCH_SEARCH, response.data.resources);
+    });
 }

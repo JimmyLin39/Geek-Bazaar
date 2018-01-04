@@ -11,10 +11,13 @@ const knex = require('knex')(knexConfig[ENV]);
 const knexLogger = require('knex-logger');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
-const session = require('express-session');
 
 const app = express();
 const inventoriesRoutes = require('./routes/inventories');
+const cartRoutes = require('./routes/cart');
+const ordersRoutes = require('./routes/orders');
+const salesRoutes = require('./routes/sales');
+const searchRoutes = require('./routes/search');
 // const usersRoutes = require('./routes/users');
 
 app.use(cors());
@@ -22,15 +25,11 @@ app.use(morgan('dev'));
 app.use(knexLogger(knex));
 app.use(bodyParser.json());
 app.use('/inventories', inventoriesRoutes(knex));
+app.use('/cart', cartRoutes(knex));
+app.use('/orders', ordersRoutes(knex));
+app.use('/sales', salesRoutes(knex));
+app.use('/search', searchRoutes(knex));
 app.use(express.static('public'));
-
-app.set('trust proxy', 1); // trust first proxys
-app.use(session({
-  secret: process.env.SECRET,
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true },
-}));
 
 app.post('/login', (req, res) => {
   if (!req.body.email || !req.body.password) {
@@ -49,11 +48,11 @@ app.post('/login', (req, res) => {
         });
       } else if (!bcrypt.compareSync(req.body.password, results[0].password)) {
         res.send({
-          message: 'Incorrect password!',
+          message: 'Incorrect email and/or password!',
         });
       } else {
         res.send({
-          message: true,
+          cookies: true,
         });
       }
     }).catch((error) => {
@@ -90,18 +89,33 @@ app.post('/register', (req, res) => {
           knex.insert(newUser)
             .into('users')
             .then(res.send({
-              message: `Hello ${req.body.full_name}!
-              You've successfully registered with the display name
-              ${req.body.display_name}, and email ${req.body.email}.`,
+              message: 'You\'ve successfully registered!',
+              cookies: true,
             }))
-            .catch((err) => {
-              res.send({
-                message: err.message,
-              });
-            });
-        }
+            .catch(err => {
+              console.log(err.message);
+            })
+          }
+        })
+      }
+})
+// request bgg api
+const bgg = require('bgg-axios');
+
+app.get('/bgg/search', (req, res) => {
+  console.log('req query: ', req.query.NAME);
+  bgg.search(`${req.query.NAME}`, 5)
+    .then((searchResults) => {
+      return Promise.all(searchResults.items.map((item) => {
+        return bgg.apiRequest('thing items', { id: `${item.objectid}` });
+      }));
+    })
+    .then((allResults) => {
+      res.send({
+        message: 'success',
+        allResults,
       });
-  }
+    });
 });
 
 // require('./routes')(app)

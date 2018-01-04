@@ -119,10 +119,12 @@
 
 <script>
 
-import AuthenticationService from '@/services/AuthenticationService'
-import Vue from 'vue'
-import VueCookie from 'vue-cookie'
+import AuthenticationService from '@/services/AuthenticationService';
+import Vue from 'vue';
+import VueCookie from 'vue-cookie';
+import VueSession from 'vue-session';
 
+Vue.use(VueSession);
 Vue.use(VueCookie);
 
 function generateRandomId() {
@@ -131,6 +133,7 @@ function generateRandomId() {
 }
 
 export default {
+  name: 'login',
   data() {
     return {
       email: '',
@@ -140,19 +143,32 @@ export default {
     };
   },
   methods: {
-    async login() {
-      const response = await AuthenticationService.login({
-        email: this.email,
-        password: this.password
+    // async login() {
+    //   const response = await AuthenticationService.login({
+    //     email: this.email,
+    //     password: this.password
+    //   })
+    //   this.errors = response.data.message
+    //   this.cookies = response.data.cookies
+    //   if (response.data.cookies === true) {
+    //     this.$cookie.set('newUser', generateRandomId(), 1)
+    //     this.errors = 'Cookies succesfully set!'
+    //   } else {
+    //     this.errors = 'Cookies not set!'
+    //   }
+    // },
+    login() {
+      this.$http.post('/login', {
+        password: this.password,
+        email: this.email
+      }).then(function(response) {
+        if (response.status === 200 && 'token' in response.body) {
+          this.$session.start();
+          this.$session.set('jwt', response.body.token);
+        }
+      }, function(err) {
+        console.log('err: ', err);
       })
-      this.errors = response.data.message
-      this.cookies = response.data.cookies
-      if (response.data.cookies === true) {
-        this.$cookie.set('newUser', generateRandomId(), 1)
-        this.errors = 'Cookies succesfully set!'
-      } else {
-        this.errors = 'Cookies not set!'
-      }
     },
     reset() {
       this.errors = ''

@@ -33,7 +33,6 @@
     "passport": "^0.4.0",
     "pg": "^7.4.0",
     "vue-cookie": "^1.1.4",
-    "pg": "^7.4.0",
     "sharp": "^0.18.4"
   },
   "devDependencies": {

@@ -20,4 +20,7 @@ export default {
   uploadImage(formData) {
     return Api().put('inventories/upload', formData);
   },
+  searchInventory(name) {
+    return Api().get(`search?name=${name}`);
+  },
 };

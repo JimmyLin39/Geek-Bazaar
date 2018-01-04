@@ -102,7 +102,7 @@ app.post('/register', (req, res) => {
 // request bgg api
 const bgg = require('bgg-axios');
 
-app.get('/search', (req, res) => {
+app.get('/bgg/search', (req, res) => {
   console.log('req query: ', req.query.NAME);
   bgg.search(`${req.query.NAME}`, 5)
     .then((searchResults) => {

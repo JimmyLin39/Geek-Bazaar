@@ -27,7 +27,10 @@
                 <div style="margin-top:10px" class="form-group">
                   <div class="col-sm-12 controls">
                     <a id="btn-login" href="#/login" class="btn btn-success"
-                      @click='login' @keyup.enter='login'>Login </a>
+                      @click='login' @keyup.enter='login'>
+                      <router-link to='/inventories'>Login</router-link>
+                    </a>
+
                     <hr>
                     <div class='errors'>
                       {{ errors }}
@@ -35,6 +38,7 @@
                     <div></div>
                   </div>
                 </div>
+
                 <div class="form-group">
                   <div class="col-md-12 control">
                     <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
@@ -146,7 +150,7 @@ export default {
       this.errors = response.data.message
       this.cookies = response.data.cookies
       if (response.data.cookies === true) {
-        this.$cookie.set(generateRandomId(), generateRandomId(), 1)
+        const userCookies = this.$cookie.set('userCookies', generateRandomId(), 1)
         this.errors = 'Cookies succesfully set!'
       } else {
         this.errors = 'Cookies not set!'
@@ -154,6 +158,9 @@ export default {
     },
     reset() {
       this.errors = ''
+    },
+    logout(){
+        this.$cookie.delete('userCookies');
     },
   }
 };

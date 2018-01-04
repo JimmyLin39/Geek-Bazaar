@@ -38,7 +38,7 @@ export function subtractFromCart({ commit }, inventoryId) {
   commit(SUBTRACT_FROM_CART, inventoryId);
 }
 
-export function checkoutCart({ commit, state }) {
+export function checkoutCart({ commit, state, dispatch }) {
   // calculate total price for all cart items
   const orders = [];
   state.inventories.forEach((element) => {
@@ -55,7 +55,10 @@ export function checkoutCart({ commit, state }) {
   // add orders to orders table
   return CartService.checkoutCart(orders)
     .then((response) => {
+      console.log(response.data.message);
       // reset cart
-      return commit(RESET_CART);
+      commit(RESET_CART);
+    }).then(() => {
+      dispatch('fetchOrders');
     });
 }

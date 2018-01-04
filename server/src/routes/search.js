@@ -8,7 +8,7 @@ module.exports = (knex) => {
     const { name } = req.query;
     knex('inventories')
       .select()
-      .where('inventories.name', name)
+      .where(knex.raw('LOWER(inventories.name) LIKE ?', `%${name.toLowerCase()}%`))
       .then((response) => {
         res.send({
           resources: response,

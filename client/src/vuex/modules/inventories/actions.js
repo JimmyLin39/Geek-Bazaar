@@ -7,6 +7,7 @@ import {
   CREATE_INVENTORY,
   UPDATE_INVENTORY,
   DELETE_INVENTORY,
+  FETCH_SEARCH,
 } from './mutation-types';
 
 export function fetchInventory ({ commit }, inventoryId) {
@@ -81,5 +82,6 @@ export function searchInventory({ commit }, name) {
   return InventoryService.searchInventory(name)
     .then((response) => {
       console.log(response.data.resources);
+      commit(FETCH_SEARCH, response.data.resources);
     });
 }

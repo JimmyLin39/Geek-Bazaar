@@ -8,9 +8,7 @@
         </figure>
         <div class="card-content">
           <aside class="card-overlay">
-            <button class="btn btn-info overlay-button" type="button" name="button">
-              <router-link :to="{ name: 'Detail', params: { id: inventory.id }}">See Detail</router-link>
-            </button>            
+            <router-link :to="{ name: 'Detail', params: { id: inventory.id }}" class="btn btn-info overlay-button" tag="button" name="button">See Detail</router-link>
             <button class="btn btn-info overlay-button" @click.stop.prevent="addToCart(inventory)" type="button" name="button">Add to cart</button>
           </aside>
           <div class="card-body">

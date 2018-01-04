@@ -32,7 +32,7 @@
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="text" placeholder="Search" v-model="search">
-        <button class="btn btn-outline-info my-2 my-sm-0" @click.prevent.stop="searchInventory(search)">Search</button>
+        <router-link to="/search" tag="button" class="btn btn-outline-info my-2 my-sm-0" @click.native="searchInventory(search)">Search</router-link>
       </form>
     </div>
     <div class="nav navbar-nav pull-sm-right">

@@ -26,7 +26,8 @@ POST | `/logout` | logout
 HTTP method | URI path | Description 
 --- | --- | ---
 POST | `/inventories` | Create a new inventory 
-GET | `/inventories` | Retrieve all inventory 
+GET | `/inventories` | Retrieve all inventory
+GET | `/search` | search inventories by name 
 PUT | `/inventories/:id` | Update an inventory
 DELETE | `/inventories/:id` | Delete an inventory
 GET | `/cart` | Retrieve all cart items

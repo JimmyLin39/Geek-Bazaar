@@ -17,6 +17,7 @@ const inventoriesRoutes = require('./routes/inventories');
 const cartRoutes = require('./routes/cart');
 const ordersRoutes = require('./routes/orders');
 const salesRoutes = require('./routes/sales');
+const searchRoutes = require('./routes/search');
 // const usersRoutes = require('./routes/users');
 
 app.use(cors());
@@ -27,6 +28,7 @@ app.use('/inventories', inventoriesRoutes(knex));
 app.use('/cart', cartRoutes(knex));
 app.use('/orders', ordersRoutes(knex));
 app.use('/sales', salesRoutes(knex));
+app.use('/search', searchRoutes(knex));
 app.use(express.static('public'));
 
 app.post('/login', (req, res) => {

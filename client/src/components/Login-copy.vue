@@ -124,7 +124,6 @@
 import AuthenticationService from '@/services/AuthenticationService'
 import Vue from 'vue'
 import VueCookie from 'vue-cookie'
-import { mapGetters, mapActions } from 'vuex'
 
 Vue.use(VueCookie);
 
@@ -142,9 +141,28 @@ export default {
       cookies: false
     };
   },
-  methods: mapActions([
-    'login'
-  ])
+  methods: {
+    async login() {
+      const response = await AuthenticationService.login({
+        email: this.email,
+        password: this.password
+      })
+      this.errors = response.data.message
+      this.cookies = response.data.cookies
+      if (response.data.cookies === true) {
+        const userCookies = this.$cookie.set('userCookies', generateRandomId(), 1)
+        this.errors = 'Cookies succesfully set!'
+      } else {
+        this.errors = 'Cookies not set!'
+      }
+    },
+    reset() {
+      this.errors = ''
+    },
+    logout(){
+        this.$cookie.delete('userCookies');
+    },
+  }
 };
 
 </script>

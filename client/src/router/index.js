@@ -28,6 +28,7 @@ export default new Router({
     {
       path: '/login',
       name: 'Login',
+      meta: { Auth: false },
       component: Login,
     },
     {
@@ -38,6 +39,7 @@ export default new Router({
     {
       path: '/inventories',
       name: 'Inventories',
+      meta: { Auth: true},
       component: ManageInventories,
     },
     {

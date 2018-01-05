@@ -24,7 +24,7 @@
           <router-link class="nav-link" to='/orders'>Order</router-link>
         </li>
         <li class='nav-item'>
-          <router-link class="nav-link" to='/sales'>Sales</router-link>
+          <router-link class="nav-link" to="/sales">Sales</router-link>
         </li>
         <li class='nav-item'>
           <router-link class="nav-link" to='/login' @click.native='logout()'>Logout</router-link>
@@ -83,6 +83,22 @@ export default {
     logout () {
       this.$cookie.delete('userCookies');
     },
+    getUserCookies() {
+      const userCookies = this.$cookie.get('userCookies')
+      console.log(userCookies);
+    },
+    hasCookies() {
+      const userCookies = this.$cookie.get('userCookies')
+      if (!userCookies) {
+        console.log('You need to be logged in to make a sale!');
+        // TODO: Show message above in the browser
+
+      } else {
+        console.log('Proceed to the sales!');
+        // TODO: Redirect link to the sales vue
+
+      }
+    }
   }
 }
 </script>

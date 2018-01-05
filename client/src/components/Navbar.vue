@@ -27,7 +27,7 @@
           <router-link class="nav-link" to="/sales">Sales</router-link>
         </li>
         <li class='nav-item'>
-          <router-link class="nav-link" to='/login' @click.native='logout()'>Logout</router-link>
+          <router-link class="nav-link" to="/login" @click.native="logout()">Logout</router-link>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -80,16 +80,16 @@ export default {
       console.log('search', search);
       this.$store.dispatch('searchInventory', search)
     },
-    logout () {
-      this.$cookie.delete('userCookies');
+    logout() {
+      this.$cookie.delete('userId');
     },
-    getUserCookies() {
-      const userCookies = this.$cookie.get('userCookies')
-      console.log(userCookies);
+    getUserId() {
+      const userId = this.$cookie.get('userId')
+      console.log(userId);
     },
     hasCookies() {
-      const userCookies = this.$cookie.get('userCookies')
-      if (!userCookies) {
+      const userId = this.$cookie.get('userId')
+      if (!userId) {
         console.log('You need to be logged in to make a sale!');
         // TODO: Show message above in the browser
 

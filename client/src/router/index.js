@@ -6,6 +6,7 @@ import Login from '@/components/Login';
 import Index from '@/components/Index';
 import ManageInventories from '@/components/ManageInventories';
 import Detail from "@/components/Detail";
+import Users from "@/components/Users";
 
 Vue.use(Router);
 
@@ -42,6 +43,11 @@ export default new Router({
       name: 'Detail',
       component: Detail,
       props: true
+    },
+    {
+      path: '/users',
+      name: 'Users',
+      component: Users,
     }
   ],
 });

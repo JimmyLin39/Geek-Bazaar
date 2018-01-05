@@ -21,7 +21,7 @@
           <a class="nav-link disabled" href="#"></a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="http://example.com"
+          <a class="nav-link dropdown-toggle" href="/#/users"
             id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">Profile</a>
           <div class="dropdown-menu" aria-labelledby="dropdown01">

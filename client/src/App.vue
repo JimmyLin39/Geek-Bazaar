@@ -2,26 +2,26 @@
   <div>
     <head>
       <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1,
-        shrink-to-fit=no">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="description" content="">
       <meta name="author" content="">
       <link rel="icon" href="../../favicon.ico">
+
       <title>Geek Bazaar</title>
+
       <!-- Bootstrap core CSS -->
-      <link href="../bootstrap-4.0.0-alpha.6/dist/css/bootstrap.min.css"
-        rel="stylesheet">
+      <link href="../bootstrap-4.0.0-alpha.6/dist/css/bootstrap.min.css" rel="stylesheet">
+
       <!-- Custom styles for this template -->
-      <link href="../bootstrap-4.0.0-alpha.6/docs/examples/jumbotron/jumbotron.css"
-        rel="stylesheet">
+      <link href="../bootstrap-4.0.0-alpha.6/docs/examples/jumbotron/jumbotron.css" rel="stylesheet">
     </head>
     <header class=“app-header”>
+
+    </header>
+    <main class=“container”>
       <!-- <appNavbar></appNavbar> -->
       <!-- <appLandingPage></appLandingPage> -->
       <appUsersProfile></appUsersProfile>
-    </header>
-    <main class=“container”>
-
     </main>
 
   </div>

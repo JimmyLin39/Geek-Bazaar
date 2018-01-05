@@ -63,6 +63,21 @@ app.post('/login', (req, res) => {
   }
 });
 
+// TODO: 1. Write Knex query to parse out user based on user Id
+// 2. Send back user info as part of the response.
+app.get('/users/:id', (req, res) => {
+  const userId = req.params.id;
+  knex('users')
+    .where({
+      id: userId,
+    })
+    .then((results) => {
+      res.send({
+        userInfo: results,
+      });
+    });
+});
+
 app.post('/register', (req, res) => {
   if (!req.body.full_name || !req.body.display_name || !req.body.email ||
     !req.body.password) {

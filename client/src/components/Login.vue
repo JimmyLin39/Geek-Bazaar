@@ -15,26 +15,28 @@
                   <span class="input-group-addon"><i
                     class="glyphicon glyphicon-user"></i></span>
                   <input id="login-email" type="text" class="form-control"
-                    name="email" value="" placeholder="Email"
-                    v-model='email' @click='reset'>
+                    name="email" placeholder="Email"
+                    v-model="info.email">
+                    <!-- @click="reset" -->
                 </div>
                 <div style="margin-bottom: 25px" class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                   <input id="login-password" type="password" class="form-control"
                     name="password" placeholder="Password"
-                    v-model='password' @click='reset'>
+                    v-model="info.password">
+                    <!-- @click="reset" -->
                 </div>
                 <div style="margin-top:10px" class="form-group">
                   <div class="col-sm-12 controls">
                     <a id="btn-login" href="#/login" class="btn btn-success"
-                      @click='login' @keyup.enter='login'>
-                      <router-link to='/inventories'>Login</router-link>
+                      @click.prevent.stop="onLogin" @keyup.enter="login">
+                      <router-link to="/inventories">Login</router-link>
                     </a>
 
                     <hr>
-                    <div class='errors'>
+                    <!-- <div class='errors'>
                       {{ errors }}
-                    </div>
+                    </div> -->
                     <div></div>
                   </div>
                 </div>
@@ -133,18 +135,27 @@ function generateRandomId() {
   return randomId;
 }
 
-export default {
-  data() {
-    return {
+const initialData = () => {
+  return {
+    info: {
       email: '',
       password: '',
       errors: '',
       cookies: false
-    };
-  },
-  methods: mapActions([
-    'login'
-  ])
+    }
+  }
+}
+
+export default {
+  data: initialData,
+  methods: {
+    ...mapActions([
+      'login',
+    ]),
+    onLogin(){
+      this.login(this.info)
+    }
+  }
 };
 
 </script>

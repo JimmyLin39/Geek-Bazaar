@@ -10,9 +10,8 @@ export function login({ commit, state }, credentials) {
     email: credentials.email,
     password: credentials.password,
   }).then((response) => {
-    const cookies = response.data.cookies;
-    const userId = response.data.userId;
-    commit(SETUP_COOKIES, { cookies, userId });
+    const { message, cookies, userId } = response.data;
+    commit(SETUP_COOKIES, { message, cookies, userId });
   });
 }
 

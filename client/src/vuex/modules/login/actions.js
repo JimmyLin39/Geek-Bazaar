@@ -1,23 +1,20 @@
 import AuthenticationService from '@/services/AuthenticationService';
-import Vue from 'vue';
-import VueCookie from 'vue-cookie';
 
-Vue.use(VueCookie);
+import {
+  SETUP_COOKIES,
+} from './mutation-types';
 
-export function login ({ commit, state }, userCookies) {
+export function login({ commit, state }, credentials) {
   console.log("We're in the actions!");
+  console.log('credentials.email', credentials.email);
+  console.log('credentials.password', credentials.password);
   return AuthenticationService.login({
-    email: state.email,
-    password: state.password
+    email: credentials.email,
+    password: credentials.password,
   }).then((response) => {
-    state.errors = response.data.message
-    state.cookies = response.data.cookies
-    if (response.data.cookies === true) {
-      const userCookies = state.$cookie.set('userCookies', generateRandomId(), 1)
-      state.errors = 'Cookies succesfully set!'
-    } else {
-      state.errors = 'Cookies not set!'
-    }
+    console.log((response.data.cookies).toString());
+    const cookies = response.data.cookies;
+    commit(SETUP_COOKIES, cookies);
   });
 }
 

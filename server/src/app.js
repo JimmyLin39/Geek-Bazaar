@@ -37,29 +37,32 @@ app.post('/login', (req, res) => {
       message: 'Email and password fields must be filled in!',
     });
   } else {
-    knex('users').where({
-      email: req.body.email,
-    }).then((results) => {
-      // 'results' pulls out the user from the database based on the above
-      // query.
-      if (!results.length) {
+    knex('users')
+      .where({
+        email: req.body.email,
+      })
+      .then((results) => {
+        // 'results' pulls out the user from the database based on the above
+        // query.
+        if (!results.length) {
+          res.send({
+            message: 'Don\'t have an account?  Have you registered?',
+          });
+        } else if (!bcrypt.compareSync(req.body.password, results[0].password)) {
+          res.send({
+            message: 'Incorrect email and/or password!',
+          });
+        } else {
+          res.send({
+            userId: results[0].id,
+            cookies: true,
+          });
+        }
+      }).catch((error) => {
         res.send({
-          message: 'Don\'t have an account?  Have you registered?',
+          message: error.message,
         });
-      } else if (!bcrypt.compareSync(req.body.password, results[0].password)) {
-        res.send({
-          message: 'Incorrect email and/or password!',
-        });
-      } else {
-        res.send({
-          cookies: true,
-        });
-      }
-    }).catch((error) => {
-      res.send({
-        message: error.message,
       });
-    });
   }
 });
 

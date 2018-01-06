@@ -4,6 +4,7 @@ import inventories from './modules/inventories';
 import cart from './modules/cart';
 import order from './modules/order';
 import login from './modules/login';
+import messages from './modules/messages';
 
 
 Vue.use(Vuex);
@@ -18,6 +19,7 @@ export default new Vuex.Store({
     cart,
     order,
     login,
+    messages,
   },
   strict: debug,
 });

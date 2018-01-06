@@ -5,9 +5,6 @@ const router = express.Router();
 module.exports = (knex) => {
   // retrieve all orders
   router.get('/:id', (req, res) => {
-    // if (!req.session.user_id) {
-    //   res.redirect('/users');
-    // }
     knex('orders')
       .join('inventories', 'inventory_id', 'inventories.id')
       .join('users', 'orders.seller_id', 'users.id')

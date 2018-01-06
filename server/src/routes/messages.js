@@ -8,7 +8,7 @@ module.exports = (knex) => {
     knex('messages')
       .join('users', 'messages.sender_id', 'users.id')
       .where('receiver_id', req.params.userId)
-      .select('users.full_name as sender_name', 'content', 'messages.created_at')
+      .select('messages.sender_id', 'users.full_name as sender_name', 'content', 'messages.created_at')
       .orderBy('messages.created_at', 'desc')
       .then((result) => {
         res.send({

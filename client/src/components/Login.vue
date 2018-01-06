@@ -84,6 +84,7 @@ export default {
         const cookie = this.$cookie.get('userId');
         if (cookie) {
           this.$router.replace('/index')
+          this.$store.dispatch('fetchCart');
         }
       });
     }

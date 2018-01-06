@@ -104,12 +104,7 @@
 </template>
 
 <script>
-
 import AuthenticationService from '@/services/AuthenticationService'
-import Vue from 'vue'
-import VueCookie from 'vue-cookie'
-
-Vue.use(VueCookie);
 
 export default {
   data() {

@@ -57,13 +57,8 @@
 </template>
 
 <script>
-
 import AuthenticationService from '@/services/AuthenticationService'
-import Vue from 'vue'
-import VueCookie from 'vue-cookie'
 import { mapGetters, mapActions } from 'vuex'
-
-Vue.use(VueCookie);
 
 const initialData = () => {
   return {

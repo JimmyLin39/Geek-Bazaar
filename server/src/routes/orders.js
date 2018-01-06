@@ -4,7 +4,7 @@ const router = express.Router();
 
 module.exports = (knex) => {
   // retrieve all orders
-  router.get('/', (req, res) => {
+  router.get('/:id', (req, res) => {
     // if (!req.session.user_id) {
     //   res.redirect('/users');
     // }
@@ -12,8 +12,7 @@ module.exports = (knex) => {
       .join('inventories', 'inventory_id', 'inventories.id')
       .join('users', 'orders.seller_id', 'users.id')
       .select('orders.id', 'orders.created_at', 'inventories.name', { seller: 'users.full_name' }, 'total_cents', 'status', 'date_of_agreement', 'image_url', 'image_name')
-    // FIXME: update to the current userID
-      .where('buyer_id', 1)
+      .where('buyer_id', req.params.id)
       .orderBy('orders.id', 'desc')
       .then((resources) => {
         res.send({

@@ -25,6 +25,7 @@ const mutations = {
     if (payload.cookies === true) {
       Vue.cookie.set('userId', payload.userId, 1);
       state.cookies = true;
+      state.errors = '';
     } else {
       state.errors = payload.message;
       console.log(state.errors);

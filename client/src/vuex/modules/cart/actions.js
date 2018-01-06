@@ -20,6 +20,7 @@ export function fetchCart({ commit }) {
       commit(FETCH_CART, response.data.resources);
     });
   }
+  return commit(RESET_CART);
 }
 
 export function addToCart({ commit, state }, inventory) {
@@ -34,7 +35,8 @@ export function addToCart({ commit, state }, inventory) {
 }
 
 export function removeFromCart({ commit }, inventoryId) {
-  return CartService.removeFromCart(inventoryId)
+  const userId = Vue.cookie.get('userId');
+  return CartService.removeFromCart(inventoryId, userId)
     .then(() => {
       commit(REMOVE_FROM_CART, inventoryId);
     });

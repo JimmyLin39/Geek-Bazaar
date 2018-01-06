@@ -9,6 +9,7 @@ import Detail from '@/components/Detail';
 import Orders from '@/components/Orders';
 import Sales from '@/components/Sales';
 import Search from '@/components/Search';
+import Users from '@/components/Users';
 
 Vue.use(Router);
 
@@ -61,5 +62,10 @@ export default new Router({
       name: 'search',
       component: Search,
     },
+    {
+      path: '/users',
+      name: 'Users',
+      component: Users,
+    }
   ],
 });

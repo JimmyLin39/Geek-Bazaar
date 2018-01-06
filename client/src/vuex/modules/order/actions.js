@@ -1,3 +1,5 @@
+import Vue from 'vue';
+import VueCookie from 'vue-cookie';
 import OrderService from '@/services/OrderService';
 
 import {
@@ -5,8 +7,11 @@ import {
   DELETE_ORDER,
 } from './mutation-types';
 
+Vue.use(VueCookie);
+
 export function fetchOrders({ commit }) {
-  return OrderService.retrieveOrders()
+  const userId = Vue.cookie.get('userId');
+  return OrderService.retrieveOrders(userId)
     .then(response => commit(FETCH_ORDERS, response.data.resources));
 }
 

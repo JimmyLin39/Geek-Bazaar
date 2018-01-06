@@ -2,9 +2,6 @@ import Vue from 'vue';
 import VueCookie from 'vue-cookie';
 import * as actions from './actions';
 import * as getters from './getters';
-// import VueRouter from 'vue-router';
-
-// Vue.use(VueRouter);
 
 import {
   SETUP_COOKIES,

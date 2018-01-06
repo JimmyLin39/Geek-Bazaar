@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="inventory in inventories" v-if="inventory.user_id === 1 " track-by="id" v-on:click.prevent="onEdit(inventory)">
+      <tr v-for="inventory in inventories" v-if="inventory.user_id === cookie" track-by="id" v-on:click.prevent="onEdit(inventory)">
         <td>
           <img v-bind:src="inventory.image_url" v-bind:alt="inventory.image_name" class="inventory-image">
         </td>
@@ -33,6 +33,11 @@
 <script>
 export default {
   props: ['inventories'],
+  data() {
+    return {
+      cookie: Number(this.$cookie.get('userId'))
+    }
+  },
   methods: {
     onEdit (inventory) {
       this.$emit('edit', inventory)

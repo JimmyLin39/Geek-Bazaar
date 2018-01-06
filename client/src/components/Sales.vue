@@ -57,6 +57,10 @@ export default {
   methods: {
     updateStatus(id, e){
       this.$store.dispatch('updateStatus', { id, e })
+    },
+    getUserCookies() {
+      const userCookies = this.$cookie.get('userCookies')
+      console.log(userCookies)
     }
   },
 }

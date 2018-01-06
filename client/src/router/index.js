@@ -13,59 +13,19 @@ import Messages from '@/components/Messages';
 
 Vue.use(Router);
 
+const router =
+  [
+    { path: '/', name: 'Landing Page', component: LandingPage },
+    { path: '/register', meta: { Auth: false }, name: 'Register', component: Register },
+    { path: '/login', meta: { Auth: false }, name: 'Login', component: Login },
+    { path: '/index', meta: { Auth: true }, name: 'Index', component: Index },
+    { path: '/inventories', meta: { Auth: true }, name: 'Inventories', component: ManageInventories },
+    { path: '/inventories/:id', meta: { Auth: true }, name: 'Detail', component: Detail, props: true },
+    { path: '/orders', meta: { Auth: true }, name: 'Orders', component: Orders },
+    { path: '/sales', meta: { Auth: true }, name: 'Sales', component: Sales },
+    { path: '/search', meta: { Auth: true }, name: 'search', component: Search },
+  ];
 export default new Router({
-
-  routes: [
-    {
-      path: '/',
-      name: 'Landing Page',
-      component: LandingPage,
-    },
-    {
-      path: '/register',
-      name: 'Register',
-      component: Register,
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login,
-    },
-    {
-      path: '/index',
-      name: 'Index',
-      component: Index,
-    },
-    {
-      path: '/inventories',
-      name: 'Inventories',
-      component: ManageInventories,
-    },
-    {
-      path: '/inventories/:id',
-      name: 'Detail',
-      component: Detail,
-      props: true,
-    },
-    {
-      path: '/orders',
-      name: 'Orders',
-      component: Orders,
-    },
-    {
-      path: '/sales',
-      name: 'Sales',
-      component: Sales,
-    },
-    {
-      path: '/search',
-      name: 'search',
-      component: Search,
-    },
-    {
-      path: '/messages',
-      name: 'message',
-      component: Messages,
-    }
-  ],
+  routes: router,
 });
+

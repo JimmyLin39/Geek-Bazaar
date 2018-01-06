@@ -4,15 +4,11 @@ const router = express.Router();
 
 module.exports = (knex) => {
   // retrieve all cart items
-  router.get('/', (req, res) => {
-    // if (!req.session.user_id) {
-    //   res.redirect('/users');
-    // }
+  router.get('/:id', (req, res) => {
     knex('line_items')
       .join('inventories', 'inventory_id', 'inventories.id')
       .select('inventories.id', 'inventories.name', 'inventories.price', 'inventories.user_id')
-    // FIXME: update to the current userID
-      .where('line_items.user_id', 1)
+      .where('line_items.user_id', req.params.id)
       .then((resources) => {
         resources.forEach((element) => {
           element.quantity = 1;
@@ -48,10 +44,14 @@ module.exports = (knex) => {
   });
 
   // delete an item from cart
-  router.delete('/:id', (req, res) => {
+  router.delete('/:id/:userid', (req, res) => {
     const id = Number(req.params.id);
+    const userid = Number(req.params.userid);
     knex('line_items')
-      .where('inventory_id', id)
+      .where({
+        inventory_id: id,
+        user_id: userid,
+      })
       .del()
       .then(() => {
         res.send({

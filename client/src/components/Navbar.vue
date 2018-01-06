@@ -24,10 +24,10 @@
           <router-link class="nav-link" to='/orders'>Order</router-link>
         </li>
         <li class='nav-item'>
-          <router-link class="nav-link" to='/sales'>Sales</router-link>
+          <router-link class="nav-link" to="/sales">Sales</router-link>
         </li>
         <li class='nav-item'>
-          <router-link class="nav-link" to='/logout'>Logout</router-link>
+          <router-link class="nav-link" to="/" @click.native="logout()">Logout</router-link>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -53,15 +53,19 @@
 import ShoppingCart from './ShoppingCart'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import { mapGetters } from 'vuex'
+import Login from './Login'
+
 export default {
   data(){
     return {
       search: null,
+      cookies: '',
     }
   },
   components: {
     ShoppingCart,
-    FontAwesomeIcon
+    FontAwesomeIcon,
+    Login
   },
   computed: {
     totalItems () {
@@ -75,6 +79,26 @@ export default {
     searchInventory(search) {
       console.log('search', search);
       this.$store.dispatch('searchInventory', search)
+    },
+    logout() {
+      this.$store.dispatch('resetCart');
+      this.$cookie.delete('userId')
+    },
+    getUserId() {
+      const userId = this.$cookie.get('userId')
+      console.log(userId);
+    },
+    hasCookies() {
+      const userId = this.$cookie.get('userId')
+      if (!userId) {
+        console.log('You need to be logged in to make a sale!');
+        // TODO: Show message above in the browser
+
+      } else {
+        console.log('Proceed to the sales!');
+        // TODO: Redirect link to the sales vue
+
+      }
     }
   }
 }

@@ -1,3 +1,5 @@
+import Vue from 'vue';
+import VueCookie from 'vue-cookie';
 import CartService from '@/services/CartService';
 
 import {
@@ -8,16 +10,21 @@ import {
   RESET_CART,
 } from './mutation-types';
 
+Vue.use(VueCookie);
+
 export function fetchCart({ commit }) {
-  return CartService.retrieveCart()
+  const userId = Vue.cookie.get('userId');
+  if (userId) {
+    return CartService.retrieveCart(userId)
     .then((response) => {
       commit(FETCH_CART, response.data.resources);
     });
+  }
+  return commit(RESET_CART);
 }
 
 export function addToCart({ commit, state }, inventory) {
-  // FIXME: update to current userId
-  const userId = 1;
+  const userId = Vue.cookie.get('userId');
   return CartService.addToCart(inventory, userId)
     .then((response) => {
       const record = state.inventories.find(p => p.id === inventory.id);
@@ -28,7 +35,8 @@ export function addToCart({ commit, state }, inventory) {
 }
 
 export function removeFromCart({ commit }, inventoryId) {
-  return CartService.removeFromCart(inventoryId)
+  const userId = Vue.cookie.get('userId');
+  return CartService.removeFromCart(inventoryId, userId)
     .then(() => {
       commit(REMOVE_FROM_CART, inventoryId);
     });
@@ -41,10 +49,10 @@ export function subtractFromCart({ commit }, inventoryId) {
 export function checkoutCart({ commit, state, dispatch }) {
   // calculate total price for all cart items
   const orders = [];
+  const userId = Vue.cookie.get('userId');
   state.inventories.forEach((element) => {
     orders.push({
-      // FIXME: update to current userID
-      buyer_id: 1,
+      buyer_id: userId,
       seller_id: element.user_id,
       inventory_id: element.id,
       total_cents: element.price,
@@ -61,4 +69,8 @@ export function checkoutCart({ commit, state, dispatch }) {
     }).then(() => {
       dispatch('fetchOrders');
     });
+}
+
+export function resetCart({ commit }) {
+  return commit(RESET_CART);
 }

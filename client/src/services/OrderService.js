@@ -8,8 +8,8 @@ export default {
   cancelOrder(id) {
     return Api().delete(`orders/${id}`);
   },
-  retrieveSales() {
-    return Api().get('sales');
+  retrieveSales(userId) {
+    return Api().get(`sales/${userId}`);
   },
   updateStatus(id, status) {
     return Api().put(`orders/${id}/status`, status);

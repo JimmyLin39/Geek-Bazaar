@@ -5,9 +5,19 @@ const router = express.Router();
 module.exports = (knex) => {
   // get all messages from current user
   router.get('/:userId', (req, res) => {
-    res.send({
-      messages: 'success',
-    });
+    knex('messages')
+      .join('users', 'messages.sender_id', 'users.id')
+      .where('receiver_id', req.params.userId)
+      .select('users.full_name as sender_name', 'content', 'messages.created_at')
+      .orderBy('messages.created_at', 'desc')
+      .then((result) => {
+        res.send({
+          result,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   });
 
   // create a new message

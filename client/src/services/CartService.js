@@ -11,8 +11,8 @@ export default {
       userId,
     });
   },
-  removeFromCart(inventoryId) {
-    return Api().delete(`cart/${inventoryId}`);
+  removeFromCart(inventoryId, userId) {
+    return Api().delete(`cart/${inventoryId}/${userId}`);
   },
   checkoutCart(orders) {
     return Api().post('cart/checkout', orders);

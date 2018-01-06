@@ -2,8 +2,8 @@
 import Api from '@/services/Api';
 
 export default {
-  retrieveCart() {
-    return Api().get('cart');
+  retrieveCart(userId) {
+    return Api().get(`cart/${userId}`);
   },
   addToCart(inventory, userId) {
     return Api().post('cart', {

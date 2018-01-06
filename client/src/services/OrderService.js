@@ -2,8 +2,8 @@
 import Api from '@/services/Api';
 
 export default {
-  retrieveOrders() {
-    return Api().get('orders');
+  retrieveOrders(userId) {
+    return Api().get(`orders/${userId}`);
   },
   cancelOrder(id) {
     return Api().delete(`orders/${id}`);

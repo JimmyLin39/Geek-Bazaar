@@ -1,6 +1,9 @@
 <template>
-  <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light" 
+    style="background-color: #e3f2fd;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" 
+      data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+      aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -13,11 +16,11 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#"
             id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">Profile</a>
+            aria-expanded="false">Users</a>
           <div class="dropdown-menu" aria-labelledby="dropdown01">
             <a class="dropdown-item" href="#">Buy</a>
             <a class="dropdown-item" href="#">Sell</a>
-            <a class="dropdown-item" href="#"></a>
+            <router-link to="/users" class="dropdown-item">Profile</router-link>
           </div>
         </li>
         <li class='nav-item'>
@@ -31,13 +34,16 @@
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" v-model="search">
-        <router-link to="/search" tag="button" class="btn btn-outline-info my-2 my-sm-0" @click.native="searchInventory(search)">Search</router-link>
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" 
+          v-model="search">
+        <router-link to="/search" tag="button" class="btn btn-outline-info my-2 my-sm-0" 
+          @click.native="searchInventory(search)">Search</router-link>
       </form>
     </div>
     <div class="nav navbar-nav pull-sm-right">
       <div class="nav-item dropdown dropdown-cart">
-        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" 
+          aria-haspopup="true" aria-expanded="false">
           <span v-if="totalItems" class="badge badge-pill badge-danger">{{totalItems}}</span>
           <font-awesome-icon icon="shopping-cart" />
         </button>

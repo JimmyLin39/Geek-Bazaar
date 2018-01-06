@@ -91,16 +91,20 @@ app.post('/register', (req, res) => {
           };
           knex.insert(newUser)
             .into('users')
-            .then(res.send({
-              message: 'You\'ve successfully registered!',
-              cookies: true,
-            }))
-            .catch(err => {
-              console.log(err.message);
+            .returning('id')
+            .then((userId) => {
+              res.send({
+                userId: userId[0],
+                message: 'You\'ve successfully registered!',
+                cookies: true,
+              });
             })
-          }
-        })
-      }
+            .catch((error) => {
+              console.error(error);
+            });
+        }
+      });
+  }
 })
 // request bgg api
 const bgg = require('bgg-axios');

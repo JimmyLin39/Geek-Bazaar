@@ -44,10 +44,14 @@ module.exports = (knex) => {
   });
 
   // delete an item from cart
-  router.delete('/:id', (req, res) => {
+  router.delete('/:id/:userid', (req, res) => {
     const id = Number(req.params.id);
+    const userid = Number(req.params.userid);
     knex('line_items')
-      .where('inventory_id', id)
+      .where({
+        inventory_id: id,
+        user_id: userid,
+      })
       .del()
       .then(() => {
         res.send({

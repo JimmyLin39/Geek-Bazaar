@@ -39,6 +39,8 @@ PUT | `/orders/:id/status` | Update order status
 GET | `/sales` | Retrieve all sales
 GET | `/users/:id/profile` | Retrieve all user profile
 PUT | `/users/:id/profile` | update user profile
+GET | `/messages/:userId` | Retrieve all messages from current user
+POST | `/messages` | Add a new message
 
 
 

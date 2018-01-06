@@ -88,7 +88,7 @@ export default {
       this.login(this.info).then(()=>{
         const cookie = this.$cookie.get('userId');
         if (cookie) {
-          this.$router.replace('/inventories')
+          this.$router.replace('/index')
         }
       });
     }

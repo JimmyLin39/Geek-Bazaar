@@ -14,7 +14,3 @@ export function login({ commit, state }, credentials) {
     commit(SETUP_COOKIES, { message, cookies, userId });
   });
 }
-
-export function logout({ commit, state }, userCookies) {
-  return state.$cookie.delete('userCookies');
-}

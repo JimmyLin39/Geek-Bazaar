@@ -81,7 +81,8 @@ export default {
       this.$store.dispatch('searchInventory', search)
     },
     logout() {
-      this.$cookie.delete('userId');
+      this.$store.dispatch('resetCart');
+      this.$cookie.delete('userId')
     },
     getUserId() {
       const userId = this.$cookie.get('userId')

@@ -27,7 +27,7 @@
           <router-link class="nav-link" to="/sales">Sales</router-link>
         </li>
         <li class='nav-item'>
-          <router-link class="nav-link" to="/login" @click.native="logout()">Logout</router-link>
+          <router-link class="nav-link" to="/" @click.native="logout()">Logout</router-link>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">

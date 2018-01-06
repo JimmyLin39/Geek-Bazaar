@@ -24,7 +24,8 @@ export function cancelOrder({ commit }, orderId) {
 }
 
 export function fetchSales({ commit }) {
-  return OrderService.retrieveSales()
+  const userId = Vue.cookie.get('userId');
+  return OrderService.retrieveSales(userId)
     .then(response => commit(FETCH_ORDERS, response.data.resources));
 }
 

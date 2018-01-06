@@ -24,8 +24,8 @@ const router =
     { path: '/orders', meta: { Auth: true }, name: 'Orders', component: Orders },
     { path: '/sales', meta: { Auth: true }, name: 'Sales', component: Sales },
     { path: '/search', meta: { Auth: true }, name: 'search', component: Search },
+    { path: '/messages', meta: { Auth: true }, name: 'messages', component: Messages },
   ];
 export default new Router({
   routes: router,
 });
-

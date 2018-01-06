@@ -77,12 +77,12 @@ module.exports = (knex) => {
               .where('user_id', buyer_id)
               .del()
               .catch((error) => {
-                reject(error);
+                console.error(error);
               });
             resolve('Success');
           })
           .catch((error) => {
-            reject(error);
+            console.error(error);
           });
       });
     });

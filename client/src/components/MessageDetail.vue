@@ -5,7 +5,7 @@
     <div class="cs-row">
       <div class="cs-col-xs-12 cs-col-md-6 cs-offset-md-3">
         <!-- FIXME: display the right sender_name -->
-        <h4>Messages with {{ messages[0].sender_name }}</h4>
+        <!-- <h4>Messages with {{ messages[0].sender_name }}</h4> -->
       </div>
     </div>
     <div class="cs-row">

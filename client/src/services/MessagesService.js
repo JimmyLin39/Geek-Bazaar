@@ -5,7 +5,10 @@ export default {
   retrieveMessages(userId) {
     return Api().get(`messages/${userId}`);
   },
-  addMessage(message) {
-    return Api().post('messages', message);
+  retrieveMessage(userId, senderId) {
+    return Api().get(`messages/${userId}/detail/${senderId}`);
+  },
+  addMessage(receiverId, senderId, content) {
+    return Api().post('messages', receiverId, senderId, content);
   },
 };

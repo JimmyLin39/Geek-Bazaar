@@ -10,6 +10,7 @@ import Orders from '@/components/Orders';
 import Sales from '@/components/Sales';
 import Search from '@/components/Search';
 import Messages from '@/components/Messages';
+import MessageDetail from '@/components/MessageDetail';
 
 Vue.use(Router);
 
@@ -25,6 +26,7 @@ const router =
     { path: '/sales', meta: { Auth: true }, name: 'Sales', component: Sales },
     { path: '/search', meta: { Auth: true }, name: 'search', component: Search },
     { path: '/messages', meta: { Auth: true }, name: 'messages', component: Messages },
+    { path: '/messages/:id', meta: { Auth: true }, name: 'MessageDetail', component: MessageDetail, props: true },
   ];
 export default new Router({
   routes: router,

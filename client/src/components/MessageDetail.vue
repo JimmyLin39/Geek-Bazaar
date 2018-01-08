@@ -55,7 +55,11 @@ export default {
   },
   methods: {
     addMessage() {
-      this.$store.dispatch('addMessage', this.id, this.content)
+      const payload = {
+        receiverId: this.id,
+        content: this.content
+      }
+      this.$store.dispatch('addMessage', payload)
     }
   },
 }

@@ -55,9 +55,23 @@ module.exports = (knex) => {
         content,
       })
       .then(() => {
-        res.send({
-          messages: 'successfuly add a message',
-        });
+        knex('messages')
+          .join('users', 'messages.sender_id', 'users.id')
+          .where({
+            receiver_id: receiverId,
+            sender_id: senderId,
+          })
+          .select('messages.sender_id', 'users.full_name as sender_name', 'content', 'messages.created_at')
+          .orderBy('messages.created_at', 'desc')
+          .limit(1)
+          .then((result) => {
+            res.send({
+              result,
+            });
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       })
       .catch((error) => {
         console.error(error);

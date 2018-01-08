@@ -21,10 +21,12 @@ export function fetchMessage({ commit }, senderId) {
   return MessagesService.retrieveMessage(userId, senderId)
     .then(response => commit(FETCH_MESSAGE, response.data.result));
 }
-// FIXME: senderId, content
-export function addMessage({ commit }, senderId, content) {
-  const userId = Vue.cookie.get('userId');
-  return MessagesService.addMessage(userId, senderId, content)
+
+export function addMessage({ commit }, payload) {
+  const senderId = Vue.cookie.get('userId');
+  const receiverId = payload.receiverId;
+  const content = payload.content;
+  return MessagesService.addMessage({ senderId, receiverId, content })
     .then((response) => {
       console.log(response.data.messages);
     });

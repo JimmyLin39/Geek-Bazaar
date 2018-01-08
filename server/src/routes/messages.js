@@ -34,7 +34,7 @@ module.exports = (knex) => {
         });
       })
       .select('messages.sender_id', 'users.full_name as sender_name', 'content', 'messages.created_at')
-      .orderBy('messages.created_at', 'desc')
+      .orderBy('messages.created_at', 'asc')
       .then((result) => {
         res.send({
           result,

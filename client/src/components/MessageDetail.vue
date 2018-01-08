@@ -25,6 +25,7 @@
 
     </div>
     <div class="cs-col-xs-12 cs-col-md-6 cs-offset-md-3">
+      <div v-if="error" class="form-control-feedback">{{ error }}</div>
       <form id="message-form" method="POST">
         <textarea v-model="content" id="message-text" class="form-control" name="body" rows="2" maxlength="500"></textarea>
         <button id="send-btn" class="btn btn-primary" type="submit" v-on:click.prevent="addMessage()">Send</button>
@@ -42,6 +43,7 @@ export default {
   data() {
     return {
       content: '',
+      error: '',
     }
   },
   props: ['id'],
@@ -55,14 +57,25 @@ export default {
   },
   methods: {
     addMessage() {
-      const payload = {
-        receiverId: this.id,
-        content: this.content
+      if (this.content.length === 0) {
+        this.error = 'Please type in some message.'
+      }else{
+        this.error = '';
+        const payload = {
+          receiverId: this.id,
+          content: this.content
+        }
+        this.$store.dispatch('addMessage', payload);
+        // reset content
+        this.content = '';
       }
-      this.$store.dispatch('addMessage', payload);
-      // reset content
-      this.content = '';
     }
   },
 }
 </script>
+
+<style>
+.form-control-feedback {
+  color: red;
+}
+</style>

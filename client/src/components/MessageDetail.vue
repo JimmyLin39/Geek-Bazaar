@@ -59,7 +59,9 @@ export default {
         receiverId: this.id,
         content: this.content
       }
-      this.$store.dispatch('addMessage', payload)
+      this.$store.dispatch('addMessage', payload);
+      // reset content
+      this.content = '';
     }
   },
 }

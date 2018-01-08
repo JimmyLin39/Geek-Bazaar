@@ -5,7 +5,7 @@ import MessagesService from '@/services/MessagesService';
 import {
   FETCH_MESSAGE,
   FETCH_MESSAGES,
-  ADD_MESSAGE,
+  UPDATE_MESSAGE,
 } from './mutation-types';
 
 Vue.use(VueCookie);
@@ -28,6 +28,7 @@ export function addMessage({ commit }, payload) {
   const content = payload.content;
   return MessagesService.addMessage({ senderId, receiverId, content })
     .then((response) => {
-      console.log(response.data.messages);
+      console.log(response.data.result);
+      commit(UPDATE_MESSAGE, response.data.result[0]);
     });
 }

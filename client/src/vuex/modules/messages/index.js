@@ -6,7 +6,7 @@ const moment = require('moment');
 import {
   FETCH_MESSAGE,
   FETCH_MESSAGES,
-  ADD_MESSAGE,
+  UPDATE_MESSAGE,
 } from './mutation-types';
 
 // initial state
@@ -34,6 +34,10 @@ const mutations = {
     });
     // assign the orders that we got from our FETCH_MESSAGES event to state.messages
     state.message = messages;
+  },
+  [UPDATE_MESSAGE](state, message) {
+    message.created_at = moment(message.created_at).format('YYYY-MM-DD, h:mm a');
+    state.message.push(message);
   },
 };
 

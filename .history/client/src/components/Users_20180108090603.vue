@@ -26,9 +26,9 @@ export default {
     this.retrieveUser(this.user, this.userId);
   },
   methods: {
-    retrieveUser: async (user, userId) => {
+    retrieveUser: async (userId) => {
       const response = await usersService.retrieveUser(userId);
-      console.log(response.data.user);
+      console.log(response.data.user[0]);
       user.push(response.data.user[0]);
     }
   }

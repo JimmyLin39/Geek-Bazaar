@@ -65,6 +65,7 @@ app.post('/login', (req, res) => {
 
 // TODO: 1. Write Knex query to parse out user based on user Id
 // 2. Send back user info as part of the response.
+// 3. Test endpoint with postman.
 app.get('/users/:id', (req, res) => {
   const userId = req.params.id;
   knex('users')
@@ -73,7 +74,7 @@ app.get('/users/:id', (req, res) => {
     })
     .then((results) => {
       res.send({
-        userInfo: results,
+        user: results,
       });
     });
 });
@@ -108,7 +109,7 @@ app.post('/register', (req, res) => {
               cookies: true,
             }))
             .catch((err) => {
-              console.log(err.message);
+                console.log(err.message);
             });
         }
       });
@@ -142,6 +143,6 @@ app.post('/logout', (req, res) => {
   });
 });
 
-app.listen(() => {
+app.listen(PORT, () => {
   console.log(`Geek-Bazzar Api listening on port ${PORT}`);
 });

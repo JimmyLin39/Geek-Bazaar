@@ -29,7 +29,7 @@ export default {
     retrieveUser: async (user, userId) => {
       const response = await usersService.retrieveUser(userId);
       console.log(response.data.user);
-      user.push(response.data.user[0]);
+      user.push(response.data.user);
     }
   }
 }

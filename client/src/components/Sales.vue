@@ -1,7 +1,6 @@
 <template>
   <div id="sales">
   <h1>My Sales:</h1>
-  {{ orders }}
     <table class="table sales table-responsive table-hover inventory-table">
       <thead>
         <tr>

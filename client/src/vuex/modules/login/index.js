@@ -5,23 +5,24 @@ import * as getters from './getters';
 
 import {
   SETUP_COOKIES,
+  DELETE_COOKIES,
 } from './mutation-types';
 
 Vue.use(VueCookie);
+
+const isLoggedIn = Vue.cookie.get('userId');
 
 const initialState = {
   email: '',
   password: '',
   errors: '',
-  cookies: false,
+  cookies: isLoggedIn,
 };
 
 
 // mutations:
 const mutations = {
   [SETUP_COOKIES](state, payload) {
-    console.log('cookie in mutation', payload.cookies);
-    console.log('userId in mutation', payload.userId);
     if (payload.cookies === true) {
       Vue.cookie.set('userId', payload.userId, 1);
       state.cookies = true;
@@ -30,6 +31,10 @@ const mutations = {
       state.errors = payload.message;
       console.log(state.errors);
     }
+  },
+  [DELETE_COOKIES](state) {
+    Vue.cookie.delete('userId');
+    state.cookies = false;
   },
 };
 

@@ -2,6 +2,7 @@ import AuthenticationService from '@/services/AuthenticationService';
 
 import {
   SETUP_COOKIES,
+  DELETE_COOKIES,
 } from './mutation-types';
 
 export function login({ commit, state }, credentials) {
@@ -13,4 +14,8 @@ export function login({ commit, state }, credentials) {
     const { message, cookies, userId } = response.data;
     commit(SETUP_COOKIES, { message, cookies, userId });
   });
+}
+
+export function logout({ commit }) {
+  commit(DELETE_COOKIES);
 }

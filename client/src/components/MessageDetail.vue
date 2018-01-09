@@ -72,14 +72,6 @@ export default {
         this.content = '';
       }
     },
-    // senderName() {
-      
-      // for(const message of this.messages) {
-      //   if (message.sender_id == this.id) {
-      //     return message.sender_name
-      //   }
-      // } 
-    // }
   },
 }
 </script>

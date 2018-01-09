@@ -1,7 +1,7 @@
 <template>
-  <div class="orders">
+  <div id="sales">
   <h1>My Sales:</h1>
-    <table class="table table-responsive table-hover inventory-table">
+    <table class="table sales table-responsive table-hover inventory-table">
       <thead>
         <tr>
           <th></th>
@@ -11,6 +11,7 @@
           <th>Buyer</th>
           <th>Price</th>
           <th>Status</th>
+          <th>Messages</th>
         </tr>
       </thead>
       <tbody>
@@ -31,6 +32,7 @@
               <option>complete</option>
             </select>
           </td>
+          <td><router-link :to="{ name: 'MessageDetail', params: { id: order.buyer_id }}">Message buyer</router-link></td>
         </tr>
         <tr v-if="!orders">
           <td colspan="5" class="p-y-3 text-xs-center">
@@ -57,13 +59,17 @@ export default {
   methods: {
     updateStatus(id, e){
       this.$store.dispatch('updateStatus', { id, e })
+    },
+    getUserCookies() {
+      const userCookies = this.$cookie.get('userCookies')
+      console.log(userCookies)
     }
   },
 }
 </script>
 
 <style>
-.table {
+.sales{
   margin-left: 10% !important;
 }
 </style>

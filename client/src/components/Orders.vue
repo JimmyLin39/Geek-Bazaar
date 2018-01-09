@@ -1,7 +1,7 @@
 <template>
-  <div class="orders">
+  <div id="orders">
   <h1>My Orders:</h1>
-    <table class="table table-responsive table-hover inventory-table">
+    <table class="table orders table-responsive table-hover inventory-table">
       <thead>
         <tr>
           <th></th>
@@ -11,7 +11,8 @@
           <th>Seller</th>
           <th>Price</th>
           <th>Status</th>
-          <th></th>
+          <th>Messages</th>
+          <th>Cancel</th>
         </tr>
       </thead>
       <tbody>
@@ -25,6 +26,7 @@
           <td>{{order.seller}}</td>
           <td>${{order.total_cents}}</td>
           <td>{{order.status}}</td>
+          <td><router-link :to="{ name: 'MessageDetail', params: { id: order.seller_id }}">Message seller</router-link></td>
           <td><a href="#" v-if="order.status === 'waiting'" v-on:click.prevent.stop="cancelOrder(order.id)">Cancel</a></td>
         </tr>
         <tr v-if="!orders">
@@ -58,7 +60,7 @@ export default {
 </script>
 
 <style>
-.table {
+.orders {
   margin-left: 10% !important;
 }
 </style>

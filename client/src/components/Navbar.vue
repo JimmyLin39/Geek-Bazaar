@@ -6,36 +6,39 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <router-link class="navbar-brand" to='/'>Geek Bazaar</router-link>
-      <ul class="navbar-nav mr-auto">
+      <router-link v-if="!cookies" class="nav-link" to='/login'>Login</router-link>
+      <ul v-else class="navbar-nav mr-auto">
         <li class="nav-item">
-          <router-link class="nav-link" to='/login'>Login</router-link>
+          <router-link class="nav-link" to='/index'>Explore</router-link>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#"
-            id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">Profile</a>
-          <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <a class="dropdown-item" href="#">Buy</a>
-            <a class="dropdown-item" href="#">Sell</a>
-            <a class="dropdown-item" href="#"></a>
-          </div>
+        <li class="nav-item">
+          <router-link class="nav-link" to='/inventories'>Inventories</router-link>
         </li>
         <li class='nav-item'>
-          <router-link class="nav-link" to='/orders'>Order</router-link>
+          <router-link class="nav-link" to='/orders'>Orders</router-link>
         </li>
         <li class='nav-item'>
-          <router-link class="nav-link" to='/sales'>Sales</router-link>
+          <router-link class="nav-link" to="/sales">Sales</router-link>
         </li>
         <li class='nav-item'>
-          <router-link class="nav-link" to='/logout'>Logout</router-link>
+          <router-link class="nav-link" to="/messages">Messages</router-link>
         </li>
       </ul>
+    </div>
+    <div v-if="cookies" class="nav navbar-nav pull-sm-right">
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="text" placeholder="Search" v-model="search">
         <router-link to="/search" tag="button" class="btn btn-outline-info my-2 my-sm-0" @click.native="searchInventory(search)">Search</router-link>
       </form>
-    </div>
-    <div class="nav navbar-nav pull-sm-right">
+      <div class="nav-item dropdown dropdown-profile">
+        <button class="btn btn-primary btn-profile dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <font-awesome-icon icon="user" />
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-divider"></div>
+          <router-link class="dropdown-item nav-link" to="/" @click.native="logout()">Logout</router-link>
+        </div>
+      </div>
       <div class="nav-item dropdown dropdown-cart">
         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span v-if="totalItems" class="badge badge-pill badge-danger">{{totalItems}}</span>
@@ -50,29 +53,52 @@
 </template>
 
 <script>
-
-import AuthenticationService from '@/services/AuthenticationService'
-import Vue from 'vue'
-import VueCookie from 'vue-cookie'
-Vue.use(VueCookie)
+import ShoppingCart from './ShoppingCart'
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+import { mapGetters } from 'vuex'
 
 export default {
-  name: 'app',
-  methods: {
-    async logOut() {
-      const response = await AuthenticationService.logout({
-        userCookies: this.$cookies.get('newUser')
-      })
-      if (response.data.logout === true) {
-        this.$cookies.remove(userCookies)
-      }
+  data(){
+    return {
+      search: null,
     }
+  },
+  components: {
+    ShoppingCart,
+    FontAwesomeIcon,
+  },
+  computed: {
+    totalItems () {
+      return this.inCart.reduce((sum, p) => sum + p.quantity, 0)
+    },
+    ...mapGetters({
+      inCart: 'getCartItems',
+      cookies: 'getCookies'
+    })
+  },
+  methods: {
+    searchInventory(search) {
+      this.$store.dispatch('searchInventory', search)
+    },
+    logout() {
+      this.$store.dispatch('resetCart');
+      this.$store.dispatch('logout');
+    },
   }
 };
 </script>
 
 <style>
-.dropdown-cart{
+.dropdown-profile {
+  margin-left: 10px;
+}
+
+.btn-profile {
+  background-color: #3498db;
+  border-color: #3498db;
+}
+
+.dropdown-cart {
   margin-left: 10px;
 }
 </style>

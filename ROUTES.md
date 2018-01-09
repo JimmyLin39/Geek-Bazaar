@@ -30,7 +30,7 @@ GET | `/inventories` | Retrieve all inventory
 GET | `/search` | search inventories by name 
 PUT | `/inventories/:id` | Update an inventory
 DELETE | `/inventories/:id` | Delete an inventory
-GET | `/cart` | Retrieve all cart items
+GET | `/cart/:id` | Retrieve all cart items
 POST | `/cart` | Add a new item into cart
 DELETE | `/cart/:id` | Delete an item from cart
 POST | `/cart/checkout` | Add a new order to orders table
@@ -39,6 +39,8 @@ PUT | `/orders/:id/status` | Update order status
 GET | `/sales` | Retrieve all sales
 GET | `/users/:id/profile` | Retrieve all user profile
 PUT | `/users/:id/profile` | update user profile
+GET | `/messages/:userId` | Retrieve all messages from current user
+POST | `/messages` | Add a new message
 
 
 

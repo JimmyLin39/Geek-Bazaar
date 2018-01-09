@@ -6,7 +6,6 @@
       <span><p>Full Name: {{ user[0].full_name }} </p></span>
       <span><p>Dispaly Name: {{ user[0].display_name }} </p></span>
       <span><p>Email: {{ user[0].email }}</p></span>
-      <span><p>Password: {{ user[0].password }}</p></span>
     </div>
   </div>
 </div>
@@ -28,7 +27,7 @@ export default {
   methods: {
     retrieveUser: async (user, userId) => {
       const response = await usersService.retrieveUser(userId);
-      console.log(response.data.user);
+      // console.log(response.data.user);
       user.push(response.data.user[0]);
     }
   }

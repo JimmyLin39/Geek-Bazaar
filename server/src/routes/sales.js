@@ -8,7 +8,7 @@ module.exports = (knex) => {
     knex('orders')
       .join('inventories', 'inventory_id', 'inventories.id')
       .join('users', 'orders.buyer_id', 'users.id')
-      .select('orders.id', 'orders.created_at', 'inventories.name', { buyer: 'users.full_name' }, 'total_cents', 'status', 'date_of_agreement', 'image_url', 'image_name')
+      .select('orders.id', 'orders.created_at', 'inventories.name', { buyer: 'users.full_name' }, { buyer_id: 'users.id' }, 'total_cents', 'status', 'date_of_agreement', 'image_url', 'image_name')
       .where('seller_id', req.params.id)
       .orderBy('orders.id', 'desc')
       .then((resources) => {

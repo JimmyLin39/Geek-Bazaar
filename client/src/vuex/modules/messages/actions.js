@@ -6,6 +6,7 @@ import {
   FETCH_MESSAGE,
   FETCH_MESSAGES,
   UPDATE_MESSAGE,
+  FETCH_SENDER,
 } from './mutation-types';
 
 Vue.use(VueCookie);
@@ -20,6 +21,11 @@ export function fetchMessage({ commit }, senderId) {
   const userId = Vue.cookie.get('userId');
   return MessagesService.retrieveMessage(userId, senderId)
     .then(response => commit(FETCH_MESSAGE, response.data.result));
+}
+
+export function fetchSenderName({ commit }, senderId) {
+  return MessagesService.retrieveSenderName(senderId)
+    .then(response => commit(FETCH_SENDER, response.data.result));
 }
 
 export function addMessage({ commit }, payload) {

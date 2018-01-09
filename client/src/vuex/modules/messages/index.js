@@ -7,12 +7,14 @@ import {
   FETCH_MESSAGE,
   FETCH_MESSAGES,
   UPDATE_MESSAGE,
+  FETCH_SENDER,
 } from './mutation-types';
 
 // initial state
 const initialState = {
   message: [],
   messages: [],
+  senderName: '',
 };
 
 const groupBy = function(xs, key) {
@@ -45,6 +47,9 @@ const mutations = {
   [UPDATE_MESSAGE](state, message) {
     message.created_at = moment(message.created_at).format('YYYY-MM-DD, h:mm a');
     state.message.push(message);
+  },
+  [FETCH_SENDER](state, senderName) {
+    state.senderName = senderName[0].sender_name;
   },
 };
 

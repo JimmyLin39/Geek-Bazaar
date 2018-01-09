@@ -11,6 +11,7 @@
           <th>Buyer</th>
           <th>Price</th>
           <th>Status</th>
+          <th>Messages</th>
         </tr>
       </thead>
       <tbody>
@@ -31,6 +32,7 @@
               <option>complete</option>
             </select>
           </td>
+          <td><router-link :to="{ name: 'MessageDetail', params: { id: order.buyer_id }}">Message buyer</router-link></td>
         </tr>
         <tr v-if="!orders">
           <td colspan="5" class="p-y-3 text-xs-center">

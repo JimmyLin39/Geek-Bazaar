@@ -2,10 +2,10 @@
   <div id="messages">
     <h1>Message</h1>
     <div class="list-group thread">
-      <router-link :to="{ name: 'MessageDetail', params: { id: message.sender_id }}" v-for="message in messages" :key="message.sender_id" class="list-group-item">
-        <h5 class="list-group-item-heading list-group-item-date">{{ message.created_at }}</h5>
-        <h4 class="list-group-item-heading">{{ message.sender_name }}</h4>
-        <span class="list-group-item-text">{{ message.sender_name }}: {{ message.content }}</span>
+      <router-link :to="{ name: 'MessageDetail', params: { id: message[0].sender_id }}" v-for="message in messages" :key="message.sender_id" class="list-group-item">
+        <h5 class="list-group-item-heading list-group-item-date">{{ message[0].created_at }}</h5>
+        <h4 class="list-group-item-heading">{{ message[0].sender_name }}</h4>
+        <span class="list-group-item-text">{{ message[0].sender_name }}: {{ message[0].content }}</span>
       </router-link>
     </div>
   </div>

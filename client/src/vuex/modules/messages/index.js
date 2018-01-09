@@ -15,6 +15,13 @@ const initialState = {
   messages: [],
 };
 
+const groupBy = function(xs, key) {
+  return xs.reduce(function(rv, x) {
+    (rv[x[key]] = rv[x[key]] || []).push(x);
+    return rv;
+  }, {});
+};
+
 // mutations
 const mutations = {
   // fetch all messages for current user
@@ -24,7 +31,7 @@ const mutations = {
       element.created_at = moment(element.created_at).format('YYYY-MM-DD, h:mm a');
     });
     // assign the orders that we got from our FETCH_MESSAGES event to state.messages
-    state.messages = messages;
+    state.messages = groupBy(messages, 'sender_id');
   },
   // fetch meassage between specific sender and current user
   [FETCH_MESSAGE](state, messages) {

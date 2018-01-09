@@ -1,7 +1,11 @@
 <template>
   <div id="messages">
-    <h1>Message</h1>
+    <div class="cs-row">
+      <div class="cs-col-xs-12 cs-col-md-6 cs-offset-md-3">
+      </div>
+    </div>
     <div class="list-group thread">
+      <h2>Messages</h2>
       <router-link :to="{ name: 'MessageDetail', params: { id: message[0].sender_id }}" v-for="message in messages" :key="message.sender_id" class="list-group-item">
         <h5 class="list-group-item-heading list-group-item-date">{{ message[0].created_at }}</h5>
         <h4 class="list-group-item-heading">{{ message[0].sender_name }}</h4>

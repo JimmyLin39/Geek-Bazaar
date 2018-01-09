@@ -3,7 +3,7 @@
     <div class="container">
     <div class="cs-row">
       <div class="cs-col-xs-12 cs-col-md-6 cs-offset-md-3">
-        <h4 id="sender-name">Messages with {{ senderName() }}</h4>
+        <h2 id="sender-name">Messages with {{ senderName() }}</h2>
       </div>
     </div>
     <div class="cs-row">
@@ -82,8 +82,6 @@ export default {
 
 <style>
 #sender-name {
-  font-size: 18px;
-  font-weight: 500;
   margin-top: 10px;
   margin-bottom: 10px;
 }

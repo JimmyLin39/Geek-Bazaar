@@ -18,6 +18,7 @@ const cartRoutes = require('./routes/cart');
 const ordersRoutes = require('./routes/orders');
 const salesRoutes = require('./routes/sales');
 const searchRoutes = require('./routes/search');
+const messagesRoutes = require('./routes/messages');
 // const usersRoutes = require('./routes/users');
 
 app.use(cors());
@@ -29,6 +30,7 @@ app.use('/cart', cartRoutes(knex));
 app.use('/orders', ordersRoutes(knex));
 app.use('/sales', salesRoutes(knex));
 app.use('/search', searchRoutes(knex));
+app.use('/messages', messagesRoutes(knex));
 app.use(express.static('public'));
 
 app.post('/login', (req, res) => {
@@ -37,29 +39,32 @@ app.post('/login', (req, res) => {
       message: 'Email and password fields must be filled in!',
     });
   } else {
-    knex('users').where({
-      email: req.body.email,
-    }).then((results) => {
-      // 'results' pulls out the user from the database based on the above
-      // query.
-      if (!results.length) {
+    knex('users')
+      .where({
+        email: req.body.email,
+      })
+      .then((results) => {
+        // 'results' pulls out the user from the database based on the above
+        // query.
+        if (!results.length) {
+          res.send({
+            message: 'Don\'t have an account?  Have you registered?',
+          });
+        } else if (!bcrypt.compareSync(req.body.password, results[0].password)) {
+          res.send({
+            message: 'Incorrect email and/or password!',
+          });
+        } else {
+          res.send({
+            userId: results[0].id,
+            cookies: true,
+          });
+        }
+      }).catch((error) => {
         res.send({
-          message: 'Don\'t have an account?  Have you registered?',
+          message: error.message,
         });
-      } else if (!bcrypt.compareSync(req.body.password, results[0].password)) {
-        res.send({
-          message: 'Incorrect email and/or password!',
-        });
-      } else {
-        res.send({
-          cookies: true,
-        });
-      }
-    }).catch((error) => {
-      res.send({
-        message: error.message,
       });
-    });
   }
 });
 
@@ -104,18 +109,21 @@ app.post('/register', (req, res) => {
           };
           knex.insert(newUser)
             .into('users')
-            .then(res.send({
-              message: 'You\'ve successfully registered!',
-              cookies: true,
-            }))
-            .catch((err) => {
-                console.log(err.message);
+            .returning('id')
+            .then((userId) => {
+              res.send({
+                userId: userId[0],
+                message: 'You\'ve successfully registered!',
+                cookies: true,
+              });
+            })
+            .catch((error) => {
+              console.error(error);
             });
         }
       });
   }
-});
-
+})
 // request bgg api
 const bgg = require('bgg-axios');
 

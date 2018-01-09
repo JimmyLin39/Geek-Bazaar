@@ -4,15 +4,11 @@ const router = express.Router();
 
 module.exports = (knex) => {
   // retrieve all cart items
-  router.get('/', (req, res) => {
-    // if (!req.session.user_id) {
-    //   res.redirect('/users');
-    // }
+  router.get('/:id', (req, res) => {
     knex('line_items')
       .join('inventories', 'inventory_id', 'inventories.id')
       .select('inventories.id', 'inventories.name', 'inventories.price', 'inventories.user_id')
-    // FIXME: update to the current userID
-      .where('line_items.user_id', 1)
+      .where('line_items.user_id', req.params.id)
       .then((resources) => {
         resources.forEach((element) => {
           element.quantity = 1;
@@ -48,10 +44,14 @@ module.exports = (knex) => {
   });
 
   // delete an item from cart
-  router.delete('/:id', (req, res) => {
+  router.delete('/:id/:userid', (req, res) => {
     const id = Number(req.params.id);
+    const userid = Number(req.params.userid);
     knex('line_items')
-      .where('inventory_id', id)
+      .where({
+        inventory_id: id,
+        user_id: userid,
+      })
       .del()
       .then(() => {
         res.send({
@@ -65,27 +65,32 @@ module.exports = (knex) => {
 
   // create a new order to orders table
   router.post('/checkout', (req, res) => {
-    req.body.forEach((element) => {
-      const { buyer_id, seller_id, inventory_id, total_cents, status, type } = element;
-      knex('orders')
-        .insert({ buyer_id, seller_id, inventory_id, total_cents, status, type })
-        // delete cart item in line_items table
-        .then(() => {
-          knex('line_items')
-            .where('user_id', buyer_id)
-            .del()
-            .catch((error) => {
-              console.error(error);
-            });
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+    const orders = req.body;
+    const createOrdersPromise = new Promise((resolve, reject) => {
+      orders.forEach((element) => {
+        const { buyer_id, seller_id, inventory_id, total_cents, status, type } = element;
+        knex('orders')
+          .insert({ buyer_id, seller_id, inventory_id, total_cents, status, type })
+          // delete cart item in line_items table
+          .then(() => {
+            knex('line_items')
+              .where('user_id', buyer_id)
+              .del()
+              .catch((error) => {
+                console.error(error);
+              });
+            resolve('Success');
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      });
     });
-    res.send({
-      message: 'successfully checkout!',
+    createOrdersPromise.then(() => {
+      res.send({
+        message: 'successfully create orders',
+      });
     });
   });
-
   return router;
 };

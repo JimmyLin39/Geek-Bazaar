@@ -14,7 +14,7 @@ export function fetchInventory ({ commit }, inventoryId) {
   return InventoryService.retrieveInventory(inventoryId)
     .then((response) => {
       console.log(response.data.resources[0]);
-      
+
       commit(FETCH_INVENTORY, response.data.resources[0])
     })
 }

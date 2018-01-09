@@ -27,10 +27,10 @@
           <router-link class="nav-link" to='/orders'>Order</router-link>
         </li>
         <li class='nav-item'>
-          <router-link class="nav-link" to='/sales'>Sales</router-link>
+          <router-link class="nav-link" to="/sales">Sales</router-link>
         </li>
         <li class='nav-item'>
-          <router-link class="nav-link" to='/logout'>Logout</router-link>
+          <router-link class="nav-link" to="/" @click.native="logout()">Logout</router-link>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -56,21 +56,54 @@
 </template>
 
 <script>
-
-import AuthenticationService from '@/services/AuthenticationService'
-import Vue from 'vue'
-import VueCookie from 'vue-cookie'
-Vue.use(VueCookie)
+import ShoppingCart from './ShoppingCart'
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+import { mapGetters } from 'vuex'
+import Login from './Login'
 
 export default {
-  name: 'app',
+  data(){
+    return {
+      search: null,
+      cookies: '',
+    }
+  },
+  components: {
+    ShoppingCart,
+    FontAwesomeIcon,
+    Login
+  },
+  computed: {
+    totalItems () {
+      return this.inCart.reduce((sum, p) => sum + p.quantity, 0)
+    },
+    ...mapGetters({
+      inCart: 'getCartItems'
+    })
+  },
   methods: {
-    async logOut() {
-      const response = await AuthenticationService.logout({
-        userCookies: this.$cookies.get('newUser')
-      })
-      if (response.data.logout === true) {
-        this.$cookies.remove(userCookies)
+    searchInventory(search) {
+      console.log('search', search);
+      this.$store.dispatch('searchInventory', search)
+    },
+    logout() {
+      this.$store.dispatch('resetCart');
+      this.$cookie.delete('userId')
+    },
+    getUserId() {
+      const userId = this.$cookie.get('userId')
+      console.log(userId);
+    },
+    hasCookies() {
+      const userId = this.$cookie.get('userId')
+      if (!userId) {
+        console.log('You need to be logged in to make a sale!');
+        // TODO: Show message above in the browser
+
+      } else {
+        console.log('Proceed to the sales!');
+        // TODO: Redirect link to the sales vue
+
       }
     }
   }

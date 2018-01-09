@@ -6,8 +6,8 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
   SUBTRACT_FROM_CART,
+  RESET_CART,
 } from './mutation-types';
-import { RESET_CART } from './mutation-types';
 
 const initialState = {
   inventories: [],
@@ -45,7 +45,7 @@ const mutations = {
     }
   },
   [RESET_CART](state) {
-    state.inventories = initialState.inventories;
+    state.inventories = [];
   },
 };
 

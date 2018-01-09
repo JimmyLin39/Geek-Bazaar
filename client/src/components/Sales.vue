@@ -1,7 +1,7 @@
 <template>
-  <div class="orders">
+  <div id="sales">
   <h1>My Sales:</h1>
-    <table class="table table-responsive table-hover inventory-table">
+    <table class="table sales table-responsive table-hover inventory-table">
       <thead>
         <tr>
           <th></th>
@@ -57,13 +57,17 @@ export default {
   methods: {
     updateStatus(id, e){
       this.$store.dispatch('updateStatus', { id, e })
+    },
+    getUserCookies() {
+      const userCookies = this.$cookie.get('userCookies')
+      console.log(userCookies)
     }
   },
 }
 </script>
 
 <style>
-.table {
+.sales{
   margin-left: 10% !important;
 }
 </style>

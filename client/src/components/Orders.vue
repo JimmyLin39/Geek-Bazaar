@@ -1,7 +1,7 @@
 <template>
-  <div class="orders">
+  <div id="orders">
   <h1>My Orders:</h1>
-    <table class="table table-responsive table-hover inventory-table">
+    <table class="table orders table-responsive table-hover inventory-table">
       <thead>
         <tr>
           <th></th>
@@ -58,7 +58,7 @@ export default {
 </script>
 
 <style>
-.table {
+.orders {
   margin-left: 10% !important;
 }
 </style>

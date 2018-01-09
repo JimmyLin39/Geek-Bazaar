@@ -6,28 +6,22 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <router-link class="navbar-brand" to='/'>Geek Bazaar</router-link>
-      <ul class="navbar-nav mr-auto">
+      <router-link v-if="!cookies" class="nav-link" to='/login'>Login</router-link>
+      <ul v-else class="navbar-nav mr-auto">
         <li class="nav-item">
-          <router-link class="nav-link" to='/login'>Login</router-link>
+          <router-link class="nav-link" to='/index'>Explore</router-link>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#"
-            id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">Profile</a>
-          <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <a class="dropdown-item" href="#">Buy</a>
-            <a class="dropdown-item" href="#">Sell</a>
-            <a class="dropdown-item" href="#"></a>
-          </div>
+        <li class="nav-item">
+          <router-link class="nav-link" to='/inventories'>Inventories</router-link>
         </li>
         <li class='nav-item'>
-          <router-link class="nav-link" to='/orders'>Order</router-link>
+          <router-link class="nav-link" to='/orders'>Orders</router-link>
         </li>
         <li class='nav-item'>
           <router-link class="nav-link" to="/sales">Sales</router-link>
         </li>
         <li class='nav-item'>
-          <router-link class="nav-link" to="/" @click.native="logout()">Logout</router-link>
+          <router-link class="nav-link" to="/messages">Messages</router-link>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -36,6 +30,15 @@
       </form>
     </div>
     <div class="nav navbar-nav pull-sm-right">
+      <div class="nav-item dropdown dropdown-profile">
+        <button class="btn btn-primary btn-profile dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <font-awesome-icon icon="user" />
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-divider"></div>
+          <router-link class="dropdown-item nav-link" to="/" @click.native="logout()">Logout</router-link>
+        </div>
+      </div>
       <div class="nav-item dropdown dropdown-cart">
         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span v-if="totalItems" class="badge badge-pill badge-danger">{{totalItems}}</span>
@@ -53,59 +56,49 @@
 import ShoppingCart from './ShoppingCart'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import { mapGetters } from 'vuex'
-import Login from './Login'
 
 export default {
   data(){
     return {
       search: null,
-      cookies: '',
     }
   },
   components: {
     ShoppingCart,
     FontAwesomeIcon,
-    Login
   },
   computed: {
     totalItems () {
       return this.inCart.reduce((sum, p) => sum + p.quantity, 0)
     },
     ...mapGetters({
-      inCart: 'getCartItems'
+      inCart: 'getCartItems',
+      cookies: 'getCookies'
     })
   },
   methods: {
     searchInventory(search) {
-      console.log('search', search);
       this.$store.dispatch('searchInventory', search)
     },
     logout() {
       this.$store.dispatch('resetCart');
-      this.$cookie.delete('userId')
+      this.$store.dispatch('logout');
     },
-    getUserId() {
-      const userId = this.$cookie.get('userId')
-      console.log(userId);
-    },
-    hasCookies() {
-      const userId = this.$cookie.get('userId')
-      if (!userId) {
-        console.log('You need to be logged in to make a sale!');
-        // TODO: Show message above in the browser
-
-      } else {
-        console.log('Proceed to the sales!');
-        // TODO: Redirect link to the sales vue
-
-      }
-    }
   }
 }
 </script>
 
 <style>
-.dropdown-cart{
+.dropdown-profile {
+  margin-left: 10px;
+}
+
+.btn-profile {
+  background-color: #3498db;
+  border-color: #3498db;
+}
+
+.dropdown-cart {
   margin-left: 10px;
 }
 </style>

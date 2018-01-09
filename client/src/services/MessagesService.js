@@ -8,6 +8,9 @@ export default {
   retrieveMessage(userId, senderId) {
     return Api().get(`messages/${userId}/detail/${senderId}`);
   },
+  retrieveSenderName(senderId) {
+    return Api().get(`messages/sender/${senderId}`);
+  },
   addMessage(message) {
     return Api().post('messages', message);
   },

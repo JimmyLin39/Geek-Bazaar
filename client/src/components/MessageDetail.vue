@@ -3,7 +3,8 @@
     <div class="container">
     <div class="cs-row">
       <div class="cs-col-xs-12 cs-col-md-6 cs-offset-md-3">
-        <h2 id="sender-name">Messages with {{ senderName() }}</h2>
+        <h2 v-if="messages.length == 0"id="sender-name">You have no messages with {{ senderName }}</h2>
+        <h2 v-else id="sender-name">Messages with {{ senderName }}</h2>
       </div>
     </div>
     <div class="cs-row">
@@ -47,11 +48,13 @@ export default {
   },
   props: ['id'],
   created () {
+    this.$store.dispatch('fetchSenderName', this.id);
     this.$store.dispatch('fetchMessage', this.id);
   },
   computed: {
     ...mapGetters({
-      messages: 'getMessage'
+      messages: 'getMessage',
+      senderName: 'getSenderName'
     })
   },
   methods: {
@@ -69,13 +72,14 @@ export default {
         this.content = '';
       }
     },
-    senderName() {
-      for(const message of this.messages) {
-        if (message.sender_id == this.id) {
-          return message.sender_name
-        }
-      } 
-    }
+    // senderName() {
+      
+      // for(const message of this.messages) {
+      //   if (message.sender_id == this.id) {
+      //     return message.sender_name
+      //   }
+      // } 
+    // }
   },
 }
 </script>

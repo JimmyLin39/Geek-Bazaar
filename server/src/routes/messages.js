@@ -45,6 +45,20 @@ module.exports = (knex) => {
       });
   });
 
+  router.get('/sender/:senderId', (req, res) => {
+    knex('users')
+      .where('users.id', req.params.senderId)
+      .select('users.full_name as sender_name')
+      .then((result) => {
+        res.send({
+          result,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  })
+
   // create a new message
   router.post('/', (req, res) => {
     const { senderId, receiverId, content } = req.body;

@@ -1,5 +1,5 @@
 <template>
-  <div id="messages">
+  <div id="messages"  class="container">
     <div class="cs-row">
       <div class="cs-col-xs-12 cs-col-md-6 cs-offset-md-3">
       </div>

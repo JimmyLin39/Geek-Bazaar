@@ -1,119 +1,48 @@
 <template>
-  <div>
-    <div class="title-container">
-      <div class="container">
-        <h1 class="display-3">Geek Bazaar</h1>
-        <p class='description'>
-          Welcome to <b>Geek Bazaar</b>, a place where passionate gamers can come
-          to connect and bid-on/sell a variety of board games.
-          Whatever game it might be, we are 100% sure you'll be able to find it on
-          the Geek Bazaar!  Register below and discover all the games inside!
-        </p>
-        <hr>
-        <br>
-        <div class='register-button'>
-          <p>
-            <router-link to="/register" class="btn btn-primary btn-lg"
-            role="button">
-              Register Now &raquo;
-            </router-link>
-          </p>
-        </div>
-      </div>
+<div>
+  <div class="landing">
+    <div class="landing-title">
+      <h1 class="display-3">Geek Bazaar</h1>
+      <p>
+        Welcome to <b>Geek Bazaar</b> !
+        <br> A place where passionate gamers can come to connect and bid-on/sell a variety of board games.
+        <br> Whatever game it might be, we are 100% sure you'll be able to find it on
+        the Geek Bazaar!
+        <br> Register below and discover all the games inside!
+      </p>
+      <router-link class="btn btn-primary btn-register-now btn-lg" to="/register" tag="button">Register Now &raquo;</router-link>
     </div>
-    <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4">
-          <h2>Feature 1</h2>
-          <p class='col-md-4-p'>
-            Description of Feature 1
-          </p>
-          <p class='col-md-4-p-button'>
-            <a class="btn btn-secondary" href="#" role="button">
-              View details &raquo;
-            </a>
-          </p>
-        </div>
-        <div class="col-md-4">
-          <h2>Feature 2</h2>
-          <p class='col-md-4-p'>
-            Description of Feature 2.
-          </p>
-          <p class='col-md-4-p-button'>
-            <a class="btn btn-secondary" href="#" role="button">
-              View details &raquo;
-            </a>
-          </p>
-       </div>
-        <div class="col-md-4">
-          <h2>Feature 3</h2>
-          <p class='col-md-4-p'>
-            Description of Feature 3
-          </p>
-          <p class='col-md-4-p-button'>
-            <a class="btn btn-secondary" href="#" role="button">
-              View details &raquo;
-            </a>
-          </p>
-        </div>
-      </div>
-
-        <hr>
-
-      <div class='footer-div'>
-        <footer class='footer-section'>
-          <p>&copy; [Karan, Jimmy, Thomas, Kang]
-            (<a href='www.lighthouselabs.ca'>Lighthouse Labs</a>) 2017</p>
-        </footer>
-      </div>
-
-    </div> <!-- /container -->
-
   </div>
-
+    <div class="footer">  
+      <p>
+        &copy; [Karan, Jimmy, Thomas, Kang](<a href='www.lighthouselabs.ca'>Lighthouse Labs</a>) 2017
+      </p>
+    </div>
+</div>
 </template>
 
-<script>
-
-export default {
-  name: 'landingpage'
-};
-
-
-</script>
-
 <style>
-.container {
-  margin: 20px;
+
+.landing {
+  height: 900px;
+  background-image: url("../assets/landing-background.jpg");
+  padding-top: 10%;
 }
-.register-button,
-.display-3 {
-  text-align: center;
-}
-.title-container {
-  background-color: lightgrey;
+
+.landing-title {
   padding-top: 5%;
   padding-bottom: 5%;
+  padding-left: 5%;
+  padding-right: 20%;
+  font-size: 20px;
+  color: black;
+  background-color: #ffffff;
+  opacity: 0.75;
 }
-.description {
-  text-align: justify;
-  margin-left: 100px;
-  margin-right: 100px;
-}
-.btn.btn-secondary {
-  background-color: #0275d8;
-  border-color: #0275d8;
-  color: white;
-}
-.col-md-4-p {
-  text-align: justify;
-}
-.col-md-4-p-button {
-  text-align: center;
-}
-.row h2 {
-  text-align: center;
+
+.footer {
+  margin-left: 5%;
+  margin-top: 5px;
 }
 
 </style>

@@ -24,12 +24,12 @@
           <router-link class="nav-link" to="/messages">Messages</router-link>
         </li>
       </ul>
+    </div>
+    <div class="nav navbar-nav pull-sm-right">
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="text" placeholder="Search" v-model="search">
         <router-link to="/search" tag="button" class="btn btn-outline-info my-2 my-sm-0" @click.native="searchInventory(search)">Search</router-link>
       </form>
-    </div>
-    <div class="nav navbar-nav pull-sm-right">
       <div class="nav-item dropdown dropdown-profile">
         <button class="btn btn-primary btn-profile dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <font-awesome-icon icon="user" />

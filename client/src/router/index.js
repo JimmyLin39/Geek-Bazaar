@@ -11,6 +11,7 @@ import Sales from '@/components/Sales';
 import Search from '@/components/Search';
 import Messages from '@/components/Messages';
 import MessageDetail from '@/components/MessageDetail';
+import Users from '@/components/Users';
 
 Vue.use(Router);
 
@@ -27,6 +28,7 @@ const router =
     { path: '/search', meta: { Auth: true }, name: 'search', component: Search },
     { path: '/messages', meta: { Auth: true }, name: 'messages', component: Messages },
     { path: '/messages/:id', meta: { Auth: true }, name: 'MessageDetail', component: MessageDetail, props: true },
+    { path: '/users', meta: { Auth: true }, name: 'users', component: Users },
   ];
 export default new Router({
   routes: router,

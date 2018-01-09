@@ -68,6 +68,11 @@ export default {
 </script>
 
 <style>
+.inventory-image {
+  background-color: #fff;
+  height: 48px !important;
+}
+
 .sales {
   margin-left: 5%;
 }

@@ -1,7 +1,6 @@
 <template>
-  <div id="orders">
-  <h1>My Orders:</h1>
-    <table class="table orders table-responsive table-hover inventory-table">
+  <div id="orders" class="container">
+    <table class="table orders table-responsive table-hover">
       <thead>
         <tr>
           <th></th>
@@ -60,8 +59,13 @@ export default {
 </script>
 
 <style>
+.inventory-image {
+  background-color: #fff;
+  height: 48px !important;
+}
+
 .orders {
-  margin-left: 10% !important;
+  margin-left: 5%;
 }
 </style>
 

@@ -10,13 +10,11 @@ import {
   FETCH_SEARCH,
 } from './mutation-types';
 
-export function fetchInventory ({ commit }, inventoryId) {
+export function fetchInventory({ commit }, inventoryId) {
   return InventoryService.retrieveInventory(inventoryId)
     .then((response) => {
-      console.log(response.data.resources[0]);
-
-      commit(FETCH_INVENTORY, response.data.resources[0])
-    })
+      commit(UPDATE_INVENTORY, response.data.resources[0]);
+    });
 }
 
 export function fetchInventories({ commit }) {
@@ -27,7 +25,7 @@ export function fetchInventories({ commit }) {
 export function createInventory({ commit }, { inventory, image }) {
   return InventoryService.createInventory(inventory)
     .then((response) => {
-      // console.log('resources', response.data.resources);
+      console.log('resources', response.data.resources);
       commit(CREATE_INVENTORY, response.data.resources[0]);
       return response.data.resources[0].id;
     })
@@ -54,6 +52,8 @@ export function deleteInventory({ commit }, inventoryId) {
 }
 
 export function saveInventory({ commit, state }, { inventory, image }) {
+  console.log(inventory);
+  
   const index = state.all.findIndex(p => p.id === inventory.id);
   console.log('saveInventory index:', index);
   // update product if it exists or create it if it doesn't
@@ -70,11 +70,10 @@ export function uploadInventoryImage({ commit }, image, inventoryId) {
   formData.append('inventory_image', image);
 
   // Upload (PUT) the product image before resolving the response
-  return InventoryService.uploadImage(formData)
-    .then(response => response.data.message)
-    // Since the server has associated the product with the image
-    // refresh (GET) the product data to get this information
-    .then(() => fetchInventory({ commit }, inventoryId));
+  InventoryService.uploadImage(formData)
+    .then((response) => {
+      return fetchInventory({ commit }, Number(response.data.resources.inventoryId));
+    });
 }
 
 export function searchInventory({ commit }, name) {

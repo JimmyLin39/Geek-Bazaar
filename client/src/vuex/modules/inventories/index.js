@@ -20,7 +20,6 @@ const initialState = {
 const mutations = {
   [FETCH_INVENTORY](state, inventory) {
     const index = state.all.findIndex(p => p.id === inventory.id);
-
     if (index === -1) {
       state.all.push(inventory);
     } else {
@@ -39,7 +38,6 @@ const mutations = {
 
   [UPDATE_INVENTORY](state, inventory) {
     const index = state.all.findIndex(p => p.id === inventory.id);
-
     if (index !== -1) {
       // We need to replace the array entirely so that vue can recognize
       // the change and re-render entirely.

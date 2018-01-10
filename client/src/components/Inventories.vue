@@ -1,4 +1,5 @@
 <template>
+<div class="container">
   <table class="table table-responsive table-hover inventory-table">
     <thead>
       <tr>
@@ -28,6 +29,7 @@
       </tr>
     </tbody>
   </table>
+</div>
 </template>
 
 <script>

@@ -33,7 +33,10 @@ module.exports = (knex) => {
         .then(() => {
           res.status(201);
           res.send({
-            message: req.file.originalname,
+            resources: {
+              fileName: req.file.originalname,
+              inventoryId,
+            },
           });
         })
         .catch((error) => {
@@ -45,9 +48,6 @@ module.exports = (knex) => {
 
   // retrieve all inventories
   router.get('/', (req, res) => {
-    // if (!req.session.user_id) {
-    //   res.redirect('/users');
-    // }
     knex('inventories')
       .select()
       .then((resources) => {
@@ -62,13 +62,10 @@ module.exports = (knex) => {
 
   // retrieve one inventory
   router.get('/:id', (req, res) => {
-    // if (!req.session.user_id) {
-    //   res.redirect('/users');
-    // }
     const id = Number(req.params.id);
     knex('inventories')
       .join('users', 'users.id', 'inventories.user_id')
-      .select('users.full_name', 'inventories.id', 'name', 'description', 'price', 'condition', 'image_url', 'image_name')
+      .select('users.full_name', 'inventories.user_id', 'inventories.id', 'name', 'description', 'price', 'condition', 'image_url', 'image_name')
       .where('inventories.id', id)
       .then((resources) => {
         res.send({

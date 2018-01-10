@@ -1,12 +1,19 @@
 <template>
-  <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <router-link class="navbar-brand" to='/'>Geek Bazaar</router-link>
-      <router-link v-if="!cookies" class="nav-link" to='/login'>Login</router-link>
+      <ul v-if="!cookies" class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <router-link  class="nav-link" to='/login'>Login</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link  class="nav-link" to='/register'>Register</router-link>
+        </li>
+      </ul>
       <ul v-else class="navbar-nav mr-auto">
         <li class="nav-item">
           <router-link class="nav-link" to='/index'>Explore</router-link>
@@ -31,17 +38,16 @@
         <router-link to="/search" tag="button" class="btn btn-outline-info my-2 my-sm-0" @click.native="searchInventory(search)">Search</router-link>
       </form>
       <div class="nav-item dropdown dropdown-profile">
-        <button class="btn btn-primary btn-profile dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-profile dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <font-awesome-icon icon="user" />
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <div class="dropdown-divider"></div>
           <router-link class="dropdown-item nav-link" to="/" @click.native="logout()">Logout</router-link>
         </div>
       </div>
       <div class="nav-item dropdown dropdown-cart">
-        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span v-if="totalItems" class="badge badge-pill badge-danger">{{totalItems}}</span>
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span v-if="totalItems" class="badge badge-pill">{{totalItems}}</span>
           <font-awesome-icon icon="shopping-cart" />
         </button>
         <div class="dropdown-menu dropdown-menu-right">
@@ -89,13 +95,47 @@ export default {
 </script>
 
 <style>
+.navbar {
+  background-color: white;
+}
+
+.btn-primary {
+  color: #ffffff !important;
+  background-color: #E37222 !important;
+  border-color: #E37222 !important;
+}
+.btn-primary:hover {
+  background-color: #E37222 !important;
+  border-color: #E37222 !important;
+  opacity: 0.8 !important;
+}
+.show > .btn-primary.dropdown-toggle {
+  background-color: #E37222 !important;
+  border-color: #E37222 !important;
+}
+
+.badge-pill {
+  color: #E37222 !important;
+  background-color: #ffffff !important;
+}
+
 .dropdown-profile {
   margin-left: 10px;
 }
 
 .btn-profile {
-  background-color: #3498db;
-  border-color: #3498db;
+  color: #ffffff;
+  background-color: #33A2AA;
+  border-color: #33A2AA;
+}
+.btn-profile:hover {
+  background-color: #33A2AA;
+  border-color: #33A2AA;
+  opacity: 0.8;
+}
+.show > .btn-profile.dropdown-toggle {
+  background-color: #33A2AA;
+  border-color: #33A2AA;
 }
 
 .dropdown-cart {

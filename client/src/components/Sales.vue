@@ -1,7 +1,6 @@
 <template>
-  <div id="sales">
-  <h1>My Sales:</h1>
-    <table class="table sales table-responsive table-hover inventory-table">
+  <div id="sales"  class="container">
+    <table class="table sales table-responsive table-hover">
       <thead>
         <tr>
           <th></th>
@@ -69,7 +68,12 @@ export default {
 </script>
 
 <style>
-.sales{
-  margin-left: 10% !important;
+.inventory-image {
+  background-color: #fff;
+  height: 48px !important;
+}
+
+.sales {
+  margin-left: 5%;
 }
 </style>

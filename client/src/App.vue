@@ -1,8 +1,5 @@
 <template>
   <div>
-    <head>
-      <title>Geek Bazaar</title>
-    </head>
     <header class="app-header">
       <navbar></navbar>
     </header>

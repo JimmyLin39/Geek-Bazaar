@@ -33,7 +33,10 @@ module.exports = (knex) => {
         .then(() => {
           res.status(201);
           res.send({
-            message: req.file.originalname,
+            resources: {
+              fileName: req.file.originalname,
+              inventoryId,
+            },
           });
         })
         .catch((error) => {

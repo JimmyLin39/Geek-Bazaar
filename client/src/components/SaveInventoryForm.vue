@@ -37,7 +37,7 @@
     </button>
     <button type="submit" v-if="inventory.id" v-on:click.prevent="onCancel" class="btn btn-secondary">Cancel</button>
 
-    <div class="progress" style="height: 2px;">
+    <div class="progress" style="height: 10px;">
         <div class="progress-bar" v-bind:style="width"></div>
     </div>
   </form>

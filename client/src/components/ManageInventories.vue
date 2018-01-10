@@ -17,6 +17,11 @@
 import { mapGetters, mapActions } from 'vuex'
 import Inventories from './Inventories';
 import SaveInventoryForm from './SaveInventoryForm'
+import Vue from 'vue';
+import VueCookie from 'vue-cookie';
+Vue.use(VueCookie);
+
+const currentUserId = Number(Vue.cookie.get('userId'));
 
 const initialData = () => {
   return {
@@ -27,7 +32,7 @@ const initialData = () => {
       condition: '',
       price: '',
       // TODO: userId to current userid and product id
-      userId: 1,
+      userId: currentUserId,
     }
   }
 }

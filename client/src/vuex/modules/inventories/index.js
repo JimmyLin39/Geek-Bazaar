@@ -20,10 +20,16 @@ const initialState = {
 const mutations = {
   [FETCH_INVENTORY](state, inventory) {
     const index = state.all.findIndex(p => p.id === inventory.id);
-
+    console.log('index', index);
+    
     if (index === -1) {
       state.all.push(inventory);
     } else {
+      console.log('splice');
+      console.log('index', index);
+      console.log('inventory', inventory);
+      
+      
       state.all.splice(index, 1, inventory);
     }
   },

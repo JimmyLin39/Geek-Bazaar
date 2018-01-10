@@ -9,7 +9,7 @@
         <div class="card-content">
           <aside class="card-overlay">
             <router-link :to="{ name: 'Detail', params: { id: inventory.id }}" class="btn btn-info overlay-button" tag="button" name="button">See Detail</router-link>
-            <button class="btn btn-shopping-cart overlay-button" @click.stop.prevent="addToCart(inventory)" type="button" name="button">Add to cart</button>
+            <button class="btn btn-primary overlay-button" @click.stop.prevent="addToCart(inventory)" type="button" name="button">Add to cart</button>
           </aside>
           <div class="card-body">
             <header class="product-info">
@@ -45,6 +45,16 @@ export default {
 
 
 <style lang="scss" scoped>
+.btn-primary {
+  color: #ffffff;
+  background-color: #E37222;
+  border-color: #E37222;
+}
+.btn-primary:hover {
+  background-color: #E37222;
+  border-color: #E37222;
+  opacity: 0.8;
+}
 .overlay-button {
   margin: 0 auto;
 }

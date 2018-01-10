@@ -35,7 +35,7 @@
     <button type="submit" v-on:click.prevent="onSubmit" class="btn btn-primary">
       {{inventory.id ? 'Update' : 'Add'}} inventory
     </button>
-    <button type="submit" v-if="inventory.id" v-on:click.prevent="onCancel" class="btn btn-secondary">Cancel</button>
+    <button type="submit" v-if="inventory.id" v-on:click.prevent="onCancel" class="btn btn-outline-secondary">Cancel</button>
 
     <div class="progress" style="height: 10px;">
         <div class="progress-bar" v-bind:style="width"></div>
@@ -110,6 +110,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .btn-primary {
+    color: #ffffff;
+    background-color: #E37222;
+    border-color: #E37222;
+  }
+  .btn-primary:hover {
+    background-color: #E37222;
+    border-color: #E37222;
+    opacity: 0.8;
+  }
   .form-group {
     margin: auto 15% !important;
   }
@@ -119,8 +129,7 @@ export default {
   .progress {
     margin-top: 1%;
   }
-  // .progress.active .progress-bar {
-  //   -webkit-transition: none !important;
-  //   transition: none !important;
-  // }
+  .form-control-feedback {
+    color: #E37222;
+  }
 </style>

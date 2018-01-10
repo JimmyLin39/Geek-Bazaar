@@ -11,15 +11,10 @@ import {
 } from './mutation-types';
 
 export function fetchInventory({ commit }, inventoryId) {
-  console.log("in fetchInventory");
-  console.log(inventoryId);
-  
   return InventoryService.retrieveInventory(inventoryId)
     .then((response) => {
-      console.log(response.data.resources[0]);
-
-      commit(UPDATE_INVENTORY, response.data.resources[0])
-    })
+      commit(UPDATE_INVENTORY, response.data.resources[0]);
+    });
 }
 
 export function fetchInventories({ commit }) {
@@ -77,8 +72,7 @@ export function uploadInventoryImage({ commit }, image, inventoryId) {
   // Upload (PUT) the product image before resolving the response
   InventoryService.uploadImage(formData)
     .then((response) => {
-      console.log(response.data);
-      return fetchInventories({ commit }) // Number(response.data.resources.inventoryId));
+      return fetchInventory({ commit }, Number(response.data.resources.inventoryId));
     });
 }
 

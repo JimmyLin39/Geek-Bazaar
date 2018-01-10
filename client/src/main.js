@@ -26,6 +26,7 @@ try {
 
 // check authorization befor each route
 router.beforeEach((to, from, next) => {
+  document.title = to.meta.title;
   if (to.meta.Auth && !Vue.cookie.get('userId')) {
     next({ path: '/login' });
   } else {

@@ -16,7 +16,7 @@
       No inventories :(
     </div>
     <div class="total"><span>Total</span> ${{total}}</div>
-    <router-link :to="'orders'" tag="button" :disabled="!inventories.length" class="btn btn-info btn-block" @click.native="checkoutCart()">
+    <router-link :to="'orders'" tag="button" :disabled="!inventories.length" class="btn btn-shopping-cart btn-block" @click.native="checkoutCart()">
       Checkout
     </router-link>
   </section>
@@ -74,10 +74,6 @@ export default {
 .quantity {
   width: auto;
   flex-shrink: 0;
-
-  // .btn {
-  //   width: 1.5rem;
-  // }
 
   input.form-control {
     width: 2rem;

@@ -20,6 +20,10 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Oxygen');
+body {
+  font-family: 'Oxygen', sans-serif;
+}
 .container {
   margin-top: 5% !important;
 }

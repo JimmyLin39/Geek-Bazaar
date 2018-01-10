@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -40,8 +40,8 @@
         </div>
       </div>
       <div class="nav-item dropdown dropdown-cart">
-        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span v-if="totalItems" class="badge badge-pill badge-danger">{{totalItems}}</span>
+        <button type="button" class="btn btn-shopping-cart dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span v-if="totalItems" class="badge badge-pill">{{totalItems}}</span>
           <font-awesome-icon icon="shopping-cart" />
         </button>
         <div class="dropdown-menu dropdown-menu-right">
@@ -89,6 +89,27 @@ export default {
 </script>
 
 <style>
+.navbar {
+  background-color: white;
+}
+
+.btn-shopping-cart {
+  color: #ffffff;
+  background-color: #EE7500;
+  border-color: #EE7500;
+}
+.btn-shopping-cart:hover {
+  background-color: #EE7500;
+}
+.btn-shopping-cart.dropdown-toggle {
+  background-color: #EE7500;
+  border-color: #EE7500;
+}
+.badge-pill {
+  color: #EE7500;
+  background-color: #ffffff;
+}
+
 .dropdown-profile {
   margin-left: 10px;
 }

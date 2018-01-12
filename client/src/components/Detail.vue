@@ -13,7 +13,7 @@
     </div>
     <div class="col-md-8" v-if="bgg.description">
       <div style="text-align: center">
-      <img v-bind:src="bgg.image" alt="Product image" width="400" height="600" align="middle">
+      <img v-bind:src="bgg.image" alt="Product image" width="400" height="400" align="middle">
       </div>
       <br>
       <p><span v-html="bgg.description"></span></p>

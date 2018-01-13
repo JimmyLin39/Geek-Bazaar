@@ -35,11 +35,13 @@ It's 100% free and everyone is welcome!_
 
 ##  **Stack** <a id="stack">
 1. [VueJS](https://vuejs.org) - used for responsive front-end
-2. [ExpressJS](https://expressjs.com/) - used for RESTful API back-end
-3. [NodeJS](https://nodejs.org/en/)
-4. [PostgreSQL](https://www.postgresql.org/) - used for database
-5. [KnexJS](http://knexjs.org/) - used as an SQL query builder
-6. [Axios](https://github.com/axios/axios) - Promised based middleware HTTP client for the browser and Node.js
+2. [Vuex](https://github.com/vuejs/vuex) - used for centralized state management
+3. [ExpressJS](https://expressjs.com/) - used for RESTful API back-end
+4. [NodeJS](https://nodejs.org/en/)
+5. [PostgreSQL](https://www.postgresql.org/) - used for database
+6. [KnexJS](http://knexjs.org/) - used as an SQL query builder
+7. [Axios](https://github.com/axios/axios) - Promised based middleware HTTP client for the browser and Node.js
+8. [Bootstrap 4](https://v4-alpha.getbootstrap.com/) - Templates used for Landing, Login, and Registration Vues
 
 ![Tech stack](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/tech-stack.png)
 

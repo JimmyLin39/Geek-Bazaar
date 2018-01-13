@@ -12,7 +12,10 @@
       <button type="button" class="btn btn-info" v-on:click.prevent="bggApi(inventory[0].name)">See More Details from boardgamegeek.com</button>
     </div>
     <div class="col-md-8" v-if="bgg.description">
-      <img v-bind:src="bgg.image" alt="Product image" width="300" height="300">
+      <div style="text-align: center">
+      <img v-bind:src="bgg.image" alt="Product image" width="400" height="400" align="middle">
+      </div>
+      <br>
       <p><span v-html="bgg.description"></span></p>
       <strong>Max Players:</strong> {{ bgg.maxplayers.value }} people <br>
       <strong>Min Players:</strong> {{ bgg.minplayers.value }} people<br>
@@ -76,6 +79,7 @@ export default {
 <style lang="scss">
 .row {
   margin-top: 2.5%;
+  margin-bottom: 2.5%;
 }
 </style>
 

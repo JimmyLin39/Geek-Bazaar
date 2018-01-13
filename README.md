@@ -62,7 +62,7 @@ collection to rule them all!_
 ### 3. Posting a game to sell
 ![Game post](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/post-game-to-sell.png)
 
-![Adding game details](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/message-feature-buyer-to-seller-2.png)
+![Adding game details](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/post-game-to-sell-add-details.png)
 
 ### 4. Messaging feature
 ![Chat between buyer and seller](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/message-feature-buyer-to-seller-2.png)

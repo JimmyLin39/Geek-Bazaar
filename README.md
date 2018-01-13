@@ -21,6 +21,8 @@ As such, we provide an interface for potential buyers and sellers within the com
 _Come on in, sign up, and see the diverse selection of games that awaits you!  
 It's 100% free and everyone is welcome!_
 
+[&#8679; Back to top](#toc)
+
 ### **Features** <a id="feature">
   1. Authenticated user-**registration/login/logout**
   2. Ability for a game-seller to post any game to **sell**
@@ -29,6 +31,7 @@ It's 100% free and everyone is welcome!_
   4. **Cart** feature to review the details of purchase before checking out.
   5. Buyer-seller messaging capability to **a.** finalizing transactions, **b.** game exchange, and **c.** settling disputes concerning price, exchange location/time, etc.
 
+[&#8679; Back to top](#toc)
 
 ##  **Stack** <a id="stack">
 1. [VueJS](https://vuejs.org) - used for responsive front-end
@@ -37,6 +40,9 @@ It's 100% free and everyone is welcome!_
 4. [PostgreSQL](https://www.postgresql.org/) - used for database
 5. [KnexJS](http://knexjs.org/) - used as an SQL query builder
 6. [Axios](https://github.com/axios/axios) - Promised based middleware HTTP client for the browser and Node.js
+
+[&#8679; Back to top](#toc)
+
 
 ## **Target Audience** <a id="audience">
 _If you like board games, then this is one website you **need** to visit!  
@@ -49,6 +55,9 @@ Classic games such as Monopoly and Clue, to popular theme-based games like
 _If you're a game collector, then this site will expand your knowledge of **all**
 the games out there, and will help you on your quest to build the board-game
 collection to rule them all!_
+
+[&#8679; Back to top](#toc)
+
 
 ## Preview <a id='preview'>
 
@@ -68,6 +77,8 @@ collection to rule them all!_
 ### 4. Messaging feature
 ![Chat between buyer and seller](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/message-feature-buyer-to-seller-2.png)
 
+[&#8679; Back to top](#toc)
+
 
 ## Run the App <a id='runApp'>
 ### 1. Running the client (make sure to be in the ```./client/src/``` directory)
@@ -82,10 +93,13 @@ $ npm install
 $ npm start # server running at localhost:8081
 ```
 
+[&#8679; Back to top](#toc)
+
+
 ## **Team** <a id="team">
 - [Karanveer Singh](https://github.com/Karanveer-singh671)
 - [Jimmy Lin](https://github.com/JimmyLin39)
 - [Thomas Li](https://github.com/tomtkli)
 - [Kang Wang](https://github.com/kdubss)
 
-[Back 2 Top](#toc)
+[&#8679; Back to top](#toc)

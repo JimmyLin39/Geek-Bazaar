@@ -3,7 +3,8 @@
   - [Description](#description)
     - [Features](#feature)
   - [Stack](#stack)
-  - [Preview](#audience)
+  - [Preview](#preview)
+  - [Target Audience](#audience)
   - [Team](#team)
 
 ##  **Description** <a id="description">
@@ -47,6 +48,24 @@ Classic games such as Monopoly and Clue, to popular theme-based games like
 _If you're a game collector, then this site will expand your knowledge of **all**
 the games out there, and will help you on your quest to build the board-game
 collection to rule them all!_
+
+## ** Preview ** <a id='preview'>
+
+### 1. Landing Page
+[Landing Page](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/landing-page.png)
+
+### 2. Geek Bazaar inventories
+[Exploring the inventory of games](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/explore-inventories.png)
+
+[Adding selected games to the cart](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/explore-inventories-add-to-cart.png)
+
+### 3. Posting a game to sell
+[Game post](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/post-game-to-sell.png)
+
+[Adding game details](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/message-feature-buyer-to-seller-2.png)
+
+### 4. Messaging feature
+[Chat between buyer and seller](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/message-feature-buyer-to-seller-2.png)
 
 ## **Team** <a id="team">
 - [Karanveer Singh](https://github.com/Karanveer-singh671)

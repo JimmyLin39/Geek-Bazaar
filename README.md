@@ -52,20 +52,20 @@ collection to rule them all!_
 ## ** Preview ** <a id='preview'>
 
 ### 1. Landing Page
-[Landing Page](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/landing-page.png)
+![Landing Page](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/landing-page.png)
 
 ### 2. Geek Bazaar inventories
-[Exploring the inventory of games](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/explore-inventories.png)
+![Exploring the inventory of games](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/explore-inventories.png)
 
-[Adding selected games to the cart](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/explore-inventories-add-to-cart.png)
+![Adding selected games to the cart](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/explore-inventories-add-to-cart.png)
 
 ### 3. Posting a game to sell
-[Game post](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/post-game-to-sell.png)
+![Game post](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/post-game-to-sell.png)
 
-[Adding game details](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/message-feature-buyer-to-seller-2.png)
+![Adding game details](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/message-feature-buyer-to-seller-2.png)
 
 ### 4. Messaging feature
-[Chat between buyer and seller](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/message-feature-buyer-to-seller-2.png)
+![Chat between buyer and seller](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/message-feature-buyer-to-seller-2.png)
 
 ## **Team** <a id="team">
 - [Karanveer Singh](https://github.com/Karanveer-singh671)

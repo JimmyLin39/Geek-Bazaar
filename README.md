@@ -49,16 +49,17 @@ It's 100% free and everyone is welcome!_
 
 
 ## **Target Audience** <a id="audience">
-_If you like board games, then this is one website you **need** to visit!  
+If you like board games, then this is one website you **need** to visit!  
 The diverse selection of games offered will expand your desire to get together
-with friends, grab some brews, and **play some board games!**_
-_If you're not a lover of board games, then hopefully by visiting this website,
+with friends, grab some brews, and **play some board games!**
+If you're not a lover of board games, then hopefully by visiting this website,
 you will be inspired to pick up the pieces and check out what you've been missing!  
+
 Classic games such as Monopoly and Clue, to popular theme-based games like
 "Game Of Thrones" Risk, will offer something exciting for all types of people!_
-_If you're a game collector, then this site will expand your knowledge of **all**
+If you're a game collector, then this site will expand your knowledge of **all**
 the games out there, and will help you on your quest to build the board-game
-collection to rule them all!_
+collection to rule them all!
 
 [&#8679; Back to top](#toc)
 

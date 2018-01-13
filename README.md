@@ -6,6 +6,7 @@
   - [Preview](#preview)
   - [Target Audience](#audience)
   - [Team](#team)
+  - [Running the App](#runApp)
 
 ##  **Description** <a id="description">
 
@@ -49,7 +50,7 @@ _If you're a game collector, then this site will expand your knowledge of **all*
 the games out there, and will help you on your quest to build the board-game
 collection to rule them all!_
 
-## ** Preview ** <a id='preview'>
+## Preview <a id='preview'>
 
 ### 1. Landing Page
 ![Landing Page](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/landing-page.png)
@@ -66,6 +67,20 @@ collection to rule them all!_
 
 ### 4. Messaging feature
 ![Chat between buyer and seller](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/message-feature-buyer-to-seller-2.png)
+
+
+## Run the App <a id='runApp'>
+### 1. Running the client (make sure to be in the ```./client/src/``` directory)
+```
+$ npm install
+$ npm run dev # serve examples at localhost:8080
+```
+
+### 2. Running the server (make sure to be in the ```./server/src/``` directory)
+```
+$ npm install
+$ npm start # server running at localhost:8081
+```
 
 ## **Team** <a id="team">
 - [Karanveer Singh](https://github.com/Karanveer-singh671)

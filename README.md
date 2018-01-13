@@ -41,6 +41,8 @@ It's 100% free and everyone is welcome!_
 5. [KnexJS](http://knexjs.org/) - used as an SQL query builder
 6. [Axios](https://github.com/axios/axios) - Promised based middleware HTTP client for the browser and Node.js
 
+![Tech stack](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/tech-stack.png)
+
 [&#8679; Back to top](#toc)
 
 

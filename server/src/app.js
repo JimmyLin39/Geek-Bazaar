@@ -135,6 +135,6 @@ app.post('/logout', (req, res) => {
   });
 });
 
-app.listen(() => {
+app.listen(PORT, () => {
   console.log(`Geek-Bazzar Api listening on port ${PORT}`);
 });

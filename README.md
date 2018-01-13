@@ -10,23 +10,23 @@
 
 ##  **Description** <a id="description">
 
-_Have you been searching for that one board game that
+Have you been searching for that one board game that
 would make your collection and life, complete!?!?  
-Whatever the game may be, we are 100% sure you'll be able to find it in at the **Geek Bazaar**!_
+Whatever the game may be, we are 100% sure you'll be able to find it in at the **Geek Bazaar**!
 
-_**Geek Bazaar**, is a place where you can explore a wide selection of board games, create posts to sell board games, and connect with your
+**Geek Bazaar**, is a place where you can explore a wide selection of board games, create posts to sell board games, and connect with your
 community of board-gamers to buy/sell and/or trade games!  
-As such, we provide an interface for potential buyers and sellers within the community to connect, open communication, and to finalize the transaction and exchange of board games!_
+As such, we provide an interface for potential buyers and sellers within the community to connect, open communication, and to finalize the transaction and exchange of board games!
 
-_Come on in, sign up, and see the diverse selection of games that awaits you!  
-It's 100% free and everyone is welcome!_
+Come on in, sign up, and see the diverse selection of games that awaits you!  
+It's 100% free and everyone is welcome!
 
 [&#8679; Back to top](#toc)
 
 ### **Features** <a id="feature">
   1. Authenticated user-**registration/login/logout**
   2. Ability for a game-seller to post any game to **sell**
-    - with detailed specification on game **notes/condition**, etc.
+      - with detailed specification on game **notes/condition**, etc.
   3. Ability for game-sellers to review potential **orders** on any games the user may have posted to sell.
   4. **Cart** feature to review the details of purchase before checking out.
   5. Buyer-seller messaging capability to **a.** finalizing transactions, **b.** game exchange, and **c.** settling disputes concerning price, exchange location/time, etc.

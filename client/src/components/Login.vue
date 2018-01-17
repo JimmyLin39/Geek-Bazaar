@@ -92,11 +92,8 @@ export default {
 <style>
 .login-container {
   color: black;
-  margin-bottom: -50px;
   height: 900px;
   background-image: url("../assets/landing-background.jpg");
-  background-size: 100% auto;
-  background-repeat: no-repeat;
   padding-top: 10%;
 }
 #loginbox {

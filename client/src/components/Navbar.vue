@@ -91,7 +91,7 @@ export default {
       this.$store.dispatch('logout');
     },
   }
-}
+};
 </script>
 
 <style>

@@ -1,0 +1,2 @@
+vue: cd client/dist && npm start
+node: cd server && npm install && node src/app.js

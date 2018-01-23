@@ -1,0 +1,10 @@
+{
+  "name": "GeekBazzar",
+  "version": "1.0.0",
+  "description": "Trade your boardgame online",
+  "author": "Karanveer Singh, Jimmy Lin, Thomas Li, Kang Wang",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm install foreman"
+  }
+ }

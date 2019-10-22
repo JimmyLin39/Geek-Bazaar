@@ -43,8 +43,8 @@ It's 100% free and everyone is welcome!
 7. [Axios](https://github.com/axios/axios) - Promised based middleware HTTP client for the browser and Node.js
 8. [Bootstrap 4](https://v4-alpha.getbootstrap.com/) - Templates used for Landing, Login, and Registration Vues
 
-![Tech stack](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/tech-stack.png)
-
+![Tech stack](https://github.com/JimmyLin39/Geek-Bazaar/blob/master/imgs/tech-stack.png)
+ 
 [&#8679; Back to top](#toc)
 
 
@@ -67,20 +67,20 @@ collection to rule them all!
 ## Preview <a id='preview'>
 
 ### 1. Landing Page
-![Landing Page](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/landing-page.png)
+![Landing Page](https://github.com/JimmyLin39/Geek-Bazaar/blob/master/imgs/landing-page.png)
 
 ### 2. Geek Bazaar inventories
-![Exploring the inventory of games](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/explore-inventories.png)
+![Exploring the inventory of games](https://github.com/JimmyLin39/Geek-Bazaar/blob/master/imgs/explore-inventories.png)
 
-![Adding selected games to the cart](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/explore-inventories-add-to-cart.png)
+![Adding selected games to the cart](https://github.com/JimmyLin39/Geek-Bazaar/blob/master/imgs/explore-inventories-add-to-cart.png)
 
 ### 3. Posting a game to sell
-![Game post](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/post-game-to-sell.png)
+![Game post](https://github.com/JimmyLin39/Geek-Bazaar/blob/master/imgs/post-game-to-sell.png)
 
-![Adding game details](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/post-game-to-sell-add-details.png)
+![Adding game details](https://github.com/JimmyLin39/Geek-Bazaar/blob/master/imgs/post-game-to-sell-add-details.png)
 
 ### 4. Messaging feature
-![Chat between buyer and seller](https://github.com/kdubss/Geek-Bazaar/blob/master/imgs/message-feature-buyer-to-seller-2.png)
+![Chat between buyer and seller](https://github.com/JimmyLin39/Geek-Bazaar/blob/master/imgs/message-feature-buyer-to-seller-2.png)
 
 [&#8679; Back to top](#toc)
 
